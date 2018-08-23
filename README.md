@@ -1,4 +1,4 @@
-Zcash 2.0.0
+bitzec  1.0.0
 =============
 
 What is Zcash?
