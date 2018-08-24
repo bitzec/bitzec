@@ -16,13 +16,25 @@
 
 #include "sodium.h"
 
+#ifdef ENABLE_RUST
+#include "librustzcash.h"
+#endif // ENABLE_RUST
+
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
+    const CChainParams& chainParams = Params();
     unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
     // Genesis block
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
+
+    // Reset the difficulty after the algo fork
+    if (pindexLast->nHeight > chainParams.eh_epoch_1_end() - 1
+        && pindexLast->nHeight < chainParams.eh_epoch_1_end() + params.nPowAveragingWindow) {
+        LogPrint("pow", "Reset the difficulty for the eh_epoch_2 algo change: %d\n", nProofOfWorkLimit);
+        return nProofOfWorkLimit;
+    }
 
     // Find the first block in the averaging interval
     const CBlockIndex* pindexFirst = pindexLast;
@@ -79,8 +91,21 @@ unsigned int CalculateNextWorkRequired(arith_uint256 bnAvg,
 
 bool CheckEquihashSolution(const CBlockHeader *pblock, const CChainParams& params)
 {
-    unsigned int n = params.EquihashN();
-    unsigned int k = params.EquihashK();
+    //Set parameters N,K from solution size. Filtering of valid parameters
+    //for the givenblock height will be carried out in main.cpp/ContextualCheckBlockHeader
+    unsigned int n,k;
+    size_t nSolSize = pblock->nSolution.size();
+    switch (nSolSize){
+        case 1344: n=200; k=9; break;
+        case 100:  n=144; k=5; break;
+        case 68:   n=96;  k=5; break;
+        case 36:   n=48;  k=5; break;
+        default: return error("CheckEquihashSolution: Unsupported solution size of %d", nSolSize);
+    }
+
+    LogPrint("pow", "selected n,k : %d, %d \n", n,k);
+
+    //need to put block height param switching code here
 
     // Hash state
     crypto_generichash_blake2b_state state;
@@ -95,6 +120,14 @@ bool CheckEquihashSolution(const CBlockHeader *pblock, const CChainParams& param
 
     // H(I||V||...
     crypto_generichash_blake2b_update(&state, (unsigned char*)&ss[0], ss.size());
+
+    #ifdef ENABLE_RUST
+    // Ensure that our Rust interactions are working in production builds. This is
+    // temporary and should be removed.
+    {
+        assert(librustzcash_xor(0x0f0f0f0f0f0f0f0f, 0x1111111111111111) == 0x1e1e1e1e1e1e1e1e);
+    }
+    #endif // ENABLE_RUST
 
     bool isValid;
     EhIsValidSolution(n, k, state, pblock->nSolution, isValid);

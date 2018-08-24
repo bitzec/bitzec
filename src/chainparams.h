@@ -7,6 +7,7 @@
 #define BITCOIN_CHAINPARAMS_H
 
 #include "chainparamsbase.h"
+#include "checkpoints.h"
 #include "consensus/params.h"
 #include "primitives/block.h"
 #include "protocol.h"
@@ -25,11 +26,10 @@ struct SeedSpec6 {
 
 typedef std::map<int, uint256> MapCheckpoints;
 
-struct CCheckpointData {
-    MapCheckpoints mapCheckpoints;
-    int64_t nTimeLastCheckpoint;
-    int64_t nTransactionsLastCheckpoint;
-    double fTransactionsPerDay;
+struct EHparameters {
+    unsigned char n;
+    unsigned char k;
+    unsigned short int nSolSize;
 };
 
 /**
@@ -78,8 +78,12 @@ public:
     /** Policy: Filter transactions that do not match well-defined patterns */
     bool RequireStandard() const { return fRequireStandard; }
     int64_t PruneAfterHeight() const { return nPruneAfterHeight; }
-    unsigned int EquihashN() const { return nEquihashN; }
-    unsigned int EquihashK() const { return nEquihashK; }
+
+    EHparameters eh_epoch_1_params() const { return eh_epoch_1; }
+    EHparameters eh_epoch_2_params() const { return eh_epoch_2; }
+    unsigned long eh_epoch_1_end() const { return eh_epoch_1_endblock; }
+    unsigned long eh_epoch_2_start() const { return eh_epoch_2_startblock; }
+
     std::string CurrencyUnits() const { return strCurrencyUnits; }
     uint32_t BIP44CoinType() const { return bip44CoinType; }
     /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
@@ -99,6 +103,7 @@ public:
     std::string GetFoundersRewardAddressAtIndex(int i) const;
     /** Enforce coinbase consensus rule in regtest mode */
     void SetRegTestCoinbaseMustBeProtected() { consensus.fCoinbaseMustBeProtected = true; }
+    int GetNewTimeRule() const { return newTimeRule; }
 protected:
     CChainParams() {}
 
@@ -107,9 +112,12 @@ protected:
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort = 0;
+    long nMaxTipAge = 0;
     uint64_t nPruneAfterHeight = 0;
-    unsigned int nEquihashN = 0;
-    unsigned int nEquihashK = 0;
+    EHparameters eh_epoch_1 = eh200_9;
+    EHparameters eh_epoch_2 = eh144_5;
+    unsigned long eh_epoch_1_endblock = 400000;
+    unsigned long eh_epoch_2_startblock = 309000;
     std::vector<CDNSSeedData> vSeeds;
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
     std::string bech32HRPs[MAX_BECH32_TYPES];
@@ -123,8 +131,9 @@ protected:
     bool fRequireStandard = false;
     bool fMineBlocksOnDemand = false;
     bool fTestnetToBeDeprecatedFieldRPC = false;
-    CCheckpointData checkpointData;
+    Checkpoints::CCheckpointData checkpointData;
     std::vector<std::string> vFoundersRewardAddress;
+    int newTimeRule;
 };
 
 /**
@@ -145,9 +154,7 @@ void SelectParams(CBaseChainParams::Network network);
  */
 bool SelectParamsFromCommandLine();
 
-/**
- * Allows modifying the network upgrade regtest parameters.
- */
-void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivationHeight);
+int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params);
+
 
 #endif // BITCOIN_CHAINPARAMS_H
