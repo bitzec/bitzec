@@ -81,7 +81,7 @@ struct Params {
      */
     int SubsidySlowStartShift() const { return nSubsidySlowStartInterval / 2; }
     int nSubsidyHalvingInterval;
-    int GetLastFoundersRewardBlockHeight() const {
+    int GetLastFoundersRewardBlockHeight(2800001) const {
         //return nSubsidyHalvingInterval + SubsidySlowStartShift() - 1;
         return 0; // Bugfix #14: getblocksubsidy RPC command is incorrect
     }
@@ -104,7 +104,7 @@ struct Params {
     unsigned int nLWMAHeight;
     int64_t nPowLwmaTargetSpacing;
     int64_t nZawyLwmaAveragingWindow;
-    int64_t nZawyLwmaAdjustedWeight; 
+    int64_t nZawyLwmaAdjustedWeight;
     int64_t nZawyLwmaMinDenominator;
     bool fZawyLwmaSolvetimeLimitation;
     int64_t ZCnPowTargetSpacing; //legacy target spacing
