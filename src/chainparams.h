@@ -127,7 +127,7 @@ protected:
     EHparameters eh_epoch_1 = eh200_9;
     EHparameters eh_epoch_2 = eh144_5;
     unsigned long eh_epoch_1_endblock = 400000;
-    unsigned long eh_epoch_2_startblock = 309000;
+    unsigned long eh_epoch_2_startblock = 390000;
     std::vector<CDNSSeedData> vSeeds;
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
     std::string bech32HRPs[MAX_BECH32_TYPES];
