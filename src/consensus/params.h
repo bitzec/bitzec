@@ -81,7 +81,7 @@ struct Params {
      */
     int SubsidySlowStartShift() const { return nSubsidySlowStartInterval / 2; }
     int nSubsidyHalvingInterval;
-    int GetLastFoundersRewardBlockHeight(2800001) const {
+    int GetLastFoundersRewardBlockHeight() const {
         //return nSubsidyHalvingInterval + SubsidySlowStartShift() - 1;
         return 0; // Bugfix #14: getblocksubsidy RPC command is incorrect
     }
