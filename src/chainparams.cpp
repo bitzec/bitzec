@@ -110,7 +110,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000281b32ff3198a1");
 
         /**
-         * The message start string should be awesome! ⓩ❤
+         * The message start string should be awesome! ❤
          */
         pchMessageStart[0] = 0x09;
         pchMessageStart[1] = 0xm3;
