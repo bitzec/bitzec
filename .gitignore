@@ -2,6 +2,10 @@
 *.deb
 *.exe
 src/bitcoin
+src/bitzecd
+src/bitzec-cli
+src/bitzec-gtest
+src/bitzec-tx
 src/zcashd
 src/zcash-cli
 src/zcash-gtest

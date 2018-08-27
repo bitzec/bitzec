@@ -22,7 +22,7 @@ We do not recommend use of accounts which are now deprecated in Bitcoin Core.  W
 
 To support multiple users in a single node’s wallet, consider using getnewaddress or z_getnewaddress to obtain a new address for each user.  Also consider mapping multiple addresses to each user.
 
-## List of Zcash API commands
+## List of Bitzec API commands
 
 Optional parameters are denoted in [square brackets].
 
@@ -111,7 +111,7 @@ z_listoperationids <br>| [state] | Return a list of operationids for all operati
 
 ## Asynchronous RPC call Error Codes
 
-Zcash error codes are defined in https://github.com/zcash/zcash/blob/master/src/rpcprotocol.h
+Bitzec error codes are defined in https://github.com/zcash/zcash/blob/master/src/rpcprotocol.h
 
 ### z_sendmany error codes
 

@@ -1,10 +1,11 @@
 Format: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?rev=174
-Upstream-Name: Zcash
-Upstream-Contact: Zcash Company <team@z.cash>
-Source: https://github.com/zcash/zcash
+Upstream-Name: Bitzec
+Upstream-Contact: Bitzec Company <bitzec>
+Source: https://github.com/bitzec/bitzec
 
 Files: *
-Copyright: 2016-2017, The Zcash developers
+Copyright: 2018 Bitzec
+ 2016-2017, The Zcash developers
  2009-2017, Bitcoin Core developers
 License: Expat
 Comment: The Bitcoin Core developers encompasses the current developers listed on bitcoin.org,

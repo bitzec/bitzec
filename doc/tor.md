@@ -9,10 +9,10 @@ The following directions assume you have a Tor proxy running on port 9050. Many 
 configure Tor.
 
 
-1. Run Zcash behind a Tor proxy
+1. Run bitzec behind a Tor proxy
 -------------------------------
 
-The first step is running Zcash behind a Tor proxy. This will already make all
+The first step is running bitzec behind a Tor proxy. This will already make all
 outgoing connections be anonymized, but more is possible.
 
 	-proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
@@ -33,27 +33,27 @@ outgoing connections be anonymized, but more is possible.
 
 In a typical situation, this suffices to run behind a Tor proxy:
 
-	./zcashd -proxy=127.0.0.1:9050
+	./bitzecd -proxy=127.0.0.1:9050
 
 
-2. Run a Zcash hidden server
+2. Run a bitzec hidden server
 ----------------------------
 
 If you configure your Tor system accordingly, it is possible to make your node also
 reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equivalent
 config file):
 
-	HiddenServiceDir /var/lib/tor/zcash-service/
+	HiddenServiceDir /var/lib/tor/bitzec-service/
 	HiddenServicePort 8233 127.0.0.1:8233
 	HiddenServicePort 18233 127.0.0.1:18233
 
 The directory can be different of course, but (both) port numbers should be equal to
 your zcashd's P2P listen port (8233 by default).
 
-	-externalip=X   You can tell Zcash about its publicly reachable address using
+	-externalip=X   You can tell bitzec about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
 	                configuration, you can find your onion address in
-	                /var/lib/tor/zcash-service/hostname. Onion addresses are given
+	                /var/lib/tor/bitzec-service/hostname. Onion addresses are given
 	                preference for your node to advertize itself with, for connections
 	                coming from unroutable addresses (such as 127.0.0.1, where the
 	                Tor proxy typically runs).
@@ -70,25 +70,25 @@ your zcashd's P2P listen port (8233 by default).
 
 In a typical situation, where you're only reachable via Tor, this should suffice:
 
-	./zcashd -proxy=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -listen
+	./bitzecd -proxy=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -listen
 
 (obviously, replace the Onion address with your own). It should be noted that you still
 listen on all devices and another node could establish a clearnet connection, when knowing
 your address. To mitigate this, additionally bind the address of your Tor proxy:
 
-	./zcashd ... -bind=127.0.0.1
+	./bitzecd ... -bind=127.0.0.1
 
 If you don't care too much about hiding your node, and want to be reachable on IPv4
 as well, use `discover` instead:
 
-	./zcashd ... -discover
+	./bitzecd ... -discover
 
 and open port 8233 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
 
-	./zcashd -onion=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -discover
+	./bitzecd -onion=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -discover
 
 
 3. Automatically listen on Tor
@@ -96,10 +96,10 @@ for normal IPv4/IPv6 communication, use:
 
 Starting with Tor version 0.2.7.1 it is possible, through Tor's control socket
 API, to create and destroy 'ephemeral' hidden services programmatically.
-Zcash has been updated to make use of this.
+bitzec has been updated to make use of this.
 
 This means that if Tor is running (and proper authentication has been configured),
-Zcash automatically creates a hidden service to listen on. Zcash will also use Tor
+bitzec automatically creates a hidden service to listen on. Zcash will also use Tor
 automatically to connect to other .onion nodes if the control socket can be
 successfully opened. This will positively affect the number of available .onion
 nodes and their usage.
@@ -114,24 +114,24 @@ configured. For cookie authentication the user running zcashd must have write ac
 to the `CookieAuthFile` specified in Tor configuration. In some cases this is 
 preconfigured and the creation of a hidden service is automatic. If permission problems 
 are seen with `-debug=tor` they can be resolved by adding both the user running tor and 
-the user running zcashd to the same group and setting permissions appropriately. On 
-Debian-based systems the user running zcashd can be added to the debian-tor group, 
+the user running bitzec to the same group and setting permissions appropriately. On 
+Debian-based systems the user running bitzec can be added to the debian-tor group, 
 which has the appropriate permissions. An alternative authentication method is the use 
 of the `-torpassword` flag and a `hash-password` which can be enabled and specified in 
 Tor configuration.
 
 
-4. Connect to a Zcash hidden server
+4. Connect to a bitzec hidden server
 -----------------------------------
 
 To test your set-up, you might want to try connecting via Tor on a different computer to just a
-a single Zcash hidden server. Launch zcashd as follows:
+a single bitzec hidden server. Launch zcashd as follows:
 
 	./zcashd -onion=127.0.0.1:9050 -connect=zctestseie6wxgio.onion
 
-Now use zcash-cli to verify there is only a single peer connection.
+Now use bitzec-cli to verify there is only a single peer connection.
 
-	zcash-cli getpeerinfo
+	bitzec-cli getpeerinfo
 
 	[
 	    {
@@ -146,4 +146,4 @@ Now use zcash-cli to verify there is only a single peer connection.
 
 To connect to multiple Tor nodes, use:
 
-	./zcashd -onion=127.0.0.1:9050 -addnode=zctestseie6wxgio.onion -dnsseed=0 -onlynet=onion
+	./bitzecd -onion=127.0.0.1:9050 -addnode=zctestseie6wxgio.onion -dnsseed=0 -onlynet=onion

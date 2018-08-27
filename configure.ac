@@ -1,14 +1,14 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 2)
+define(_CLIENT_VERSION_MAJOR, 1)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_REVISION, 0)
-define(_CLIENT_VERSION_BUILD, 50)
+define(_CLIENT_VERSION_BUILD, 52)
 define(_ZC_BUILD_VAL, m4_if(m4_eval(_CLIENT_VERSION_BUILD < 25), 1, m4_incr(_CLIENT_VERSION_BUILD), m4_eval(_CLIENT_VERSION_BUILD < 50), 1, m4_eval(_CLIENT_VERSION_BUILD - 24), m4_eval(_CLIENT_VERSION_BUILD == 50), 1, , m4_eval(_CLIENT_VERSION_BUILD - 50)))
 define(_CLIENT_VERSION_SUFFIX, m4_if(m4_eval(_CLIENT_VERSION_BUILD < 25), 1, _CLIENT_VERSION_REVISION-beta$1, m4_eval(_CLIENT_VERSION_BUILD < 50), 1, _CLIENT_VERSION_REVISION-rc$1, m4_eval(_CLIENT_VERSION_BUILD == 50), 1, _CLIENT_VERSION_REVISION, _CLIENT_VERSION_REVISION-$1)))
 define(_CLIENT_VERSION_IS_RELEASE, true)
-define(_COPYRIGHT_YEAR, 2017)
-AC_INIT([Zcash],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_SUFFIX(_ZC_BUILD_VAL)],[https://github.com/zcash/zcash/issues],[zcash])
+define(_COPYRIGHT_YEAR, 2018)
+AC_INIT([Bitzec],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_SUFFIX(_ZC_BUILD_VAL)],[https://github.com/bitzec/bitzec/issues],[zcash])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -95,6 +95,12 @@ AC_ARG_ENABLE([mining],
   [enable mining (default is yes)])],
   [enable_mining=$enableval],
   [enable_mining=yes])
+
+AC_ARG_ENABLE([rust],
+  [AS_HELP_STRING([--enable-rust],
+  [enable rust (default is yes)])],
+  [enable_rust=$enableval],
+  [enable_rust=yes])
 
 AC_ARG_ENABLE([proton],
   [AS_HELP_STRING([--disable-proton],
@@ -752,7 +758,7 @@ else
   LIBSNARK_DEPINST="$prefix"
 fi
 
-# Additional Zcash flags
+# Additional Bitzec flags
 AX_CHECK_COMPILE_FLAG([-fwrapv],[CXXFLAGS="$CXXFLAGS -fwrapv"])
 AX_CHECK_COMPILE_FLAG([-fno-strict-aliasing],[CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"])
 AX_CHECK_COMPILE_FLAG([-Wno-builtin-declaration-mismatch],[CXXFLAGS="$CXXFLAGS -Wno-builtin-declaration-mismatch"],,[[$CXXFLAG_WERROR]])
@@ -812,6 +818,16 @@ AC_MSG_CHECKING([if mining should be enabled])
 if test x$enable_mining != xno; then
   AC_MSG_RESULT(yes)
   AC_DEFINE(ENABLE_MINING, 1, [Define to 1 to enable mining functions])
+
+else
+  AC_MSG_RESULT(no)
+fi
+
+dnl enable rust
+AC_MSG_CHECKING([if rust should be enabled])
+if test x$enable_rust != xno; then
+  AC_MSG_RESULT(yes)
+  AC_DEFINE(ENABLE_RUST, 1, [Define to 1 to enable Rust language dependent functions])
 
 else
   AC_MSG_RESULT(no)

@@ -6,7 +6,7 @@ providing various message-oriented semantics such as publish/subscribe,
 request/reply, and push/pull.
 
 The Zcash daemon can be configured to act as a trusted "border
-router", implementing the Zcash wire protocol and relay, making
+router", implementing the bitzec wire protocol and relay, making
 consensus decisions, maintaining the local blockchain database,
 broadcasting locally generated transactions into the network, and
 providing a queryable RPC interface to interact on a polled basis for
@@ -67,7 +67,7 @@ address. The same address can be used in more than one notification.
 
 For instance:
 
-    $ zcashd -zmqpubhashtx=tcp://127.0.0.1:28332 \
+    $ bitzecd -zmqpubhashtx=tcp://127.0.0.1:28332 \
                -zmqpubrawtx=ipc:///tmp/zcashd.tx.raw
 
 Each PUB notification has a topic and body, where the header
@@ -76,7 +76,7 @@ notification `-zmqpubhashtx` the topic is `hashtx` (no null
 terminator) and the body is the hexadecimal transaction hash (32
 bytes).
 
-These options can also be provided in zcash.conf.
+These options can also be provided in bitzec.conf.
 
 ZeroMQ endpoint specifiers for TCP (and others) are documented in the
 [ZeroMQ API](http://api.zeromq.org/4-0:_start).
@@ -88,9 +88,9 @@ arriving. Please see `contrib/zmq/zmq_sub.py` for a working example.
 
 ## Remarks
 
-From the perspective of zcashd, the ZeroMQ socket is write-only; PUB
+From the perspective of bitzecd, the ZeroMQ socket is write-only; PUB
 sockets don't even have a read function. Thus, there is no state
-introduced into zcashd directly. Furthermore, no information is
+introduced into bitzecd directly. Furthermore, no information is
 broadcast that wasn't already received from the public P2P network.
 
 No authentication or authorization is done on connecting clients; it
@@ -103,5 +103,5 @@ retrieve the chain from the last known block to the new tip.
 
 There are several possibilities that ZMQ notification can get lost
 during transmission depending on the communication type you are
-using. Zcashd appends an up-counting sequence number to each
+using. bitzecd appends an up-counting sequence number to each
 notification which allows listeners to detect lost notifications.

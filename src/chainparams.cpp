@@ -75,6 +75,39 @@ static CBlock CreateGenesisBlock(uint32_t nTime, const uint256& nNonce, const st
  * + Contains no strange transactions
  */
 
+
+/*
+Summary of additional consensus parameters
+mainnnet
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=400000;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 13772; // hx43 uses k = (N+1)/2 * 0.998 * T 13772
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+
+
+testnet
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=300000;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 13772;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+
+regtest
+        consensus.fPowNoRetargeting=true
+        consensus.nLWMAHeight=-1
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 13772;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+
+*/
+
 const arith_uint256 maxUint = UintToArith256(uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
 class CMainParams : public CChainParams {
@@ -119,11 +152,11 @@ public:
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
         nDefaultPort = 8234;
         nPruneAfterHeight = 100000;
-        newTimeRule = 399300;
+        newTimeRule = 400000;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 400010;
-        eh_epoch_2_startblock = 400000;
+        eh_epoch_1_endblock = 40000;
+        eh_epoch_2_startblock = 400001;
 
         genesis = CreateGenesisBlock(
             1477641360,
@@ -283,7 +316,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170007;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 280000;
 
-        // The best chain should have at least this much work.
+        
+	// The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000001d0c4d9cd");
 
         pchMessageStart[0] = 0xfa;
@@ -380,7 +414,7 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
