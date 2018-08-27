@@ -1,4 +1,4 @@
-bitzec 1.0.0
+BITZEC 1.0.0
 <img align="right" width="120" height="80" src="doc/imgs/logo.png">
 ===========
 
