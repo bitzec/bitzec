@@ -166,5 +166,10 @@ bool SelectParamsFromCommandLine();
 
 int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params);
 
+/**
+ * Allows modifying the network upgrade regtest parameters.
+ */
+void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivationHeight);
+
 
 #endif // BITCOIN_CHAINPARAMS_H
