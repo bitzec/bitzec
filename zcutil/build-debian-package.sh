@@ -49,7 +49,7 @@ cp -r $SRC_DEB/examples $DEB_DOC
 # Copy manpages
 cp $SRC_DOC/man/bitzecd.1 $DEB_MAN
 cp $SRC_DOC/man/bitzec-cli.1 $DEB_MAN
-cp $SRC_DOC/man/bitzec-fetch-params.1 $DEB_MAN
+cp $SRC_DOC/man/zcash-fetch-params.1 $DEB_MAN
 # Copy bash completion files
 cp $SRC_PATH/contrib/bitzecd.bash-completion $DEB_CMP/bitzecd
 cp $SRC_PATH/contrib/bitzec-cli.bash-completion $DEB_CMP/bitzec-cli
@@ -58,7 +58,7 @@ gzip --best -n $DEB_DOC/changelog
 gzip --best -n $DEB_DOC/changelog.Debian
 gzip --best -n $DEB_MAN/bitzecd.1
 gzip --best -n $DEB_MAN/bitzec-cli.1
-gzip --best -n $DEB_MAN/bitzec-fetch-params.1
+gzip --best -n $DEB_MAN/zcash-fetch-params.1
 
 cd $SRC_PATH/contrib
 
