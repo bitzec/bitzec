@@ -109,3 +109,4 @@ libzcashconsensus.pc
 
 contrib/debian/files
 contrib/debian/substvars
+doc/imgs/Thumbs.db
