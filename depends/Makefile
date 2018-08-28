@@ -72,6 +72,7 @@ include builders/$(build_os).mk
 include builders/default.mk
 include packages/packages.mk
 
+rust_packages_$(NO_RUST) = $(rust_packages)
 wallet_packages_$(NO_WALLET) = $(wallet_packages)
 proton_packages_$(NO_PROTON) = $(proton_packages)
 
