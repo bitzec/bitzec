@@ -72,7 +72,6 @@ include builders/$(build_os).mk
 include builders/default.mk
 include packages/packages.mk
 
-
 wallet_packages_$(NO_WALLET) = $(wallet_packages)
 proton_packages_$(NO_PROTON) = $(proton_packages)
 
