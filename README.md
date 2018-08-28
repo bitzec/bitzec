@@ -4,7 +4,7 @@ BITZEC 1.0.0
 
 What is Zcash?
 [Zcash](https://z.cash/) is an implementation of the "Zerocash" protocol.
-Based on Bitcoin's code, it intend
+Based on Bitcoin's code
 --------------
 
 [Zcash](https://z.cash/) is an implementation of the "Zerocash" protocol.
