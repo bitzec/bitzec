@@ -13,7 +13,7 @@ wget -O bitzec.zip `curl -s 'https://api.github.com/repos/bitzec/bitzec/releases
 chmod -R a+x ~/bitzec-pkg
 rm bitzec.zip
 
-cd ~/bitcoinz-pkg
+cd ~/bitzec-pkg
 ./fetch-params.sh
 
 if ! [[ -d ~/.bitzec ]]
@@ -23,8 +23,8 @@ fi
 
 if ! [[ -f ~/.bitzec/bitzec.conf ]]
 then
-    echo "rpcuser=rpc`pwgen 15 1`" > ~/.bitcoinz/bitcoinz.conf
-    echo "rpcpassword=rpc`pwgen 15 1`" >> ~/.bitcoinz/bitcoinz.conf
+    echo "rpcuser=rpc`pwgen 15 1`" > ~/.bitzec/bitzec.conf
+    echo "rpcpassword=rpc`pwgen 15 1`" >> ~/.bitzec/bitzec.conf
 fi
 
 ./bitzecd
