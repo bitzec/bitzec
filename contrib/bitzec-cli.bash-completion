@@ -1,4 +1,4 @@
-# bash programmable completion for zcash-cli(1)
+# bash programmable completion for bitzec-cli(1)
 # Copyright (c) 2012-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -31,8 +31,8 @@ _bitzec_cli() {
     local bitzec_cli
 
     # save and use original argument to invoke bitzec-cli for -help, help and RPC
-    # as zcash-cli might not be in $PATH
-    zcash_cli="$1"
+    # as bitzec-cli might not be in $PATH
+    bitzec_cli="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -149,7 +149,7 @@ _bitzec_cli() {
             ;;
     esac
 } &&
-complete -F _zcash_cli zcash-cli
+complete -F _bitzec_cli bitzec-cli
 
 # Local variables:
 # mode: shell-script

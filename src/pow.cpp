@@ -52,10 +52,11 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     arith_uint256 bnAvg {bnTot / params.nPowAveragingWindow};
 
-    return CalculateNextWorkRequired(bnAvg, pindexLast->GetMedianTimePast(), pindexFirst->GetMedianTimePast(), params);
+    return ZC_CalculateNextWorkRequired(bnAvg, pindexLast->GetMedianTimePast(), pindexFirst->GetMedianTimePast(), params);
 }
 
-unsigned int CalculateNextWorkRequired(arith_uint256 bnAvg,
+//Original Zcash work calculation
+unsigned int ZC_CalculateNextWorkRequired(arith_uint256 bnAvg,
                                        int64_t nLastBlockTime, int64_t nFirstBlockTime,
                                        const Consensus::Params& params)
 {

@@ -1,8 +1,8 @@
 <!--- Remove text and sections that do not apply -->
 
-This issue tracker is only for technical issues related to zcashd.
+This issue tracker is only for technical issues related to bitzecd.
 
-General Zcash questions and/or support requests and are best directed to the [Zcash Forums](https://forum.z.cash) or [Community Rocket.Chat](https://chat.zcashcommunity.com).
+General bitzec questions and/or support requests and are best directed to the Forums
 
 For reporting security vulnerabilities or for sensitive discussions with our security team, please contact [security@z.cash](mailto:security@z.cash). You can use the [GPG key](https://z.cash/gpg-pubkeys/security.asc) (fingerprint: `AF85 0445 546C 18B7 86F9  2C62 88FB 8B86 D8B5 A68C`) to send an encrypted message. The key and fingerprint are duplicated on our [Public Keys page](https://z.cash/support/pubkeys.html).
 
@@ -21,8 +21,8 @@ Tell us what should happen
 ### Actual behaviour + errors
 Tell us what happens instead including any noticable error output (any messages displayed on-screen when e.g. a crash occurred)
 
-### The version of Zcash you were using:
-Run `zcashd --version` to find out
+### The version of bitzec you were using:
+Run `bitzecd --version` to find out
 
 ### Machine specs:
 - OS name + version:
