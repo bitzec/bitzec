@@ -24,7 +24,6 @@ struct SeedSpec6 {
     uint16_t port;
 };
 
-typedef std::map<int, uint256> MapCheckpoints;
 
 struct EHparameters {
     unsigned char n;
