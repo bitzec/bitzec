@@ -7,7 +7,6 @@
 #define BITCOIN_CHAINPARAMS_H
 
 #include "chainparamsbase.h"
-#include "checkpoints.h"
 #include "consensus/params.h"
 #include "primitives/block.h"
 #include "protocol.h"
@@ -24,6 +23,7 @@ struct SeedSpec6 {
     uint16_t port;
 };
 
+typedef std::map<int, uint256> MapCheckpoints;
 
 struct EHparameters {
     unsigned char n;
@@ -105,7 +105,7 @@ public:
     const std::vector<unsigned char>& Base58Prefix(Base58Type type) const { return base58Prefixes[type]; }
     const std::string& Bech32HRP(Bech32Type type) const { return bech32HRPs[type]; }
     const std::vector<SeedSpec6>& FixedSeeds() const { return vFixedSeeds; }
-    const Checkpoints::CCheckpointData& Checkpoints() const { return checkpointData; }
+    const CCheckpointData& Checkpoints() const { return checkpointData; }
     /** Return the founder's reward address and script for a given block height */
     std::string GetFoundersRewardAddressAtHeight(int height) const;
     CScript GetFoundersRewardScriptAtHeight(int height) const;
@@ -140,7 +140,7 @@ protected:
     bool fRequireStandard = false;
     bool fMineBlocksOnDemand = false;
     bool fTestnetToBeDeprecatedFieldRPC = false;
-    Checkpoints::CCheckpointData checkpointData;
+    CCheckpointData checkpointData;
     std::vector<std::string> vFoundersRewardAddress;
     int newTimeRule=2000000000; //Will remain at this value if not otherwise defined in chain class.
 };
