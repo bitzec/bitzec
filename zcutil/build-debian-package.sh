@@ -40,7 +40,7 @@ chmod 0755 -R $BUILD_DIR/*
 # Copy binaries
 cp $SRC_PATH/src/bitzecd $DEB_BIN
 cp $SRC_PATH/src/bitzec-cli $DEB_BIN
-cp $SRC_PATH/zcutil/fetch-params.sh $DEB_BIN/bitzec-fetch-params
+cp $SRC_PATH/zcutil/fetch-params.sh $DEB_BIN/zcash-fetch-params
 # Copy docs
 cp $SRC_PATH/doc/release-notes/release-notes-1.0.0.md $DEB_DOC/changelog
 cp $SRC_DEB/changelog $DEB_DOC/changelog.Debian
