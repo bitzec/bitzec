@@ -35,7 +35,7 @@ sudo -H -u $1 ~/bitzec-pkg/fetch-params.sh
 
 cat > /etc/systemd/system/bitzec.service << EOF
 [Unit]
-Description=bitcoinz
+Description=bitzec
 
 [Service]
 ExecStart=`cd ~; pwd`/bitzec-pkg/bitzecd
