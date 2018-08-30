@@ -79,7 +79,7 @@ def parse_args(args):
 def main_logged(release, releaseprev, releasefrom, releaseheight, hotfix):
     verify_tags(releaseprev, releasefrom)
     verify_version(release, releaseprev, hotfix)
-    verify_version(release, releaseprev, hotfix)
+
     initialize_git(release, hotfix)
     patch_version_in_files(release, releaseprev)
     patch_release_height(releaseheight)

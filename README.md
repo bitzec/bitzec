@@ -27,7 +27,33 @@ blockchain has reached a significant size.
 See important security warnings on the
 [Security Information page](https://z.cash/support/security/).
 
-**Zcash is experimental and a work-in-progress.** Use at your own risk.
+```{r, engine='bash'}
+# Clone Bitzec Repository
+git clone https://github.com/bitzec/bitzec.git
+# Build
+cd bitzec/
+./zcutil/build.sh -j$(nproc)
+# fetch key
+./zcutil/fetch-params.sh
+# Run
+./src/bitzecd
+# Test getting information about the network
+cd src/
+./bitzec-cli getmininginfo
+# Test creating new transparent address
+./bitzec-cli getnewaddress
+# Test creating new private address
+./bitzec-cli z_getnewaddress
+# Test checking transparent balance
+./bitzec-cli getbalance
+# Test checking total balance 
+./bitcoinz-cli z_gettotalbalance
+# Check all available wallet commands
+./bitzec-cli help
+# Get more info about a single wallet command
+./bitzec-cli help "The-command-you-want-to-learn-more-about"
+./bitzec-cli help "getbalance"
+```
 
 ####  :ledger: Deprecation Policy
 
@@ -52,7 +78,7 @@ Participation in the Zcash project is subject to a
 
 ### Building
 
-Build Zcash along with most dependencies from source by running:
+Build Bitzec along with most dependencies from source by running:
 
 ```
 ./zcutil/build.sh -j$(nproc)

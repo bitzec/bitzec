@@ -75,6 +75,39 @@ static CBlock CreateGenesisBlock(uint32_t nTime, const uint256& nNonce, const st
  * + Contains no strange transactions
  */
 
+
+/*
+Summary of additional consensus parameters
+mainnnet
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=400000;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 13772; // hx43 uses k = (N+1)/2 * 0.998 * T 13772
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+
+
+testnet
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=20000;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 13772;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+
+regtest
+        consensus.fPowNoRetargeting=true
+        consensus.nLWMAHeight=-1
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 13772;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+
+*/
+
 const arith_uint256 maxUint = UintToArith256(uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
 class CMainParams : public CChainParams {
@@ -90,11 +123,11 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 4000;
         consensus.powLimit = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowAveragingWindow = 17;
+        consensus.nPowAveragingWindow = 13;
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing = 1 * 60;
+        consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -106,8 +139,16 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170007;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 400000;
 
-        // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000281b32ff3198a1");
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=399900;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;
+        consensus.nZawyLwmaAdjustedWeight = 2280;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+        consensus.ZCnPowTargetSpacing = 2.5 * 60; //legacy spacing.
+
+
 
         /**
          * The message start string should be awesome! ❤
@@ -119,11 +160,11 @@ public:
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
         nDefaultPort = 8234;
         nPruneAfterHeight = 100000;
-        newTimeRule = 399300;
+        newTimeRule = 400000;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 400010;
-        eh_epoch_2_startblock = 400000;
+        eh_epoch_1_endblock = 400000;
+        eh_epoch_2_startblock = 400001;
 
         genesis = CreateGenesisBlock(
             1477641360,
@@ -283,9 +324,16 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170007;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 280000;
 
-        // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000001d0c4d9cd");
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=22440;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 2280;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+        consensus.ZCnPowTargetSpacing = 2.5 * 60;
 
+        assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0x1a;
         pchMessageStart[2] = 0xf9;
@@ -340,15 +388,12 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
 
-
-        checkpointData = (CCheckpointData) {
+        checkpointData = (Checkpoints::CCheckpointData) {
             boost::assign::map_list_of
-            (0, consensus.hashGenesisBlock)
-            (38000, uint256S("0x001e9a2d2e2892b88e9998cf7b079b41d59dd085423a921fe8386cecc42287b8")),
-            1486897419,  // * UNIX timestamp of last checkpoint block
-            47163,       // * total number of transactions between genesis and last checkpoint
-                         //   (the tx=... number in the SetBestChain debug.log lines)
-            715          //   total number of tx / (checkpoint block height / (24 * 24))
+            ( 0, consensus.hashGenesisBlock),
+            genesis.nTime,
+            0,
+            0
         };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
@@ -376,7 +421,16 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.powLimit = uint256S("0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f");
-        consensus.nPowAveragingWindow = 17;
+
+        consensus.fPowNoRetargeting=true;
+        consensus.nLWMAHeight=-1;
+        consensus.nPowLwmaTargetSpacing = 1 * 60;
+        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAdjustedWeight = 2280;
+        consensus.nZawyLwmaMinDenominator = 10;
+        consensus.fZawyLwmaSolvetimeLimitation = true;
+        consensus.ZCnPowTargetSpacing = 2.5 * 60;
+
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
