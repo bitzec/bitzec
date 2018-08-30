@@ -2,7 +2,7 @@
 *.deb
 *.exe
 src/bitcoin
-src/bitzecdd
+src/bitzecd
 src/bitzec-cli
 src/bitzec-gtest
 src/bitzec-tx
@@ -73,9 +73,8 @@ src/univalue/gen
 *.lo
 *.la
 
-# Compilationsrc/Makefile
-doc/man/Makefile
-/Makefile
+# Compilation
+Makefile
 
 # Unit-tests
 Makefile.test
