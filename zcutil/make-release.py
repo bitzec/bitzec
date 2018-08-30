@@ -79,7 +79,6 @@ def parse_args(args):
 def main_logged(release, releaseprev, releasefrom, releaseheight, hotfix):
     verify_tags(releaseprev, releasefrom)
     verify_version(release, releaseprev, hotfix)
-
     initialize_git(release, hotfix)
     patch_version_in_files(release, releaseprev)
     patch_release_height(releaseheight)
@@ -183,26 +182,6 @@ def verify_version(release, releaseprev, hotfix):
         )
 
 
-@phase('Checking version.')
-def verify_version(release, releaseprev, hotfix):
-    if not hotfix:
-        return
-
-    expected = Version(
-        releaseprev.major,
-        releaseprev.minor,
-        releaseprev.patch,
-        releaseprev.betarc,
-        releaseprev.hotfix + 1 if releaseprev.hotfix else 1,
-    )
-    if release != expected:
-        raise SystemExit(
-            "Expected {!r}, given {!r}".format(
-                expected, release,
-            ),
-        )
-
-
 @phase('Initializing git.')
 def initialize_git(release, hotfix):
     junk = sh_out('git', 'status', '--porcelain')
@@ -238,7 +217,7 @@ def patch_version_in_files(release, releaseprev):
     patch_gitian_linux_yml(release, releaseprev)
 
 
-@phase('Patching release height for auto-senescence.')
+@phase('Patching release height for end-of-support halt.')
 def patch_release_height(releaseheight):
     rgx = re.compile(
         r'^(static const int APPROX_RELEASE_HEIGHT = )\d+(;)$',
