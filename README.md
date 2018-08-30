@@ -13,8 +13,8 @@ through a sophisticated zero-knowledge proving scheme that preserves
 confidentiality of transaction metadata. Technical details are available
 in our [Protocol Specification](https://github.com/zcash/zips/raw/master/protocol/protocol.pdf).
 
-This software is the Zcash client. It downloads and stores the entire history
-of Zcash transactions; depending on the speed of your computer and network
+This software is the Bitzec client. It downloads and stores the entire history
+of Bitzec transactions; depending on the speed of your computer and network
 connection, the synchronization process could take a day or more once the
 blockchain has reached a significant size.
 
@@ -47,7 +47,7 @@ cd src/
 # Test checking transparent balance
 ./bitzec-cli getbalance
 # Test checking total balance 
-./bitcoinz-cli z_gettotalbalance
+./bitzec-cli z_gettotalbalance
 # Check all available wallet commands
 ./bitzec-cli help
 # Get more info about a single wallet command
