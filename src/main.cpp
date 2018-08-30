@@ -1729,30 +1729,35 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
      assert(nHeight > consensusParams.SubsidySlowStartShift());
 
 if ( nHeight < 400001 ) nSubsidy = (15000 * COIN);					
-else if ( nHeight < 500001 ) nSubsidy = (7500* COIN); //Above block 400,000 target to 1 minute interval.					
-else if ( nHeight < 700001 ) nSubsidy = (3750* COIN);					
-else if ( nHeight < 1000001 ) nSubsidy = (1875* COIN);					
-else if ( nHeight < 1400001 ) nSubsidy = (937,5* COIN);					
-else if ( nHeight < 1900001) nSubsidy = (468,75* COIN);					
-else if ( nHeight < 2500001) nSubsidy = (234,375* COIN);					
-else if ( nHeight < 3200001) nSubsidy = (117,1875* COIN);					
-else if ( nHeight < 4000001) nSubsidy = (58,59375* COIN);					
-else if ( nHeight < 4900001) nSubsidy = (29,296875 * COIN);					
-else if ( nHeight < 5900001) nSubsidy = (14,6484375* COIN);					
-else if ( nHeight < 7000001) nSubsidy = (7,32421875 * COIN);					
-else if ( nHeight < 8200001) nSubsidy = (3,6621093* COIN);					
-else if ( nHeight < 9500001) nSubsidy = (1,83105468* COIN);					
+else if ( nHeight < 500001 ) nSubsidy = (7500 * COIN);					
+else if ( nHeight < 700001 ) nSubsidy = (3750 * COIN);					
+else if ( nHeight < 1000001 ) nSubsidy = (1875 * COIN);					
+else if ( nHeight < 1400001 ) nSubsidy = (937,5 * COIN);					
+else if ( nHeight < 1900001 ) nSubsidy = (468,75 * COIN);					
+else if ( nHeight < 2500001 ) nSubsidy = (234,375 * COIN);					
+else if ( nHeight < 3200001 ) nSubsidy = (117,1875 * COIN);					
+else if ( nHeight < 4000001 ) nSubsidy = (58,59375 * COIN);					
+else if ( nHeight < 4900001 ) nSubsidy = (29,296875 * COIN);					
+else if ( nHeight < 5900001 ) nSubsidy = (14,6484375 * COIN);					
+else if ( nHeight < 7000001 ) nSubsidy = (7,32421875 * COIN);					
+else if ( nHeight < 8200001 ) nSubsidy = (3,6621093 * COIN);					
+else if ( nHeight < 9500001 ) nSubsidy = (1,83105468 * COIN);					
 
     
     else {
         int halvings = (nHeight - 9500000) / consensusParams.nSubsidyHalvingInterval;
         
-        if (halvings >= 64)
-            nSubsidy = 0;
-
         nSubsidy=1 * COIN;
-        nSubsidy >>= halvings;
+        
+        if(nSubsidy >= 64){
+            nSubsidy = 0;
+        }else{
+        	nSubsidy >>= halvings;
+        }
+        
     }
+    return nSubsidy;
+}
 
 bool IsInitialBlockDownload()
 {
