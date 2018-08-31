@@ -2556,11 +2556,10 @@ UniValue z_listunspent(const UniValue& params, bool fHelp)
     UniValue results(UniValue::VARR);
 
     if (zaddrs.size() > 0) {
-        std::vector<CUnspentSproutNotePlaintextEntry> sproutEntries;
-        std::vector<UnspentSaplingNoteEntry> saplingEntries;
-        pwalletMain->GetUnspentFilteredNotes(sproutEntries, saplingEntries, zaddrs, nMinDepth, nMaxDepth, !fIncludeWatchonly);
+        std::vector<CUnspentSproutNotePlaintextEntry> entries;
+        pwalletMain->GetUnspentFilteredNotes(entries, zaddrs, nMinDepth, nMaxDepth, !fIncludeWatchonly);
         std::set<std::pair<PaymentAddress, uint256>> nullifierSet = pwalletMain->GetNullifiersForAddresses(zaddrs);
-        for (CUnspentSproutNotePlaintextEntry & entry : sproutEntries) {
+        for (CUnspentSproutNotePlaintextEntry & entry : entries) {
             UniValue obj(UniValue::VOBJ);
             obj.push_back(Pair("txid", entry.jsop.hash.ToString()));
             obj.push_back(Pair("jsindex", (int)entry.jsop.js ));
@@ -2577,7 +2576,6 @@ UniValue z_listunspent(const UniValue& params, bool fHelp)
             }
             results.push_back(obj);
         }
-        // TODO: Sapling
     }
 
     return results;
@@ -3250,15 +3248,11 @@ CAmount getBalanceTaddr(std::string transparentAddress, int minDepth=1, bool ign
 
 CAmount getBalanceZaddr(std::string address, int minDepth = 1, bool ignoreUnspendable=true) {
     CAmount balance = 0;
-    std::vector<CSproutNotePlaintextEntry> sproutEntries;
-    std::vector<SaplingNoteEntry> saplingEntries;
+    std::vector<CSproutNotePlaintextEntry> entries;
     LOCK2(cs_main, pwalletMain->cs_wallet);
-    pwalletMain->GetFilteredNotes(sproutEntries, saplingEntries, address, minDepth, true, ignoreUnspendable);
-    for (auto & entry : sproutEntries) {
+    pwalletMain->GetFilteredNotes(entries, address, minDepth, true, ignoreUnspendable);
+    for (auto & entry : entries) {
         balance += CAmount(entry.plaintext.value());
-    }
-    for (auto & entry : saplingEntries) {
-        balance += CAmount(entry.note.value());
     }
     return balance;
 }
@@ -3344,8 +3338,8 @@ UniValue z_getbalance(const UniValue& params, bool fHelp)
         throw runtime_error(
             "z_getbalance \"address\" ( minconf )\n"
             "\nReturns the balance of a taddr or zaddr belonging to the node’s wallet.\n"
-            "\nCAUTION: If the wallet has only an incoming viewing key for this address, then spends cannot be"
-            "\ndetected, and so the returned balance may be larger than the actual balance.\n"
+            "\nCAUTION: If address is a watch-only zaddr, the returned balance may be larger than the actual balance,"
+            "\nbecause spends cannot be detected with incoming viewing keys.\n"
             "\nArguments:\n"
             "1. \"address\"      (string) The selected address. It may be a transparent or private address.\n"
             "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
@@ -3380,8 +3374,11 @@ UniValue z_getbalance(const UniValue& params, bool fHelp)
         if (!IsValidPaymentAddress(res)) {
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid from address, should be a taddr or zaddr.");
         }
-        if (!boost::apply_visitor(PaymentAddressBelongsToWallet(pwalletMain), res)) {
-             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "From address does not belong to this node, spending key or viewing key not found.");
+        // TODO: Add Sapling support. For now, ensure we can freely convert.
+        assert(boost::get<libzcash::SproutPaymentAddress>(&res) != nullptr);
+        auto zaddr = boost::get<libzcash::SproutPaymentAddress>(res);
+        if (!(pwalletMain->HaveSproutSpendingKey(zaddr) || pwalletMain->HaveSproutViewingKey(zaddr))) {
+             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "From address does not belong to this node, zaddr spending key or viewing key not found.");
         }
     }
 
@@ -3405,9 +3402,8 @@ UniValue z_gettotalbalance(const UniValue& params, bool fHelp)
         throw runtime_error(
             "z_gettotalbalance ( minconf includeWatchonly )\n"
             "\nReturn the total value of funds stored in the node’s wallet.\n"
-            "\nCAUTION: If the wallet contains any addresses for which it only has incoming viewing keys,"
-            "\nthe returned private balance may be larger than the actual balance, because spends cannot"
-            "\nbe detected with incoming viewing keys.\n"
+            "\nCAUTION: If the wallet contains watch-only zaddrs, the returned private balance may be larger than the actual balance,"
+            "\nbecause spends cannot be detected with incoming viewing keys.\n"
             "\nArguments:\n"
             "1. minconf          (numeric, optional, default=1) Only include private and transparent transactions confirmed at least this many times.\n"
             "2. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress' and 'z_importviewingkey')\n"
@@ -4251,12 +4247,11 @@ UniValue z_mergetoaddress(const UniValue& params, bool fHelp)
 
     if (useAny || useAnyNote || zaddrs.size() > 0) {
         // Get available notes
-        std::vector<CSproutNotePlaintextEntry> sproutEntries;
-        std::vector<SaplingNoteEntry> saplingEntries;
-        pwalletMain->GetFilteredNotes(sproutEntries, saplingEntries, zaddrs);
+        std::vector<CSproutNotePlaintextEntry> entries;
+        pwalletMain->GetFilteredNotes(entries, zaddrs);
 
         // Find unspent notes and update estimated size
-        for (CSproutNotePlaintextEntry& entry : sproutEntries) {
+        for (CSproutNotePlaintextEntry& entry : entries) {
             noteCounter++;
             CAmount nValue = entry.plaintext.value();
 
@@ -4270,7 +4265,8 @@ UniValue z_mergetoaddress(const UniValue& params, bool fHelp)
                     maxedOutNotesFlag = true;
                 } else {
                     estimatedTxSize += increase;
-                    auto zaddr = entry.address;
+                    // TODO: Add Sapling support
+                    auto zaddr = boost::get<SproutPaymentAddress>(entry.address);
                     SproutSpendingKey zkey;
                     pwalletMain->GetSproutSpendingKey(zaddr, zkey);
                     noteInputs.emplace_back(entry.jsop, entry.plaintext.note(zaddr), nValue, zkey);
@@ -4282,7 +4278,6 @@ UniValue z_mergetoaddress(const UniValue& params, bool fHelp)
                 remainingNoteValue += nValue;
             }
         }
-        // TODO: Add Sapling support
     }
 
     size_t numUtxos = utxoInputs.size();

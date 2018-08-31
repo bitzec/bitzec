@@ -225,7 +225,7 @@ public:
     /**
      * Block height corresponding to the most current witness.
      *
-     * When we first create a SproutNoteData in CWallet::FindMySproutNotes, this is set to
+     * When we first create a SproutNoteData in CWallet::FindMyNotes, this is set to
      * -1 as a placeholder. The next time CWallet::ChainTip is called, we can
      * determine what height the witness cache for this note is valid for (even
      * if no witnesses were cached), and so can set the correct value in
@@ -267,25 +267,13 @@ class SaplingNoteData
 {
 public:
     /**
-     * We initialize the height to -1 for the same reason as we do in SproutNoteData.
+     * We initialize the hight to -1 for the same reason as we do in SproutNoteData.
      * See the comment in that class for a full description.
      */
-    SaplingNoteData() : witnessHeight {-1}, nullifier() { }
-    SaplingNoteData(libzcash::SaplingIncomingViewingKey ivk) : ivk {ivk}, witnessHeight {-1}, nullifier() { }
-    SaplingNoteData(libzcash::SaplingIncomingViewingKey ivk, uint256 n) : ivk {ivk}, witnessHeight {-1}, nullifier(n) { }
+    SaplingNoteData() : witnessHeight {-1} { }
 
     std::list<SaplingWitness> witnesses;
     int witnessHeight;
-    libzcash::SaplingIncomingViewingKey ivk;
-    boost::optional<uint256> nullifier;
-
-    friend bool operator==(const SaplingNoteData& a, const SaplingNoteData& b) {
-        return (a.ivk == b.ivk && a.nullifier == b.nullifier && a.witnessHeight == b.witnessHeight);
-    }
-
-    friend bool operator!=(const SaplingNoteData& a, const SaplingNoteData& b) {
-        return !(a == b);
-    }
 };
 
 typedef std::map<JSOutPoint, SproutNoteData> mapSproutNoteData_t;
@@ -727,12 +715,10 @@ private:
      * detect and report conflicts (double-spends).
      */
     typedef TxSpendMap<uint256> TxNullifiers;
-    TxNullifiers mapTxSproutNullifiers;
-    TxNullifiers mapTxSaplingNullifiers;
+    TxNullifiers mapTxNullifiers;
 
-    void AddToTransparentSpends(const COutPoint& outpoint, const uint256& wtxid);
-    void AddToSproutSpends(const uint256& nullifier, const uint256& wtxid);
-    void AddToSaplingSpends(const uint256& nullifier, const uint256& wtxid);
+    void AddToSpends(const COutPoint& outpoint, const uint256& wtxid);
+    void AddToSpends(const uint256& nullifier, const uint256& wtxid);
     void AddToSpends(const uint256& wtxid);
 
 public:
@@ -909,9 +895,7 @@ public:
      * - Restarting the node with -reindex (which operates on a locked wallet
      *   but with the now-cached nullifiers).
      */
-    std::map<uint256, JSOutPoint> mapSproutNullifiersToNotes;
-
-    std::map<uint256, SaplingOutPoint> mapSaplingNullifiersToNotes;
+    std::map<uint256, JSOutPoint> mapNullifiersToNotes;
 
     std::map<uint256, CWalletTx> mapWallet;
 
@@ -936,8 +920,7 @@ public:
     bool SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int nConfTheirs, std::vector<COutput> vCoins, std::set<std::pair<const CWalletTx*,unsigned int> >& setCoinsRet, CAmount& nValueRet) const;
 
     bool IsSpent(const uint256& hash, unsigned int n) const;
-    bool IsSproutSpent(const uint256& nullifier) const;
-    bool IsSaplingSpent(const uint256& nullifier) const;
+    bool IsSpent(const uint256& nullifier) const;
 
     bool IsLockedCoin(uint256 hash, unsigned int n) const;
     void LockCoin(COutPoint& output);
@@ -1053,8 +1036,6 @@ public:
     void MarkDirty();
     bool UpdateNullifierNoteMap();
     void UpdateNullifierNoteMapWithTx(const CWalletTx& wtx);
-    void UpdateSaplingNullifierNoteMapWithTx(CWalletTx& wtx);
-    void UpdateSaplingNullifierNoteMapForBlock(const CBlock* pblock);
     bool AddToWallet(const CWalletTx& wtxIn, bool fFromLoadWallet, CWalletDB* pwalletdb);
     void SyncTransaction(const CTransaction& tx, const CBlock* pblock);
     bool AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pblock, bool fUpdate);
@@ -1095,17 +1076,14 @@ public:
 
     std::set<CTxDestination> GetAccountAddresses(const std::string& strAccount) const;
 
-    boost::optional<uint256> GetSproutNoteNullifier(
+    boost::optional<uint256> GetNoteNullifier(
         const JSDescription& jsdesc,
         const libzcash::SproutPaymentAddress& address,
         const ZCNoteDecryption& dec,
         const uint256& hSig,
         uint8_t n) const;
-    mapSproutNoteData_t FindMySproutNotes(const CTransaction& tx) const;
-    mapSaplingNoteData_t FindMySaplingNotes(const CTransaction& tx) const;
-    bool IsSproutNullifierFromMe(const uint256& nullifier) const;
-    bool IsSaplingNullifierFromMe(const uint256& nullifier) const;
-
+    mapSproutNoteData_t FindMyNotes(const CTransaction& tx) const;
+    bool IsFromMe(const uint256& nullifier) const;
     void GetSproutNoteWitnesses(
          std::vector<JSOutPoint> notes,
          std::vector<boost::optional<SproutWitness>>& witnesses,
