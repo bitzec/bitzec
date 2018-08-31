@@ -92,7 +92,7 @@ noinst_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += zcashd
+  bin_PROGRAMS += bitzecd
 endif
 
 if BUILD_BITCOIN_UTILS
