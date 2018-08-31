@@ -98,6 +98,7 @@ struct Params {
     int64_t nPowTargetSpacing;
     int64_t AveragingWindowTimespan() const { return nPowAveragingWindow * ZCnPowTargetSpacing; }
     int64_t MinActualTimespan() const { return (AveragingWindowTimespan() * (100 - nPowMaxAdjustUp  )) / 100; }
+    uint256 nMinimumChainWork;
     int64_t MaxActualTimespan() const { return (AveragingWindowTimespan() * (100 + nPowMaxAdjustDown)) / 100; }
     //LWMA POW targeting parameters
     bool fPowNoRetargeting;
