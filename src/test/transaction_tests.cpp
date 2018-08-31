@@ -600,17 +600,6 @@ BOOST_AUTO_TEST_CASE(test_simple_joinsplit_invalidity_driver) {
         test_simple_joinsplit_invalidity(SPROUT_BRANCH_ID, mtx);
     }
     {
-        // Switch to regtest parameters so we can activate Overwinter
-        SelectParams(CBaseChainParams::REGTEST);
-
-        CMutableTransaction mtx;
-        mtx.fOverwintered = true;
-        mtx.nVersionGroupId = OVERWINTER_VERSION_GROUP_ID;
-        mtx.nVersion = OVERWINTER_TX_VERSION;
-
-        UpdateNetworkUpgradeParameters(Consensus::UPGRADE_OVERWINTER, Consensus::NetworkUpgrade::ALWAYS_ACTIVE);
-        test_simple_joinsplit_invalidity(NetworkUpgradeInfo[Consensus::UPGRADE_OVERWINTER].nBranchId, mtx);
-        UpdateNetworkUpgradeParameters(Consensus::UPGRADE_OVERWINTER, Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT);
 
         // Test Sapling things
         mtx.nVersionGroupId = SAPLING_VERSION_GROUP_ID;
