@@ -87,7 +87,7 @@ bool AppInit(int argc, char* argv[])
         }
 
         fprintf(stdout, "%s", strUsage.c_str());
-        return true;
+        return false;
     }
 
     try
@@ -194,5 +194,5 @@ int main(int argc, char* argv[])
     // Connect bitcoind signal handlers
     noui_connect();
 
-    return (AppInit(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE);
+    return (AppInit(argc, argv) ? 0 : 1);
 }
