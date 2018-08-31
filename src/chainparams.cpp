@@ -15,6 +15,7 @@
 #include <boost/assign/list_of.hpp>
 
 #include "base58.h"
+
 using namespace std;
 
 #include "chainparamsseeds.h"
@@ -157,7 +158,7 @@ public:
          * The message start string should be awesome! ❤
          */
         pchMessageStart[0] = 0x09;
-        pchMessageStart[1] = 0xm3;
+        pchMessageStart[1] = 0xe9;
         pchMessageStart[2] = 0x37;
         pchMessageStart[3] = 0x49;
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
@@ -213,7 +214,7 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-        checkpointData = (CCheckpointData) {
+        checkpointData = (Checkpoints::CCheckpointData) {
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock)
             (2500, uint256S("0x00000006dc968f600be11a86cbfbf7feb61c7577f45caced2e82b6d261d19744"))
@@ -458,12 +459,12 @@ public:
         pchMessageStart[1] = 0xe8;
         pchMessageStart[2] = 0x3f;
         pchMessageStart[3] = 0x5f;
-        nDefaultPort = 18344;
-        nPruneAfterHeight = 1000;
-        const size_t N = 48, K = 5;
-        BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
-        nEquihashN = N;
-        nEquihashK = K;
+        nMaxTipAge = 24 * 60 * 60;
+
+        eh_epoch_1 = eh48_5;
+        eh_epoch_2 = eh48_5;
+        eh_epoch_1_endblock = 1;
+        eh_epoch_2_startblock = 1;
 
         genesis = CreateGenesisBlock(
             1296688602,
@@ -483,7 +484,7 @@ public:
         fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-        checkpointData = (CCheckpointData){
+        checkpointData = (Checkpoints::CCheckpointData){
             boost::assign::map_list_of
             ( 0, uint256S("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206")),
             0,
@@ -507,8 +508,8 @@ public:
         bech32HRPs[SAPLING_SPENDING_KEY]         = "secret-spending-key-regtest";
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
-        vFoundersRewardAddress = { "t3RmCfrMtkvduU7vjMB9F8cnToqixJAJxWr
-" };
+        //vFoundersRewardAddress = { "t3RmCfrMtkvduU7vjMB9F8cnToqixJAJxWr" };
+    vFoundersRewardAddress = { };
         assert(vFoundersRewardAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
     }
 
