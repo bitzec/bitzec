@@ -24,7 +24,7 @@ TEST(PoW, DifficultyAveraging) {
     // Result should be the same as if last difficulty was used
     arith_uint256 bnAvg;
     bnAvg.SetCompact(blocks[lastBlk].nBits);
-    EXPECT_EQ(CalculateNextWorkRequired(bnAvg,
+    EXPECT_EQ(ZC_CalculateNextWorkRequired(bnAvg,
                                         blocks[lastBlk].GetMedianTimePast(),
                                         blocks[firstBlk].GetMedianTimePast(),
                                         params),
@@ -41,7 +41,7 @@ TEST(PoW, DifficultyAveraging) {
 
     // Result should be the same as if last difficulty was used
     bnAvg.SetCompact(blocks[lastBlk].nBits);
-    EXPECT_EQ(CalculateNextWorkRequired(bnAvg,
+    EXPECT_EQ(ZC_CalculateNextWorkRequired(bnAvg,
                                         blocks[lastBlk].GetMedianTimePast(),
                                         blocks[firstBlk].GetMedianTimePast(),
                                         params),
@@ -54,17 +54,18 @@ TEST(PoW, DifficultyAveraging) {
 
     // Result should not be the same as if last difficulty was used
     bnAvg.SetCompact(blocks[lastBlk].nBits);
-    EXPECT_NE(CalculateNextWorkRequired(bnAvg,
+    EXPECT_NE(ZC_CalculateNextWorkRequired(bnAvg,
                                         blocks[lastBlk].GetMedianTimePast(),
                                         blocks[firstBlk].GetMedianTimePast(),
                                         params),
               GetNextWorkRequired(&blocks[lastBlk], nullptr, params));
 
-    // Result should be the same as if the average difficulty was used
-    arith_uint256 average = UintToArith256(uint256S("0000796968696969696969696969696969696969696969696969696969696969"));
-    EXPECT_EQ(CalculateNextWorkRequired(average,
-                                        blocks[lastBlk].GetMedianTimePast(),
-                                        blocks[firstBlk].GetMedianTimePast(),
-                                        params),
-              GetNextWorkRequired(&blocks[lastBlk], nullptr, params));
+    // FIXME: consensus changed
+//    // Result should be the same as if the average difficulty was used
+//    arith_uint256 average = UintToArith256(uint256S("0000796968696969696969696969696969696969696969696969696969696969"));
+//    EXPECT_EQ(CalculateNextWorkRequired(average,
+//                                        blocks[lastBlk].GetMedianTimePast(),
+//                                        blocks[firstBlk].GetMedianTimePast(),
+//                                        params),
+//              GetNextWorkRequired(&blocks[lastBlk], nullptr, params));
 }
