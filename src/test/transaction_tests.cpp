@@ -593,29 +593,7 @@ void test_simple_joinsplit_invalidity(uint32_t consensusBranchId, CMutableTransa
     }
 }
 
-BOOST_AUTO_TEST_CASE(test_simple_joinsplit_invalidity_driver) {
-    {
-        CMutableTransaction mtx;
-        mtx.nVersion = 2;
-        test_simple_joinsplit_invalidity(SPROUT_BRANCH_ID, mtx);
-    }
-    {
-
-        // Test Sapling things
-        mtx.nVersionGroupId = SAPLING_VERSION_GROUP_ID;
-        mtx.nVersion = SAPLING_TX_VERSION;
-
-        UpdateNetworkUpgradeParameters(Consensus::UPGRADE_SAPLING, Consensus::NetworkUpgrade::ALWAYS_ACTIVE);
-        test_simple_sapling_invalidity(NetworkUpgradeInfo[Consensus::UPGRADE_SAPLING].nBranchId, mtx);
-        UpdateNetworkUpgradeParameters(Consensus::UPGRADE_SAPLING, Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT);
-
-        // Switch back to mainnet parameters as originally selected in test fixture
-        SelectParams(CBaseChainParams::MAIN);
-    }
-}
-
-// Parameterized testing over consensus branch ids
-BOOST_DATA_TEST_CASE(test_Get, boost::unit_test::data::xrange(static_cast<int>(Consensus::MAX_NETWORK_UPGRADES)))
+BOOST_AUTO_TEST_CASE(test_Get)
 {
     uint32_t consensusBranchId = NetworkUpgradeInfo[sample].nBranchId;
 
