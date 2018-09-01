@@ -14,10 +14,6 @@
 
 #include <boost/assign/list_of.hpp>
 
-#include "base58.h"
-
-using namespace std;
-
 #include "chainparamsseeds.h"
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, const uint256& nNonce, const std::vector<unsigned char>& nSolution, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
