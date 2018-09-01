@@ -33,7 +33,7 @@ See important security warnings on the
 git clone https://github.com/bitzec/bitzec.git
 # Build
 cd bitzec/
-./zcutil/build.sh -j$(nproc)
+./zcutil/build.sh --disable-tests -j$(nproc)
 # fetch key
 ./zcutil/fetch-params.sh
 # Run
