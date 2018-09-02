@@ -114,8 +114,8 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        strCurrencyUnits = "BZC";
-        bip44CoinType = 133;
+        strCurrencyUnits = "BZC;
+        bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 20000;
         consensus.nSubsidyHalvingInterval = 2628000;
@@ -588,7 +588,7 @@ std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const {
     return vFoundersRewardAddress[i];
 }
 
-
+// 
 int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params){
     //if in overlap period, there will be two valid solutions, else 1.
     //The upcoming version of EH is preferred so will always be first element
