@@ -92,7 +92,7 @@ testnet
         consensus.fPowNoRetargeting=false;
         consensus.nLWMAHeight=20000;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAveragingWindow = 75; 
         consensus.nZawyLwmaAdjustedWeight = 13772;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
@@ -115,10 +115,10 @@ public:
     CMainParams() {
         strNetworkID = "main";
         strCurrencyUnits = "BZC";
-        bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+        bip44CoinType = 133;
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 20000;
-        consensus.nSubsidyHalvingInterval = 2628000;
+        consensus.nSubsidySlowStartInterval = 2;
+        consensus.nSubsidyHalvingInterval = 2628000; //5 years 
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 4000;
@@ -127,13 +127,13 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetSpacing = 2.5 * 60; //will be updated after fork to 1* 60
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
-            Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 170005;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 347500;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170007;
@@ -151,7 +151,7 @@ public:
 
 
         /**
-         * The message start string should be awesome! ❤
+         * Bismilah  
          */
         pchMessageStart[0] = 0x09;
         pchMessageStart[1] = 0xe9;
@@ -164,7 +164,7 @@ public:
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
         eh_epoch_1_endblock = 400000;
-        eh_epoch_2_startblock = 400001;
+        eh_epoch_2_startblock = 400000;
 
         genesis = CreateGenesisBlock(
             1477641360,
@@ -302,7 +302,7 @@ public:
         strCurrencyUnits = "TBZC";
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 20000;
+        consensus.nSubsidySlowStartInterval = 2;
         consensus.nSubsidyHalvingInterval = 2102400;
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
@@ -312,7 +312,7 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing = 1 * 60;
+        consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -327,7 +327,7 @@ public:
         consensus.fPowNoRetargeting=false;
         consensus.nLWMAHeight=22440;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAveragingWindow = 75; 
         consensus.nZawyLwmaAdjustedWeight = 2280;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
@@ -343,8 +343,8 @@ public:
         nPruneAfterHeight = 1000;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 300000;
-        eh_epoch_2_startblock = 295000;
+        eh_epoch_1_endblock = 309892;
+        eh_epoch_2_startblock = 309892;
 
         genesis = CreateGenesisBlock(
             1477648033,
@@ -425,8 +425,8 @@ public:
         consensus.fPowNoRetargeting=true;
         consensus.nLWMAHeight=-1;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
-        consensus.nZawyLwmaAdjustedWeight = 2280;
+        consensus.nZawyLwmaAveragingWindow = 75; 
+        consensus.nZawyLwmaAdjustedWeight = 309892;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
         consensus.ZCnPowTargetSpacing = 2.5 * 60;
@@ -434,7 +434,7 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -445,7 +445,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170006;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight =
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight =400000;
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         // The best chain should have at least this much work.
@@ -604,4 +604,8 @@ int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, cons
     ehparams[0]=params.eh_epoch_2_params();
     ehparams[1]=params.eh_epoch_1_params();
     return 2;
+}
+void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivationHeight)
+{
+    regTestParams.UpdateNetworkUpgradeParameters(idx, nActivationHeight);
 }
