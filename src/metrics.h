@@ -81,34 +81,23 @@ void ThreadShowMetricsScreen();
 * Bitcoin: img2txt -W 40 -H 20 -f utf8 -d none 2000px-Bitcoin.svg.png
  */
 const std::string METRICS_ART =
-NNNNNNNNNNNNNNhds++++o++o+oooo//+sdmm/:-/:/-.:+/:/:/syy+yyo/s+/://:syshms//::+++//+o+sdmNNNNNNNNmmNN
-NNNNNNNMMMMNNNhho//o+oo/++++/oo///yyo/ooossyhdddddmNNNNNNmmmmdyoo+/hNNh/+:/::-+/----/sydmNNNNNNNmmmm
-NNNNNNNNMMNNNNy++++++s+///++o+:/osyhdNNNNNNNNmmmNNNNNNNNNNNMMMMMMMmdho/::y+//--:++--::/yNNNmhhdhmdyy
-NmNNNNNmdNNNNNdhs++++s++osy+syhmMMNNNNNNNNNNhsdmNNNNNNNNNNNNNNNNNNNNNNMNddo:-:/:-.---:+shmNNdydhsh+.
-mNNmmyohNmmNNmyhyo+//s//+sdmNMNNNNNNNNNNNNNMMMMMMMNNNNNNNNNNNNmNmmNNNNNNNNMNNyo:---/osymNmNMmyo://--
-NNNNNmymNmdmdysoooso++odNNNNNNNNNNNNNNNMm/s+o+MMMMdyhhsdMMMMNNNmmNNNNNNNNNNNNMMNmh+-`.`-ddNNds+o/:::
-NNNNdhoshydhhss+++/+smNNNNNNNNNNNNNNNNMMN://-:MMMMyshhymMMMMMMMNNNNNNNNNNNNNNNMMMMMmy/-:/osoo/+o////
-NNmmmNmdhyysysoo//ymNNNNNNNNNNNNNNNNNNNNm:-:.:NNNMhshhyNMMNMMMMMNNNNNNNNNNNNNNNNMMMMMmh+/+/os+o::::/
-mmNNmmmhsyoyysoosmNNNNNNNNNMMh+++/sso++/oo//::+//syhhss++/-+soomNMNNNNNNNNNNNMMMNMMMMMMNdo+ss:+hds--
-mmmdmdhssssys+ohNNNNNNNNNMNMMs/+ooo++/+oys++o/-:/ssys+o+/------../smNNNNNNNNNNNNMMMMMMMMNmyyy/ssmhh.
-oo++/o+++sosoyhNNNNMNNNNNNNNNMMMMMMMddMmss++//hddddhhhhho--:.`...:./+mNNNNNNNNNNNNMMMMMMMNydsso+++//
-soo////+++osohNNMMMMNNNNNMNNNNNMMMMMhyyydyoo/oMMMMMMMMMMMNo.```.-/-y:.NNNNNNNNNNNNNNNNMNMMdyhysooooo
-sss+//////++oNNMMMMNMMNNNNNNNNNMMMMMysNyhsso+oNMMMMMNNMMMMh````:/:-yo:mNNNNNNNNNNNNMMMMMMMN+ydhysssh
-+o+:::://ooyNMMMMMMMMMNMMNNMMNNNMMMMsyhsyysoo+mNNNNNNNNNmo-`-.```-.syNMNNNNNNNNNNNNMMMMMMMNyydyhyhdd
-/+/+/::+/++dMMMMNMNMMNMMNMNNNMMNMMMMsss/+ysoo/o/o+sydhhyy-:--```.:sdNMMMMMNNNNNMMMNNNNMMNNNhhddy::+y
-o+oo+//oossNMMNhyNMMMMMMMMMMMMMNMMMMy+s/:+:///+/ooydmddhy/-.-....---:/dMMMMNNNMMMMNMMNMMNNNyhdy+:/-o
-+oso/++++//sMNhNsmMMMMMMMMNNNNMNMMMMy/+oo+/-::dMMMMMMMMMMNmho/:-.---:.:/mMMMNMMMMMNMMNMMMMNsho:/-:./
-hyysooys+ooomsyNdMMNMMMMMMNNNNNNMMMMhs/:.//:/:hMMMMMMMMMMNMMMd------/-:/oMMMNNNNNMNMMMMMMMds/--:./--
-mmdyyydNsssoyhmMMNNMMMMMMNNNNNNNMMMMmdyso/+//+yMMMMMMMMMMMMMMh..`.--:.-+oMMMNNNNNNNNMMMMMNyyo++///:-
-hNNmhyhsysssyhddmhmMMMMMNNNNdhdNNNNMdhmNdoo+::hMMMMMMMMMMNdd+-.-.---:`-/mNMMMMNNNNNNMMMMNhsssyyyyo+:
-mNNNhyyhmdhdddmNNNNNNNMNNNNMNmosyhysshdNds/o+./+o+shyosso/:--`...`.:/-oNMMNNNNNNNNNMMMMmhyoosyoo++:-
-NNmhhyshdNNNNNNmmmhNNNNNNNMMMMooos++shdyd+oho--:/++s+osos+/::+yooohydNmNMMNNNNNNNNNMMNy:-:-++syyyyyy
-NNmmmdmmdNNMNNNmddmNNNNNNNNMMMmdNNNNNNMNMm+ys/hmdmhossysNNNNNNNMMMNdNNmNNNNNNNNNNMMmy/--:/sdssyhyyhd
-MMNmddmNNNNMMNmhdhdyhdNNNNNNMMmNNMMMMMMMMNhhsomMMMhsosssNNNNNNNmhdNh++smmmmmNNNMMmysoohhhhhdyhddddhh
-MMNmmmmmmNNNNNmdhyy+oosmMMMMMMMMMMMMMMMMMm++ysmMMMy+ooyyMMNmmmhmhsoyhdmmmdNNMMNyoosshddddddhyydmmdhy
-MMMNdmmdhmmNNmmdhhyoosoodMMMMMMMMMMMMMMMMMMMMMMMMNNmMMMMMNNmNms:+dddddmmdmmmho///:ooyddddhmddmmmmmmm
-MMMMNNddhhhmmddmddhyyso++ohmmNMMMMMMMMMMMMMMMMMMMMMMMMMMNNNmdssohdhhdddddyyo+/////+/+syyhhdmmmNmmmNN
-MMMNNMNmmdmdmmdmmmdddyyo+osyyyyyddNNMMMMMMMMMMMMMMMMMMMMMNNNmddmmmmhyhyssshs/:/++os++ohhhyhdmNNNNNNN
-MMMMMMMNNNmmmmdhdddddyhyysssyhyoyssoyyhdmNNNMMMMMMMMMMMMMNmmddhyhddhsssssoo+//ooysso++hhhmmmmmNNNNNN
-MMMMMMMMMMMNddyyhmmmmdyssssosssyssssyyydsyhhyyyyssohdmdddhdy+syNmshsssyhhso+o+/yyssyhdmhhmmmmNNNNNNN
-";
+"              [0;34;40m            [0m                                                      \n"
+"          [0;34;40m                    [0m                                                  \n"
+"       [0;34;40m      [0;31;40m:8[0;33;5;40;100m8[0;1;30;90;43mSX@888@@X[0;31;5;40;100m8[0;31;40m:[0;34;40m      [0m              [0;31;5;41;101m8;     %[0;1;31;91;41mX[0m        [0;1;31;91;41mX[0;31;5;41;101m%     ;8[0m       \n"
+"     [0;34;40m     [0;31;40m%[0;1;30;90;43m%X[0;1;33;93;43mt[0;33;5;43;103m%tt%[0;1;30;90;43mSSSS[0;33;5;43;103mS:[0;37;5;43;103mXXX[0;1;33;93;43mt[0;1;30;90;43m@[0;31;40m@[0;34;40m     [0m         [0;1;31;91;41mX[0;31;5;41;101m            :[0;1;31;91;41m:[0m  [0;1;31;91;41m:[0;31;5;41;101m:            [0;1;31;91;41mX[0m    \n"
+"   [0;34;40m     [0;31;40m@[0;1;30;90;43mS[0;1;33;93;43m;;tt%%[0;33;5;43;103m%[0;1;33;93;43mt[0;34;40m    [0;1;33;93;43m;[0;33;5;43;103m;::[0;37;5;43;103mXXXX[0;37;43mS[0;31;5;40;100mX[0;34;40m     [0m      [0;31;5;41;101m%               SS               %[0m   \n"
+"  [0;34;40m    [0;31;40m.[0;1;30;90;43mt[0;1;33;93;43m:::;;[0;1;30;90;43m%[0;31;40m8888[0;34;40m    [0;31;40m8[0;30;41m8888[0;1;33;93;43mt[0;37;5;43;103mXXXX[0;1;30;90;43m8[0;31;40m;[0;34;40m    [0m    [0;1;31;91;41mS[0;31;5;41;101m                                  [0;1;31;91;41mS[0m  \n"
+" [0;34;40m    [0;31;40m.[0;1;30;90;43m%[0;1;33;93;43m...:::[0;31;40m8[0;34;40m             [0;1;30;90;43m8[0;33;5;43;103m::[0;37;5;43;103mXXX[0;1;33;93;43m%[0;31;40m;[0;34;40m    [0m   [0;31;5;41;101mX                                  X[0m  \n"
+" [0;34;40m    [0;31;43m8[0;1;31;91;43m888[0;1;33;93;43m...:[0;1;30;90;43mt[0;1;30;90;41m888888[0;31;40mX[0;34;40m     [0;33;5;40;100m8[0;33;5;43;103mt;;::[0;37;5;43;103mXX[0;1;30;90;43m8[0;31;40m [0;34;40m   [0m   [0;31;5;41;101m8                                  8[0m  \n"
+"[0;34;40m    [0;31;40m%[0;1;31;91;43m888888[0;1;33;93;43m...:::;:[0;1;30;90;41m8[0;31;40m [0;34;40m   [0;31;40m:[0;1;30;90;43mX[0;33;5;43;103mttt;;;::[0;37;5;43;103mX[0;31;5;40;100m@[0;34;40m    [0m   [0;31;5;41;101m                                  [0m   \n"
+"[0;34;40m    [0;1;30;90;41m8[0;1;31;91;43m88888888[0;1;33;93;43m...:[0;1;30;90;43mS[0;31;40mt[0;34;40m    [0;1;30;90;41m8[0;1;33;93;43m:%[0;33;5;43;103m%tttt;;;:[0;1;30;90;43mX[0;34;40m    [0m   [0;31;5;41;101mX                                X[0m   \n"
+"[0;34;40m    [0;1;30;90;41m8[0;1;31;91;43m8888888888[0;1;30;90;43mS[0;1;30;90;41m8[0;31;40m [0;34;40m   [0;31;40m:[0;1;30;90;43m%[0;1;33;93;43m;ttt%[0;33;5;43;103m%tttt;;[0;1;30;90;43mX[0;34;40m    [0m    [0;31;5;41;101m8                              8[0m    \n"
+"[0;34;40m    [0;31;40m%[0;1;31;91;43m888888888[0;1;30;90;43m%[0;31;40mt[0;34;40m    [0;30;41m8[0;1;30;90;43mS[0;1;33;93;43m:;;;tt%%[0;33;5;43;103m%ttt;[0;1;30;90;41m8[0;34;40m    [0m      [0;31;5;41;101m:                          :[0m      \n"
+" [0;34;40m    [0;31;43m8t[0;1;31;91;43m888888[0;33;41m8[0;31;40m [0;34;40m    [0;31;40mS[0;33;41m888[0;31;43m8888[0;1;30;90;43mS[0;1;33;93;43mtt%%[0;33;5;43;103m%t[0;1;30;90;43m@[0;31;40m [0;34;40m   [0m        [0;1;31;91;41m:[0;31;5;41;101m:                      :[0;1;31;91;41m:[0m       \n"
+" [0;34;40m    [0;31;40m.[0;31;43m@tt[0;1;31;91;43m888[0;31;43m@[0;34;40m              [0;1;30;90;41m8[0;1;33;93;43m;;ttt[0;1;30;90;43m@[0;31;40m;[0;34;40m    [0m           [0;31;5;41;101mt                  t[0m          \n"
+"  [0;34;40m    [0;31;40m.[0;31;43m8ttt[0;1;31;91;43m8[0;31;43m@[0;31;40mSSSSS[0;34;40m    [0;31;40mSXXXX[0;1;30;90;43m%[0;1;33;93;43m:;;;[0;1;30;90;43mX[0;31;40m;[0;34;40m    [0m              [0;31;5;41;101m8              8[0m            \n"
+"   [0;34;40m     [0;31;40mX[0;31;43m8ttt[0;1;31;91;43m8888[0;1;30;90;43m%[0;34;40m    [0;1;30;90;43m%[0;1;31;91;43m88[0;1;33;93;43m...::[0;1;30;90;43mX[0;30;41m8[0;31;40m [0;34;40m    [0m                 [0;1;31;91;41mX[0;31;5;41;101m.        .[0;1;31;91;41mX[0m              \n"
+"     [0;34;40m     [0;31;40m%[0;1;30;90;41m8[0;31;43m@tt[0;1;31;91;43m88[0;31;43m;[0;33;41m8888[0;1;30;90;43m%[0;1;31;91;43m8888[0;1;30;90;43m%[0;31;43m8[0;31;40mX[0;32;40m [0;34;40m    [0m                     [0;1;31;91;41m:[0;31;5;41;101m;    ;[0;1;31;91;41m:[0m                \n"
+"       [0;34;40m      [0;31;40m:@[0;1;30;90;41m8[0;33;41m8[0;31;43m8@XXX@8[0;1;30;90;41m8[0;31;40m8:[0;34;40m      [0m                          [0;31;5;41;101mtt[0m                   \n"
+"         [0;34;40m                      [0m                                                 \n"
+"              [0;34;40m             [0m                                                     ";
