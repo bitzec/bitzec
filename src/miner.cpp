@@ -9,7 +9,6 @@
 #endif
 
 #include "amount.h"
-#include "base58.h"
 #include "chainparams.h"
 #include "consensus/consensus.h"
 #include "consensus/upgrades.h"
@@ -523,7 +522,6 @@ void static BitcoinMiner()
     unsigned int nExtraNonce = 0;
 
 
-
     std::string solver = GetArg("-equihashsolver", "default");
     assert(solver == "tromp" || solver == "default");
 
@@ -572,7 +570,7 @@ void static BitcoinMiner()
 
             // Get equihash parameters for the next block to be mined.
             EHparameters ehparams[MAX_EH_PARAM_LIST_LEN]; //allocate on-stack space for parameters list
-            validEHparameterList(ehparams,nHeight+1,chainparams);
+            EHparameters(ehparams,nHeight+1,chainparams);
 
             unsigned int n = ehparams[0].n;
             unsigned int k = ehparams[0].k;
