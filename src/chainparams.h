@@ -30,6 +30,11 @@ struct CCheckpointData {
     int64_t nTimeLastCheckpoint;
     int64_t nTransactionsLastCheckpoint;
     double fTransactionsPerDay;
+
+struct EHparameters {
+    unsigned char n;
+    unsigned char k;
+    unsigned short int nSolSize;
 };
 
 //EH sol size = (pow(2, k) * ((n/(k+1))+1)) / 8;
@@ -121,7 +126,6 @@ protected:
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort = 0;
-    long nMaxTipAge = 0;
     uint64_t nPruneAfterHeight = 0;
     EHparameters eh_epoch_1 = eh200_9;
     EHparameters eh_epoch_2 = eh144_5;
@@ -161,8 +165,6 @@ void SelectParams(CBaseChainParams::Network network);
  * Returns false if an invalid combination is given.
  */
 bool SelectParamsFromCommandLine();
-
-int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params);
 
 /**
  * Allows modifying the network upgrade regtest parameters.
