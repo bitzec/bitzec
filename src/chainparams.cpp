@@ -325,7 +325,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 280000;
 
         consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=22440;
+        consensus.nLWMAHeight=309892;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nZawyLwmaAveragingWindow = 75; 
         consensus.nZawyLwmaAdjustedWeight = 2280;
