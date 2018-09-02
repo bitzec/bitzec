@@ -892,7 +892,7 @@ UniValue getblocksubsidy(const UniValue& params, bool fHelp)
             "getblocksubsidy height\n"
             "\nReturns block subsidy reward, taking into account the mining slow start and the founders reward, of block at index provided.\n"
             "\nArguments:\n"
-            "1. height         (numeric, optional) The block height.  If not provided, defaults to the subsidy for the next block.\n"
+            "1. height         (numeric, optional) The block height.  If not provided, defaults to the current height of the chain.\n"
             "\nResult:\n"
             "{\n"
             "  \"miner\" : x.xxx           (numeric) The mining reward amount in " + CURRENCY_UNIT + ".\n"
@@ -904,11 +904,11 @@ UniValue getblocksubsidy(const UniValue& params, bool fHelp)
         );
 
     LOCK(cs_main);
-    int nHeight = (params.size()==1) ? params[0].get_int() : chainActive.Height()+1;
+    int nHeight = (params.size()==1) ? params[0].get_int() : chainActive.Height();
     if (nHeight < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Block height out of range");
 
-    CAmount nReward = GetBlockSubsidy(nHeight , Params().GetConsensus());
+    CAmount nReward = GetBlockSubsidy(nHeight, Params().GetConsensus());
     CAmount nFoundersReward = 0;
     if ((nHeight > 0) && (nHeight <= Params().GetConsensus().GetLastFoundersRewardBlockHeight())) {
         nFoundersReward = nReward/5;

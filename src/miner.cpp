@@ -558,9 +558,10 @@ void static BitcoinMiner()
             // Create new block
             //
             unsigned int nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
+            CBlockIndex* pindexPrev = chainActive.Tip();
+            
 
-
-            // Get the height of current tip
+	    // Get the height of current tip
             int nHeight = chainActive.Height();
             if (nHeight == -1) {
                 LogPrintf("Error in Bitzec Miner: chainActive.Height() returned -1\n");
@@ -569,8 +570,7 @@ void static BitcoinMiner()
             CBlockIndex* pindexPrev = chainActive[nHeight];
 
             // Get equihash parameters for the next block to be mined.
-            EHparameters ehparams[MAX_EH_PARAM_LIST_LEN]; //allocate on-stack space for parameters list
-            EHparameters(ehparams,nHeight+1,chainparams);
+            EHparameters ehparams[MAX_EH_PARAM_LIST_LEN];
 
             unsigned int n = ehparams[0].n;
             unsigned int k = ehparams[0].k;
