@@ -82,7 +82,7 @@ mainnnet
         consensus.fPowNoRetargeting=false;
         consensus.nLWMAHeight=400000;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 13772; // hx43 uses k = (N+1)/2 * 0.998 * T 13772
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
@@ -90,9 +90,9 @@ mainnnet
 
 testnet
         consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=20000;
+        consensus.nLWMAHeight=309886;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75; 
+        consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 13772;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
@@ -101,7 +101,7 @@ regtest
         consensus.fPowNoRetargeting=true
         consensus.nLWMAHeight=-1
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
+        consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 13772;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
@@ -118,7 +118,7 @@ public:
         bip44CoinType = 133;
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 2;
-        consensus.nSubsidyHalvingInterval = 2628000; //5 years 
+        consensus.nSubsidyHalvingInterval = 2628000; //5 years
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 4000;
@@ -151,7 +151,7 @@ public:
 
 
         /**
-         * Bismilah  
+         * Bismilah
          */
         pchMessageStart[0] = 0x09;
         pchMessageStart[1] = 0xe9;
@@ -325,9 +325,9 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 280000;
 
         consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=22440;
+        consensus.nLWMAHeight= 309886;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75; 
+        consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 2280;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
@@ -343,8 +343,8 @@ public:
         nPruneAfterHeight = 1000;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 309892;
-        eh_epoch_2_startblock = 309892;
+        eh_epoch_1_endblock = 309886;
+        eh_epoch_2_startblock = 309886;
 
         genesis = CreateGenesisBlock(
             1477648033,
@@ -425,7 +425,7 @@ public:
         consensus.fPowNoRetargeting=true;
         consensus.nLWMAHeight=-1;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75; 
+        consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 309892;
         consensus.nZawyLwmaMinDenominator = 10;
         consensus.fZawyLwmaSolvetimeLimitation = true;
