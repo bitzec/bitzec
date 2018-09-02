@@ -7,7 +7,6 @@
 #define BITCOIN_CHAINPARAMS_H
 
 #include "chainparamsbase.h"
-#include "checkpoints.h"
 #include "consensus/params.h"
 #include "primitives/block.h"
 #include "protocol.h"
@@ -24,11 +23,13 @@ struct SeedSpec6 {
     uint16_t port;
 };
 
+typedef std::map<int, uint256> MapCheckpoints;
 
-struct EHparameters {
-    unsigned char n;
-    unsigned char k;
-    unsigned short int nSolSize;
+struct CCheckpointData {
+    MapCheckpoints mapCheckpoints;
+    int64_t nTimeLastCheckpoint;
+    int64_t nTransactionsLastCheckpoint;
+    double fTransactionsPerDay;
 };
 
 //EH sol size = (pow(2, k) * ((n/(k+1))+1)) / 8;
@@ -86,7 +87,6 @@ public:
     bool DefaultConsistencyChecks() const { return fDefaultConsistencyChecks; }
     /** Policy: Filter transactions that do not match well-defined patterns */
     bool RequireStandard() const { return fRequireStandard; }
-    int64_t MaxTipAge() const { return nMaxTipAge; }
     int64_t PruneAfterHeight() const { return nPruneAfterHeight; }
 
     EHparameters eh_epoch_1_params() const { return eh_epoch_1; }
@@ -106,14 +106,13 @@ public:
     const std::vector<unsigned char>& Base58Prefix(Base58Type type) const { return base58Prefixes[type]; }
     const std::string& Bech32HRP(Bech32Type type) const { return bech32HRPs[type]; }
     const std::vector<SeedSpec6>& FixedSeeds() const { return vFixedSeeds; }
-    const Checkpoints::CCheckpointData& Checkpoints() const { return checkpointData; }
+    const CCheckpointData& Checkpoints() const { return checkpointData; }
     /** Return the founder's reward address and script for a given block height */
     std::string GetFoundersRewardAddressAtHeight(int height) const;
     CScript GetFoundersRewardScriptAtHeight(int height) const;
     std::string GetFoundersRewardAddressAtIndex(int i) const;
     /** Enforce coinbase consensus rule in regtest mode */
     void SetRegTestCoinbaseMustBeProtected() { consensus.fCoinbaseMustBeProtected = true; }
-    int GetNewTimeRule() const { return newTimeRule; }
 protected:
     CChainParams() {}
 
@@ -141,9 +140,8 @@ protected:
     bool fRequireStandard = false;
     bool fMineBlocksOnDemand = false;
     bool fTestnetToBeDeprecatedFieldRPC = false;
-    Checkpoints::CCheckpointData checkpointData;
+    CCheckpointData checkpointData;
     std::vector<std::string> vFoundersRewardAddress;
-    int newTimeRule=2000000000; //Will remain at this value if not otherwise defined in chain class.
 };
 
 /**
@@ -170,6 +168,5 @@ int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, cons
  * Allows modifying the network upgrade regtest parameters.
  */
 void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivationHeight);
-
 
 #endif // BITCOIN_CHAINPARAMS_H

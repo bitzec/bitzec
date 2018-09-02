@@ -148,8 +148,8 @@ public:
         consensus.fZawyLwmaSolvetimeLimitation = true;
         consensus.ZCnPowTargetSpacing = 2.5 * 60; //legacy spacing.
 
-
-
+	// The best chain should have at least this much work.
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000281b32ff3198a1");
         /**
          * The message start string should be awesome! Bismilah
          */
@@ -333,7 +333,9 @@ public:
         consensus.fZawyLwmaSolvetimeLimitation = true;
         consensus.ZCnPowTargetSpacing = 2.5 * 60;
 
-        assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
+	// The best chain should have at least this much work.
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000001d0c4d9cd");
+
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0x1a;
         pchMessageStart[2] = 0xf9;
@@ -390,10 +392,12 @@ public:
 
         checkpointData = (Checkpoints::CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, consensus.hashGenesisBlock),
-            genesis.nTime,
-            0,
-            0
+            (0, consensus.hashGenesisBlock)
+            (38000, uint256S("0x001e9a2d2e2892b88e9998cf7b079b41d59dd085423a921fe8386cecc42287b8")),
+            1486897419,  // * UNIX timestamp of last checkpoint block
+            47163,       // * total number of transactions between genesis and last checkpoint
+                         //   (the tx=... number in the SetBestChain debug.log lines)
+            715          //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
@@ -421,7 +425,7 @@ public:
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.powLimit = uint256S("0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f");
-
+        consensus.nPowAveragingWindow = 17;
         consensus.fPowNoRetargeting=true;
         consensus.nLWMAHeight=-1;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
@@ -480,7 +484,7 @@ public:
         fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-        checkpointData = (Checkpoints::CCheckpointData){
+        checkpointData = (CCheckpointData){
             boost::assign::map_list_of
             ( 0, uint256S("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206")),
             0,
@@ -504,8 +508,7 @@ public:
         bech32HRPs[SAPLING_SPENDING_KEY]         = "secret-spending-key-regtest";
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
-        //vFoundersRewardAddress = { "t3RmCfrMtkvduU7vjMB9F8cnToqixJAJxWr" };
-    vFoundersRewardAddress = { };
+        vFoundersRewardAddress = { "t3RmCfrMtkvduU7vjMB9F8cnToqixJAJxWr" };
         assert(vFoundersRewardAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
     }
 
@@ -588,7 +591,7 @@ std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const {
     return vFoundersRewardAddress[i];
 }
 
-// 
+ 
 int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params){
     //if in overlap period, there will be two valid solutions, else 1.
     //The upcoming version of EH is preferred so will always be first element
