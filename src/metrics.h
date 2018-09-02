@@ -73,12 +73,12 @@ void ConnectMetricsScreen();
 void ThreadShowMetricsScreen();
 
 /**
-* Bitcoin image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2000px-Bitcoin.svg.png
-* License:
-*
-* Rendering options:
-* Zcash: img2txt -W 40 -H 20 -f utf8 -d none -g 0.7 Z-yellow.orange-logo.png
-* Bitcoin: img2txt -W 40 -H 20 -f utf8 -d none 2000px-Bitcoin.svg.png
+ * Heart image: https://commons.wikimedia.org/wiki/File:Heart_coraz%C3%B3n.svg
+ * License: CC BY-SA 3.0
+ *
+ * Rendering options:
+ * Zcash: img2txt -W 40 -H 20 -f utf8 -d none -g 0.7 Z-yellow.orange-logo.png
+ * Heart: img2txt -W 40 -H 20 -f utf8 -d none 2000px-Heart_corazón.svg.png
  */
 const std::string METRICS_ART =
 "              [0;34;40m            [0m                                                      \n"
