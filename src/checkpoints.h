@@ -10,6 +10,7 @@
 #include <map>
 
 class CBlockIndex;
+struct CCheckpointData;
 
 /**
  * Block-chain checkpoints are compiled-in sanity checks.
