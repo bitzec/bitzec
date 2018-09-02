@@ -3,7 +3,6 @@ BITZEC 1.0.0
 ===========
 ?What are 
 [Zero knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
-?What is
 [Zcash](https://z.cash/) is an implementation of the "Zerocash" protocol.
 Based on Bitcoin's code
 ?What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin)
