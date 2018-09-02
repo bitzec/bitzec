@@ -82,8 +82,7 @@ struct Params {
     int SubsidySlowStartShift() const { return nSubsidySlowStartInterval / 2; }
     int nSubsidyHalvingInterval;
     int GetLastFoundersRewardBlockHeight() const {
-        //return nSubsidyHalvingInterval + SubsidySlowStartShift() - 1;
-        return 0; // Bugfix #14: getblocksubsidy RPC command is incorrect
+        return nSubsidyHalvingInterval + SubsidySlowStartShift() - 1;
     }
     /** Used to check majorities for block version upgrade */
     int nMajorityEnforceBlockUpgrade;
@@ -99,6 +98,7 @@ struct Params {
     int64_t AveragingWindowTimespan() const { return nPowAveragingWindow * ZCnPowTargetSpacing; }
     int64_t MinActualTimespan() const { return (AveragingWindowTimespan() * (100 - nPowMaxAdjustUp  )) / 100; }
     int64_t MaxActualTimespan() const { return (AveragingWindowTimespan() * (100 + nPowMaxAdjustDown)) / 100; }
+    uint256 nMinimumChainWork;
     //LWMA POW targeting parameters
     bool fPowNoRetargeting;
     unsigned int nLWMAHeight;
