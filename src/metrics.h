@@ -73,7 +73,7 @@ void ConnectMetricsScreen();
 void ThreadShowMetricsScreen();
 
 /**
- * Heart image: https://commons.wikimedia.org/wiki/File:Heart_coraz%C3%B3n.svg
+ * bitcoin image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/200px-Bitcoin.svg.png
  * License: CC BY-SA 3.0
  *
  * Rendering options:
