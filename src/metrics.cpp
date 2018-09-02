@@ -429,8 +429,8 @@ void ThreadShowMetricsScreen()
         std::cout << std::endl;
 
         // Thank you text
-        std::cout << _("Thank you for running a Zcash node!") << std::endl;
-        std::cout << _("You're helping to strengthen the network and contributing to a social good :)") << std::endl;
+        std::cout << _(" BITZEC [BZC] node!") << std::endl;
+        std::cout << _("BINARY DIGIT ZERO KNOWLEDGE ELECTRONIC CURRENCY :)") << std::endl;
 
         // Privacy notice text
         std::cout << PrivacyInfo();
