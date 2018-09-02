@@ -107,7 +107,7 @@ struct Params {
     int64_t nZawyLwmaAdjustedWeight;
     int64_t nZawyLwmaMinDenominator;
     bool fZawyLwmaSolvetimeLimitation;
-    int64_t ZCnPowTargetSpacing; //legacy target spacing
+    int64_t ZCnPowTargetSpacing;
 
 };
 } // namespace Consensus
