@@ -55,6 +55,9 @@ cd src/
 ./bitzec-cli help "The-command-you-want-to-learn-more-about"
 ./bitzec-cli help "getbalance"
 ```
+START TESTING::
+https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html#development-guidelines
+
 
 ####  :ledger: Deprecation Policy
 
