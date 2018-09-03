@@ -55,9 +55,9 @@ cd src/
 ./bitzec-cli help "The-command-you-want-to-learn-more-about"
 ./bitzec-cli help "getbalance"
 ```
-START TESTING::Testing
+### START TESTING::Testing
 
-Add unit tests for B under Bitzec  ./src/gtest.
+Add unit tests for Bitzec under Bitzec  ./src/gtest.
 
 To list all tests, run ./src/zcash-gtest --gtest_list_tests.
 
