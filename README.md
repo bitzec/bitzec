@@ -37,7 +37,7 @@ cd bitzec/
 # fetch key
 ./zcutil/fetch-params.sh
 # Run
-./src/bitzecd
+./src/bit
 # Test getting information about the network
 cd src/
 ./bitzec-cli getmininginfo
@@ -55,7 +55,21 @@ cd src/
 ./bitzec-cli help "The-command-you-want-to-learn-more-about"
 ./bitzec-cli help "getbalance"
 ```
-START TESTING::
+START TESTING::Testing
+
+Add unit tests for B under Bitzec  ./src/gtest.
+
+To list all tests, run ./src/zcash-gtest --gtest_list_tests.
+
+To run a subset of tests, use a regular expression with the flag --gtest_filter. Example:
+
+` ./src/zcash-gtest --gtest_filter=DeprecationTest.* `
+
+For debugging: --gtest_break_on_failure.
+
+To run a subset of BOOST tests: ` src/test/test_bitcoin -t TESTGROUP/TESTNAME
+
+
 https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html#development-guidelines
 
 
