@@ -125,6 +125,9 @@ protected:
     int nDefaultPort = 0;
     long nMaxTipAge = 0;
     uint64_t nPruneAfterHeight = 0;
+    unsigned int nEquihashN = 0;
+    unsigned int nEquihashK = 0;
+
     EHparameters eh_epoch_1 = eh200_9;
     EHparameters eh_epoch_2 = eh144_5;
     unsigned long eh_epoch_1_endblock = 400000;
