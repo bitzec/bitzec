@@ -45,7 +45,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Bitzec cannot be compiled without assertions."
+# error "Zcash cannot be compiled without assertions."
 #endif
 
 #include "librustzcash.h"
@@ -105,7 +105,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Bitzec Signed Message:\n";
+const string strMessageMagic = "Zcash Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -1711,7 +1711,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    CAmount nSubsidy = 15000 * COIN;
+    CAmount nSubsidy = 12.5 * COIN;
 
     // Mining slow start
     // The subsidy is ramped up linearly, skipping the middle payout of
@@ -1726,22 +1726,26 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
         return nSubsidy;
     }
 
-     assert(nHeight > consensusParams.SubsidySlowStartShift());
+    assert(nHeight > consensusParams.SubsidySlowStartShift());
+    int halvings = (nHeight - consensusParams.SubsidySlowStartShift()) / consensusParams.nSubsidyHalvingInterval;
+    // Force block reward to zero when right shift is undefined.
+    if (halvings >= 64)
+        return 0;
 
 if ( nHeight < 400001 ) nSubsidy = (15000 * COIN);					
-else if ( nHeight < 500001 ) nSubsidy = (7500 * COIN);					
-else if ( nHeight < 700001 ) nSubsidy = (3750 * COIN);					
-else if ( nHeight < 1000001 ) nSubsidy = (1875 * COIN);					
-else if ( nHeight < 1400001 ) nSubsidy = (937,5 * COIN);					
-else if ( nHeight < 1900001 ) nSubsidy = (468,75 * COIN);					
-else if ( nHeight < 2500001 ) nSubsidy = (234,375 * COIN);					
-else if ( nHeight < 3200001 ) nSubsidy = (117,1875 * COIN);					
-else if ( nHeight < 4000001 ) nSubsidy = (58,59375 * COIN);					
-else if ( nHeight < 4900001 ) nSubsidy = (29,296875 * COIN);					
-else if ( nHeight < 5900001 ) nSubsidy = (14,6484375 * COIN);					
-else if ( nHeight < 7000001 ) nSubsidy = (7,32421875 * COIN);					
-else if ( nHeight < 8200001 ) nSubsidy = (3,6621093 * COIN);					
-else if ( nHeight < 9500001 ) nSubsidy = (1,83105468 * COIN);					
+    else if ( nHeight < 500001 ) nSubsidy = (7500 * COIN);					
+    else if ( nHeight < 700001 ) nSubsidy = (3750 * COIN);					
+    else if ( nHeight < 1000001 ) nSubsidy = (1875 * COIN);					
+    else if ( nHeight < 1400001 ) nSubsidy = (937,5 * COIN);					
+    else if ( nHeight < 1900001 ) nSubsidy = (468,75 * COIN);					
+    else if ( nHeight < 2500001 ) nSubsidy = (234,375 * COIN);					
+    else if ( nHeight < 3200001 ) nSubsidy = (117,1875 * COIN);					
+    else if ( nHeight < 4000001 ) nSubsidy = (58,59375 * COIN);					
+    else if ( nHeight < 4900001 ) nSubsidy = (29,296875 * COIN);					
+    else if ( nHeight < 5900001 ) nSubsidy = (14,6484375 * COIN);					
+    else if ( nHeight < 7000001 ) nSubsidy = (7,32421875 * COIN);					
+    else if ( nHeight < 8200001 ) nSubsidy = (3,6621093 * COIN);					
+    else if ( nHeight < 9500001 ) nSubsidy = (1,83105468 * COIN);					
 
     
     else {
