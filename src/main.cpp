@@ -45,7 +45,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Zcash cannot be compiled without assertions."
+# error "Bitzec cannot be compiled without assertions."
 #endif
 
 #include "librustzcash.h"
@@ -105,7 +105,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Zcash Signed Message:\n";
+const string strMessageMagic = "Bitzec Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -3554,7 +3554,28 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 
     assert(pindexPrev);
 
-    int nHeight = pindexPrev->nHeight+1;
+    long int nHeight = pindexPrev->nHeight+1;
+
+    //Check EH solution size matches an acceptable N,K
+    size_t nSolSize = block.nSolution.size();
+
+    EHparameters ehparams[MAX_EH_PARAM_LIST_LEN]; //allocate on-stack space for parameters list
+    int listlength=validEHparameterList(ehparams,nHeight,chainParams);
+    int solutionInvalid=1;
+        for(int i=0; i<listlength; i++){
+        LogPrint("pow", "ContextCheckBlockHeader index %d n:%d k:%d Solsize: %d \n",i, ehparams[i].n, ehparams[i].k , ehparams[i].nSolSize);
+        if(ehparams[i].nSolSize==nSolSize)
+            solutionInvalid=0;
+    }
+
+    //Block will be validated prior to mining, and will have a zero length equihash solution. These need to be let through. Checkequihashsolution will catch them.
+    if(!nSolSize)
+        solutionInvalid=0;
+
+    if(solutionInvalid){
+        return state.DoS(100,error("ContextualCheckBlockHeader: Equihash solution size %d for block %d does not match a valid length",nSolSize, nHeight),
+           REJECT_INVALID,"bad-equihash-solution-size");
+    }
 
     // Check proof of work
     if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
@@ -3719,7 +3740,9 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
 
     // See method docstring for why this is always disabled
     auto verifier = libzcash::ProofVerifier::Disabled();
-    if ((!CheckBlock(block, state, verifier)) || !ContextualCheckBlock(block, state, pindex->pprev)) {
+
+    bool fCheckPOW = (pindex->nHeight != 0);
+    if ((!CheckBlock(block, state, verifier, fCheckPOW, true)) || !ContextualCheckBlock(block, state, pindex->pprev)) {
         if (state.IsInvalid() && !state.CorruptionPossible()) {
             pindex->nStatus |= BLOCK_FAILED_VALID;
             setDirtyBlockIndex.insert(pindex);
@@ -3769,7 +3792,7 @@ bool ProcessNewBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, bool
 {
     // Preliminary checks
     auto verifier = libzcash::ProofVerifier::Disabled();
-    bool checked = CheckBlock(*pblock, state, verifier);
+    bool checked = CheckBlock(*pblock, state, verifier, true, true);
 
     {
         LOCK(cs_main);

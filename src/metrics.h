@@ -74,9 +74,9 @@ void ThreadShowMetricsScreen();
 
 /**
  * bitcoin image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/200px-Bitcoin.svg.png
- * License: CC BY-SA 3.0
+ * License:
  *
  * Rendering options:
- * Logo: img2txt -W 90 -H 20 -f utf8 -d none -g design.png >> design.ansi
+ * Logo: img2txt -W 90 -H 20 -f utf8 -d none -g logo.png >> logo.svg
  */
 const std::string METRICS_ART = "\n\nBITZEC - Binary Digit Zero knowledge Elecrtonic Currency\n\n";
