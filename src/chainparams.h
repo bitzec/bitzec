@@ -169,6 +169,7 @@ void SelectParams(CBaseChainParams::Network network);
  */
 bool SelectParamsFromCommandLine();
 
+int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params);
 /**
  * Allows modifying the network upgrade regtest parameters.
  */
