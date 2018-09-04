@@ -75,50 +75,17 @@ static CBlock CreateGenesisBlock(uint32_t nTime, const uint256& nNonce, const st
  * + Contains no strange transactions
  */
 
-
-/*
-Summary of additional consensus parameters
-mainnnet
-        consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=400000;
-        consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;
-        consensus.nZawyLwmaAdjustedWeight = 13772; // hx43 uses k = (N+1)/2 * 0.998 * T 13772
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-
-
-testnet
-        consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=309886;
-        consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;
-        consensus.nZawyLwmaAdjustedWeight = 13772;
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-
-regtest
-        consensus.fPowNoRetargeting=true
-        consensus.nLWMAHeight=-1
-        consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;
-        consensus.nZawyLwmaAdjustedWeight = 13772;
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-
-*/
-
 const arith_uint256 maxUint = UintToArith256(uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        strCurrencyUnits = "ZEC" //"BZC";
-        bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+        strCurrencyUnits = "ZEC"; //"BZC"
+        bip44CoinType = 133; 
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 20000;
-        consensus.nSubsidyHalvingInterval = 840000 //2628000;
+        consensus.nSubsidyHalvingInterval = 2628000;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 4000;
@@ -300,7 +267,7 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        strCurrencyUnits = "TAZ";
+        strCurrencyUnits = "TAZ";  //TBZC
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 20000;

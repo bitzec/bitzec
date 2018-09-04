@@ -1727,10 +1727,6 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     }
 
     assert(nHeight > consensusParams.SubsidySlowStartShift());
-    int halvings = (nHeight - consensusParams.SubsidySlowStartShift()) / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
-        return 0;
 
 if ( nHeight < 400001 ) nSubsidy = (15000 * COIN);					
     else if ( nHeight < 500001 ) nSubsidy = (7500 * COIN);					
