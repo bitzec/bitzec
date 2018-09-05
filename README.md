@@ -1,5 +1,5 @@
 BITZEC 1.0.0
-<img align="right" width="120" height="80" src="doc/imgs/logo.png">
+<img align="right" width="140" height="140" src="doc/imgs/logo.png">
 ===========
 What are 
 [Zero knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof) ?
@@ -18,6 +18,7 @@ This software is the Bitzec client. It downloads and stores the entire history
 of Bitzec transactions; depending on the speed of your computer and network
 connection, the synchronization process could take a day or more once the
 blockchain has reached a significant size.
+
 
 <p align="center">
   <img src="doc/imgs/zcashd_screen.gif" height="500">
