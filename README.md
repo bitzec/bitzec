@@ -30,31 +30,19 @@ See important security warnings on the
 [Security Information page](https://z.cash/support/security/).
 
 ```{r, engine='bash'}
-# Clone Bitzec Repository
+Clone Bitzec Repository :
 git clone https://github.com/bitzec/bitzec.git
-# Build
+###Build:
 cd bitzec/
-./zcutil/build.sh --disable-tests -j$(nproc)
-# fetch key
+./zcutil/build.sh -j$(nproc)
+fetch key:
 ./zcutil/fetch-params.sh
-# Run
-./src/bit
-# Test getting information about the network
-cd src/
-./bitzec-cli getmininginfo
-# Test creating new transparent address
-./bitzec-cli getnewaddress
-# Test creating new private address
-./bitzec-cli z_getnewaddress
-# Test checking transparent balance
-./bitzec-cli getbalance
-# Test checking total balance 
-./bitzec-cli z_gettotalbalance
-# Check all available wallet commands
-./bitzec-cli help
-# Get more info about a single wallet command
-./bitzec-cli help "The-command-you-want-to-learn-more-about"
-./bitzec-cli help "getbalance"
+Run
+./src/bitzecd
+Test getting information about the network
+./src/bitzec-cli getmininginfo
+
+./bitzec-cli help 
 ```
 ### START TESTING::Testing
 
