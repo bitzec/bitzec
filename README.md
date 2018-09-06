@@ -44,6 +44,8 @@ Test getting information about the network
 
 ./bitzec-cli help 
 ```
+Installation video :https://youtu.be/5ahQZZYcntQ
+
 ### START TESTING::Testing
 
 Add unit tests for Bitzec under Bitzec  ./src/gtest.
