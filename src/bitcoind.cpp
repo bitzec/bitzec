@@ -115,7 +115,7 @@ bool AppInit(int argc, char* argv[])
                  _("- Source code:  %s\n"
                    "- .deb package: %s\n")).c_str(),
                 GetConfigFile().string().c_str(),
-                "contrib/debian/examples/bitzecd.conf",
+                "contrib/debian/examples/bitzec.conf",
                 "/usr/share/doc/bitzec/examples/bitzec.conf");
             return false;
         } catch (const std::exception& e) {

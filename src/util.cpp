@@ -462,7 +462,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Zcash
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\Zcash
     // Mac: ~/Library/Application Support/Zcash
-    // Unix: ~/.zcash
+    // Unix: ~/.bitzec
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "Zcash";
@@ -480,7 +480,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "Zcash";
 #else
     // Unix
-    return pathRet / ".zcash";
+    return pathRet / ".bitzec";
 #endif
 #endif
 }

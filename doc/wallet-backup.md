@@ -8,7 +8,7 @@ Problems resulting from bugs in the code, user error, device failure, etc. may l
 
 No matter what the cause of a corrupted or lost wallet could be, we highly recommend all users backup on a regular basis. Anytime a new address in the wallet is generated, we recommending making a new backup so all private keys for addresses in your wallet are safe.
 
-Note that a backup is a duplicate of data needed to spend ZEC so where you keep your backup(s) is another important consideration. You should not store backups where they would be equally or increasingly susceptible to loss or theft. 
+Note that a backup is a duplicate of data needed to spend ZEC so where you keep your backup(s) is another important consideration. You should not store backups where they would be equally or increasingly susceptible to loss or theft.
 
 ## Instructions for backing up your wallet and/or private keys
 
@@ -16,13 +16,13 @@ These instructions are specific for the officially supported Bitzec Linux client
 
 There are multiple ways to make sure you have at least one other copy of the private keys needed to spend your ZEC and view your shielded ZEC.
 
-For all methods, you will need to include an export directory setting in your config file (`zcBitzec.conf` located in the data directory which is `~/.zcash/` unless it's been overridden with `datadir=` setting):
+For all methods, you will need to include an export directory setting in your config file (`bitzec.conf` located in the data directory which is `~/.bitzec/` unless it's been overridden with `datadir=` setting):
 
 `exportdir=path/to/chosen/export/directory`
 
 You may chose any directory within the home directory as the location for export & backup files. If the directory doesn't exist, it will be created.
 
-Note that bitzecd will need to be stopped and restarted for edits in the config file to take effect. 
+Note that bitzecd will need to be stopped and restarted for edits in the config file to take effect.
 
 ### Using `backupwallet`
 
