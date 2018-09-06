@@ -30,6 +30,11 @@ See important security warnings on the
 [Security Information page](https://z.cash/support/security/).
 
 ```{r, engine='bash'}
+Install dependencies:
+sudo apt-get install \
+build-essential pkg-config libc6-dev m4 g++-multilib \
+autoconf libtool ncurses-dev unzip git python python-zmq \
+zlib1g-dev wget curl bsdmainutils automake
 Clone Bitzec Repository :
 git clone https://github.com/bitzec/bitzec.git
 ###Build:
