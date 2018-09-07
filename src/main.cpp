@@ -45,7 +45,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Bitzec cannot be compiled without assertions."
+# error "Zcash cannot be compiled without assertions."
 #endif
 
 #include "librustzcash.h"
@@ -105,7 +105,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Bitzec Signed Message:\n";
+const string strMessageMagic = "Zcash Signed Message:\n";
 
 // Internal stuff
 namespace {

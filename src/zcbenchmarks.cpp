@@ -162,9 +162,6 @@ double benchmark_verify_joinsplit(const JSDescription &joinsplit)
     return timer_stop(tv_start);
 }
 
-
-//Benchmark EH parameters hard coded to 200,9. Based on situation, may want to chanege that. 
-
 #ifdef ENABLE_MINING
 double benchmark_solve_equihash()
 {
@@ -173,8 +170,8 @@ double benchmark_solve_equihash()
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
     ss << I;
 
-    unsigned int n = 200;
-    unsigned int k = 9;
+    unsigned int n = Params(CBaseChainParams::MAIN).EquihashN();
+    unsigned int k = Params(CBaseChainParams::MAIN).EquihashK();
     crypto_generichash_blake2b_state eh_state;
     EhInitialiseState(n, k, eh_state);
     crypto_generichash_blake2b_update(&eh_state, (unsigned char*)&ss[0], ss.size());
@@ -228,9 +225,6 @@ double benchmark_verify_equihash()
 
 double benchmark_large_tx(size_t nInputs)
 {
-    // Number of inputs in the spending transaction that we will simulate
-    const size_t NUM_INPUTS = 555;
-
     // Create priv/pub key
     CKey priv;
     priv.MakeNewKey(false);
