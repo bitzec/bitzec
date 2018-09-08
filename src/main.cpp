@@ -3740,7 +3740,9 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
 
     // See method docstring for why this is always disabled
     auto verifier = libzcash::ProofVerifier::Disabled();
-    if ((!CheckBlock(block, state, verifier)) || !ContextualCheckBlock(block, state, pindex->pprev)) {
+
+    bool fCheckPOW = (pindex->nHeight != 0);
+    if ((!CheckBlock(block, state, verifier, fCheckPOW, true)) || !ContextualCheckBlock(block, state, pindex->pprev)) {
         if (state.IsInvalid() && !state.CorruptionPossible()) {
             pindex->nStatus |= BLOCK_FAILED_VALID;
             setDirtyBlockIndex.insert(pindex);
@@ -3790,7 +3792,7 @@ bool ProcessNewBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, bool
 {
     // Preliminary checks
     auto verifier = libzcash::ProofVerifier::Disabled();
-    bool checked = CheckBlock(*pblock, state, verifier);
+    bool checked = CheckBlock(*pblock, state, verifier, true, true);
 
     {
         LOCK(cs_main);

@@ -19,7 +19,7 @@
  * for both bitcoind and bitcoin-core, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("MagicBean");
+const std::string CLIENT_NAME("ENDT");
 
 /**
  * Client version number
@@ -48,11 +48,10 @@ const std::string CLIENT_NAME("MagicBean");
 #include "build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
-#define GIT_ARCHIVE 1
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. $Format:%n#define GIT_ARCHIVE 1$
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "d960b75de0"
-#define GIT_COMMIT_DATE "Thu, 16 Aug 2018 01:26:25 -0700"
+#define GIT_COMMIT_ID "$Format:%h$"
+#define GIT_COMMIT_DATE "$Format:%cD$"
 #endif
 
 #define RENDER_BETA_STRING(num) "-beta" DO_STRINGIZE(num)
