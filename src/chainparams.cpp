@@ -82,7 +82,7 @@ public:
     CMainParams() {
         strNetworkID = "main";
         strCurrencyUnits = "ZEC";
-        bip44CoinType = 133;
+        bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 20000;
         consensus.nSubsidyHalvingInterval = 2628000;
@@ -94,7 +94,7 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60; //will be updated after fork to 1* 60
+        consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -104,7 +104,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 170005;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 347500;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170007;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 400000;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 419200;
 
         consensus.fPowNoRetargeting=false;
         consensus.nLWMAHeight=399900;
@@ -271,7 +271,7 @@ public:
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 20000;
-        consensus.nSubsidyHalvingInterval = 2628000;
+        consensus.nSubsidyHalvingInterval = 840000;
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
         consensus.nMajorityWindow = 400;
@@ -292,16 +292,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 170007;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 280000;
 
-        consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight= 309886;
-        consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;
-        consensus.nZawyLwmaAdjustedWeight = 2280;
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-        consensus.ZCnPowTargetSpacing = 2.5 * 60;
-
-	// The best chain should have at least this much work.
+        // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000001d0c4d9cd");
 
         pchMessageStart[0] = 0xfa;
@@ -311,10 +302,10 @@ public:
         vAlertPubKey = ParseHex("044e7a1553392325c871c5ace5d6ad73501c66f4c185d6b0453cf45dec5a1322e705c672ac1a27ef7cdaf588c10effdf50ed5f95f85f2f54a5f6159fca394ed0c6");
         nDefaultPort = 18233;
         nPruneAfterHeight = 1000;
-        eh_epoch_1 = eh200_9;
-        eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 309886;
-        eh_epoch_2_startblock = 309886;
+        const size_t N = 200, K = 9;
+        BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
+        nEquihashN = N;
+        nEquihashK = K;
 
         genesis = CreateGenesisBlock(
             1477648033,
@@ -404,15 +395,6 @@ public:
         consensus.nMajorityWindow = 1000;
         consensus.powLimit = uint256S("0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f");
         consensus.nPowAveragingWindow = 17;
-        consensus.fPowNoRetargeting=true;
-        consensus.nLWMAHeight=-1;
-        consensus.nPowLwmaTargetSpacing = 2 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;
-        consensus.nZawyLwmaAdjustedWeight = 309892;
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-        consensus.ZCnPowTargetSpacing = 2.5 * 60;//prefork
-
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
@@ -439,11 +421,10 @@ public:
         pchMessageStart[3] = 0x5f;
         nDefaultPort = 18344;
         nPruneAfterHeight = 1000;
-
-        eh_epoch_1 = eh48_5;
-        eh_epoch_2 = eh48_5;
-        eh_epoch_1_endblock = 1;
-        eh_epoch_2_startblock = 1;
+        const size_t N = 48, K = 5;
+        BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
+        nEquihashN = N;
+        nEquihashK = K;
 
         genesis = CreateGenesisBlock(
             1296688602,
