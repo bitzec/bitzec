@@ -81,7 +81,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        strCurrencyUnits = "BZC";
+        strCurrencyUnits = "ZEC";
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 20000;
@@ -119,7 +119,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000281b32ff3198a1");
 
         /**
-         * The message start string should be awesome! Bⓩ❤
+         * The message start string should be awesome! ⓩ❤
          */
         pchMessageStart[0] = 0x24;
         pchMessageStart[1] = 0xe9;
