@@ -103,8 +103,8 @@ public:
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 10000;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 50000;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 2501;
 
         consensus.fPowNoRetargeting=false;
         consensus.nLWMAHeight=20000;
