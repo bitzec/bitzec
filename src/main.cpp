@@ -45,7 +45,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Zcash cannot be compiled without assertions."
+# error "Bitzec cannot be compiled without assertions."
 #endif
 
 #include "librustzcash.h"
@@ -105,7 +105,7 @@ static void CheckBlockIndex();
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Zcash Signed Message:\n";
+const string strMessageMagic = "Bitzec Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -872,7 +872,7 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
 
 /**
  * Check a transaction contextually against a set of consensus rules valid at a given block height.
- * 
+ *
  * Notes:
  * 1. AcceptToMemoryPool calls CheckTransaction and this function.
  * 2. ProcessNewBlock calls AcceptBlock, which calls CheckBlock (which calls CheckTransaction)
@@ -942,7 +942,7 @@ bool ContextualCheckTransaction(const CTransaction& tx, CValidationState &state,
             return state.DoS(dosLevel, error("ContextualCheckTransaction: overwinter is active"),
                             REJECT_INVALID, "tx-overwinter-active");
         }
-    
+
         // Check that all transactions are unexpired
         if (IsExpiredTx(tx, nHeight)) {
             // Don't increase banscore if the transaction only just expired
@@ -1728,33 +1728,33 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     assert(nHeight > consensusParams.SubsidySlowStartShift());
 
-if ( nHeight < 400001 ) nSubsidy = (15000 * COIN);					
-    else if ( nHeight < 500001 ) nSubsidy = (7500 * COIN);					
-    else if ( nHeight < 700001 ) nSubsidy = (3750 * COIN);					
-    else if ( nHeight < 1000001 ) nSubsidy = (1875 * COIN);					
-    else if ( nHeight < 1400001 ) nSubsidy = (937,5 * COIN);					
-    else if ( nHeight < 1900001 ) nSubsidy = (468,75 * COIN);					
-    else if ( nHeight < 2500001 ) nSubsidy = (234,375 * COIN);					
-    else if ( nHeight < 3200001 ) nSubsidy = (117,1875 * COIN);					
-    else if ( nHeight < 4000001 ) nSubsidy = (58,59375 * COIN);					
-    else if ( nHeight < 4900001 ) nSubsidy = (29,296875 * COIN);					
-    else if ( nHeight < 5900001 ) nSubsidy = (14,6484375 * COIN);					
-    else if ( nHeight < 7000001 ) nSubsidy = (7,32421875 * COIN);					
-    else if ( nHeight < 8200001 ) nSubsidy = (3,6621093 * COIN);					
-    else if ( nHeight < 9500001 ) nSubsidy = (1,83105468 * COIN);					
+if ( nHeight < 700001 ) nSubsidy = (15000 * COIN);
+    else if ( nHeight < 200001 ) nSubsidy = (7500 * COIN);
+    else if ( nHeight < 400001 ) nSubsidy = (3750 * COIN);
+    else if ( nHeight < 700001 ) nSubsidy = (1875 * COIN);
+    else if ( nHeight < 1100001 ) nSubsidy = (937,5 * COIN);
+    else if ( nHeight < 1600001 ) nSubsidy = (468,75 * COIN);
+    else if ( nHeight < 2200001 ) nSubsidy = (234,37 * COIN);
+    else if ( nHeight < 2800001 ) nSubsidy = (117,18 * COIN);
+    else if ( nHeight < 3600001 ) nSubsidy = (58,59 * COIN);
+    else if ( nHeight < 4500001 ) nSubsidy = (29,29 * COIN);
+    else if ( nHeight < 5500001 ) nSubsidy = (14,64 * COIN);
+    else if ( nHeight < 6600001 ) nSubsidy = (7,32 * COIN);
+    else if ( nHeight < 7800001 ) nSubsidy = (3,66 * COIN);
+    else if ( nHeight < 9100001 ) nSubsidy = (1,83 * COIN);
 
-    
+
     else {
-        int halvings = (nHeight - 9500000) / consensusParams.nSubsidyHalvingInterval;
-        
-        nSubsidy=1 * COIN;
-        
+        int halvings = (nHeight - 9100000) / consensusParams.nSubsidyHalvingInterval;
+
+        nSubsidy= 1 * COIN;
+
         if(nSubsidy >= 64){
             nSubsidy = 0;
         }else{
         	nSubsidy >>= halvings;
         }
-        
+
     }
     return nSubsidy;
 }
