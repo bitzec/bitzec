@@ -429,8 +429,8 @@ void ThreadShowMetricsScreen()
         std::cout << std::endl;
 
         // Thank you text
-        std::cout << _("************* BITZEC [BZC] node! **************") << std::endl;
-        std::cout << _("BINARY DIGIT ZERO KNOWLEDGE ELECTRONIC CURRENCY :)") << std::endl;
+        std::cout << _("************* BITZEC [BZC] FULL Node! **************") << std::endl;
+        std::cout << _("THE BINARY DIGIT ZERO KNOWLEDGE ELECTRONIC CURRENCY") << std::endl;
 
         // Privacy notice text
         std::cout << PrivacyInfo();
