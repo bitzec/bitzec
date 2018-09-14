@@ -84,7 +84,7 @@ public:
         strCurrencyUnits = "BZC";
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 20000;
+        consensus.nSubsidySlowStartInterval = 5000;
         consensus.nSubsidyHalvingInterval = 2628000;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -103,11 +103,11 @@ public:
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 50000;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 2501;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 2000;
 
         consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=20000;
+        consensus.nLWMAHeight=30000;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 2280;
@@ -126,7 +126,7 @@ public:
         pchMessageStart[2] = 0x27;
         pchMessageStart[3] = 0x64;
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
-        nDefaultPort = 8233;
+        nDefaultPort = 8733;
         nPruneAfterHeight = 100000;
         newTimeRule = 13000;
         eh_epoch_1 = eh200_9;
@@ -172,7 +172,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -419,7 +419,7 @@ public:
         pchMessageStart[1] = 0xe8;
         pchMessageStart[2] = 0x3f;
         pchMessageStart[3] = 0x5f;
-        nDefaultPort = 18744;
+        nDefaultPort = 18734;
         nPruneAfterHeight = 1000;
         const size_t N = 48, K = 5;
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));

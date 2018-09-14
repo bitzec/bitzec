@@ -24,7 +24,7 @@ const std::string CLIENT_NAME("ENDT");
 /**
  * Client version number
  */
-#define CLIENT_VERSION_SUFFIX "50000"
+#define CLIENT_VERSION_SUFFIX "1"
 
 
 /**
