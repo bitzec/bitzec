@@ -44,11 +44,11 @@ reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equiv
 config file):
 
 	HiddenServiceDir /var/lib/tor/zcash-service/
-	HiddenServicePort 8233 127.0.0.1:8233
-	HiddenServicePort 18233 127.0.0.1:18233
+	HiddenServicePort 8733 127.0.0.1:8733
+	HiddenServicePort 18733 127.0.0.1:18733
 
 The directory can be different of course, but (both) port numbers should be equal to
-your zcashd's P2P listen port (8233 by default).
+your zcashd's P2P listen port (8733 by default).
 
 	-externalip=X   You can tell Zcash about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -109,15 +109,15 @@ requires a Tor connection to work. It can be explicitly disabled with `-listenon
 and, if not disabled, configured using the `-torcontrol` and `-torpassword` settings.
 To show verbose debugging information, pass `-debug=tor`.
 
-Connecting to Tor's control socket API requires one of two authentication methods to be 
-configured. For cookie authentication the user running zcashd must have write access 
-to the `CookieAuthFile` specified in Tor configuration. In some cases this is 
-preconfigured and the creation of a hidden service is automatic. If permission problems 
-are seen with `-debug=tor` they can be resolved by adding both the user running tor and 
-the user running zcashd to the same group and setting permissions appropriately. On 
-Debian-based systems the user running zcashd can be added to the debian-tor group, 
-which has the appropriate permissions. An alternative authentication method is the use 
-of the `-torpassword` flag and a `hash-password` which can be enabled and specified in 
+Connecting to Tor's control socket API requires one of two authentication methods to be
+configured. For cookie authentication the user running zcashd must have write access
+to the `CookieAuthFile` specified in Tor configuration. In some cases this is
+preconfigured and the creation of a hidden service is automatic. If permission problems
+are seen with `-debug=tor` they can be resolved by adding both the user running tor and
+the user running zcashd to the same group and setting permissions appropriately. On
+Debian-based systems the user running zcashd can be added to the debian-tor group,
+which has the appropriate permissions. An alternative authentication method is the use
+of the `-torpassword` flag and a `hash-password` which can be enabled and specified in
 Tor configuration.
 
 
