@@ -50,8 +50,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 
  /**
- *  >>>
- *  >>> 'Bitzec' (b'the binary digit zero knowledge electronic currency')
+ *  >>> from hashlib import blake2s
+ *  >>> 'Bitzec' + blake2s(b'the binary digit zero knowledge electronic currency').hexdigest()
  *
  * CBlock(hash=00040fe8, ver=4, hashPrevBlock=00000000000000, hashMerkleRoot=c4eaa5, nTime=1536721921, nBits=1f07ffff, nNonce=4695, vtx=1)
  *   CTransaction(hash=c4eaa5, ver=1, vin.size=1, vout.size=1, nLockTime=0)
@@ -87,7 +87,7 @@ public:
         strCurrencyUnits = "BZC";
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 3;
+        consensus.nSubsidySlowStartInterval = 5000;
         consensus.nSubsidyHalvingInterval = 2628000;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -98,19 +98,19 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-      //  consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-      //  consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+        //consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-      //  consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
+        //consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-      //  consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-      //  consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 2000;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 20000;
 
         consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight=3000;
+        consensus.nLWMAHeight=10000;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 2280;
@@ -131,11 +131,11 @@ public:
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
         nDefaultPort = 8733;
         nPruneAfterHeight = 100000;
-        newTimeRule = 10000;
+        newTimeRule = 25000;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 10000;
-        eh_epoch_2_startblock = 10000;
+        eh_epoch_1_endblock = 25000;
+        eh_epoch_2_startblock = 25000;
 
         genesis = CreateGenesisBlock(
             1536721921,
@@ -284,14 +284,14 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-        //consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        //consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        //consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 5000;
 
@@ -319,8 +319,8 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x02d8377b5ae8870c318f19b8c6be8ca7fd32fa2b9306dbcf13098be69e6600e8"));
         assert(genesis.hashMerkleRoot == uint256S("51d02c5b0782c1166d49ae4293d3461f2923ce5fecdcb3f7c5d1f47618479bfd"));
 
-        vFixedSeeds.clear();
-        vSeeds.clear();
+        //vFixedSeeds.clear();
+        //vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("z.cash", "dnsseed.testnet.z.cash")); // Zcash
 
         // guarantees the first 2 characters, when base58 encoded, are "tm"
@@ -402,14 +402,14 @@ public:
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-        //consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        //consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        //consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight =
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight =
