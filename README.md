@@ -29,6 +29,7 @@ blockchain has reached a significant size.
 See important security warnings on the
 [Security Information page](https://z.cash/support/security/).
 
+
 ```{r, engine='bash'}
 Install dependencies:
 sudo apt-get install \
@@ -50,8 +51,10 @@ Test getting information about the network
 ./bitzec-cli help 
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
+<p align="center">
+  <img src="doc/imgs/blockreward .png" height="500">
 
-### START TESTING::Testing
+### START TESTING:Testing
 
 Add unit tests for Bitzec under Bitzec  ./src/gtest.
 
@@ -106,5 +109,4 @@ For license information see the file [COPYING](COPYING).
 <p align="center">
   <img src="doc/imgs/bzloveblack.png" height="350">
   
-  <p align="center">
-  <img src="doc/imgs/blockreward .png" height="500">
+  
