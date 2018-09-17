@@ -105,3 +105,6 @@ For license information see the file [COPYING](COPYING).
 
 <p align="center">
   <img src="doc/imgs/bzloveblack.png" height="350">
+  
+  <p align="center">
+  <img src="doc/imgs/blockreward.png" height="500">
