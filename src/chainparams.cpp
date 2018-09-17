@@ -43,23 +43,26 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     return genesis;
 }
 
-/**
- * Build the genesis block. Note that the output of its generation
+
+ /* Build the genesis block. Note that the output of its generation
  * transaction cannot be spent since it did not originally exist in the
  * database (and is in any case of zero value).
+ */
+
+ /**
+ *  >>>
+ *  >>> 'Bitzec' (b'the binary digit zero knowledge electronic currency')
  *
- * >>> from pyblake2 import blake2s
- * >>> 'Zcash' + blake2s(b'The Economist 2016-10-29 Known unknown: Another crypto-currency is born. BTC#436254 0000000000000000044f321997f336d2908cf8c8d6893e88dbf067e2d949487d ETH#2521903 483039a6b6bd8bd05f0584f9a078d075e454925eb71c1f13eaff59b405a721bb DJIA close on 27 Oct 2016: 18,169.68').hexdigest()
- *
- * CBlock(hash=00040fe8, ver=4, hashPrevBlock=00000000000000, hashMerkleRoot=c4eaa5, nTime=1477641360, nBits=1f07ffff, nNonce=4695, vtx=1)
+ * CBlock(hash=00040fe8, ver=4, hashPrevBlock=00000000000000, hashMerkleRoot=c4eaa5, nTime=1536721921, nBits=1f07ffff, nNonce=4695, vtx=1)
  *   CTransaction(hash=c4eaa5, ver=1, vin.size=1, vout.size=1, nLockTime=0)
  *     CTxIn(COutPoint(000000, -1), coinbase 04ffff071f0104455a6361736830623963346565663862376363343137656535303031653335303039383462366665613335363833613763616331343161303433633432303634383335643334)
  *     CTxOut(nValue=0.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
  *   vMerkleTree: c4eaa5
  */
+
 static CBlock CreateGenesisBlock(uint32_t nTime, const uint256& nNonce, const std::vector<unsigned char>& nSolution, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Zcash0b9c4eef8b7cc417ee5001e3500984b6fea35683a7cac141a043c42064835d34";
+    const char* pszTimestamp ="Bitzec" ;
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nSolution, nBits, nVersion, genesisReward);
 }
@@ -84,7 +87,7 @@ public:
         strCurrencyUnits = "BZC";
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 5000;
+        consensus.nSubsidySlowStartInterval = 3;
         consensus.nSubsidyHalvingInterval = 2628000;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -95,14 +98,14 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+      //  consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
+      //  consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
+      //  consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
+      //  consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+      //  consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 2000;
 
@@ -121,27 +124,27 @@ public:
         /**
          * The message start string should be awesome! Bⓩ❤
          */
-        pchMessageStart[0] = 0x24;
-        pchMessageStart[1] = 0xe9;
+        pchMessageStart[0] = 0x21;
+        pchMessageStart[1] = 0xe8;
         pchMessageStart[2] = 0x27;
-        pchMessageStart[3] = 0x64;
+        pchMessageStart[3] = 0x61;
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
         nDefaultPort = 8733;
         nPruneAfterHeight = 100000;
-        newTimeRule = 13000;
+        newTimeRule = 10000;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 13000;
-        eh_epoch_2_startblock = 13000;
+        eh_epoch_1_endblock = 10000;
+        eh_epoch_2_startblock = 10000;
 
         genesis = CreateGenesisBlock(
-            1477641360,
-            uint256S("0x0000000000000000000000000000000000000000000000000000000000001257"),
-            ParseHex("000a889f00854b8665cd555f4656f68179d31ccadc1b1f7fb0952726313b16941da348284d67add4686121d4e3d930160c1348d8191c25f12b267a6a9c131b5031cbf8af1f79c9d513076a216ec87ed045fa966e01214ed83ca02dc1797270a454720d3206ac7d931a0a680c5c5e099057592570ca9bdf6058343958b31901fce1a15a4f38fd347750912e14004c73dfe588b903b6c03166582eeaf30529b14072a7b3079e3a684601b9b3024054201f7440b0ee9eb1a7120ff43f713735494aa27b1f8bab60d7f398bca14f6abb2adbf29b04099121438a7974b078a11635b594e9170f1086140b4173822dd697894483e1c6b4e8b8dcd5cb12ca4903bc61e108871d4d915a9093c18ac9b02b6716ce1013ca2c1174e319c1a570215bc9ab5f7564765f7be20524dc3fdf8aa356fd94d445e05ab165ad8bb4a0db096c097618c81098f91443c719416d39837af6de85015dca0de89462b1d8386758b2cf8a99e00953b308032ae44c35e05eb71842922eb69797f68813b59caf266cb6c213569ae3280505421a7e3a0a37fdf8e2ea354fc5422816655394a9454bac542a9298f176e211020d63dee6852c40de02267e2fc9d5e1ff2ad9309506f02a1a71a0501b16d0d36f70cdfd8de78116c0c506ee0b8ddfdeb561acadf31746b5a9dd32c21930884397fb1682164cb565cc14e089d66635a32618f7eb05fe05082b8a3fae620571660a6b89886eac53dec109d7cbb6930ca698a168f301a950be152da1be2b9e07516995e20baceebecb5579d7cdbc16d09f3a50cb3c7dffe33f26686d4ff3f8946ee6475e98cf7b3cf9062b6966e838f865ff3de5fb064a37a21da7bb8dfd2501a29e184f207caaba364f36f2329a77515dcb710e29ffbf73e2bbd773fab1f9a6b005567affff605c132e4e4dd69f36bd201005458cfbd2c658701eb2a700251cefd886b1e674ae816d3f719bac64be649c172ba27a4fd55947d95d53ba4cbc73de97b8af5ed4840b659370c556e7376457f51e5ebb66018849923db82c1c9a819f173cccdb8f3324b239609a300018d0fb094adf5bd7cbb3834c69e6d0b3798065c525b20f040e965e1a161af78ff7561cd874f5f1b75aa0bc77f720589e1b810f831eac5073e6dd46d00a2793f70f7427f0f798f2f53a67e615e65d356e66fe40609a958a05edb4c175bcc383ea0530e67ddbe479a898943c6e3074c6fcc252d6014de3a3d292b03f0d88d312fe221be7be7e3c59d07fa0f2f4029e364f1f355c5d01fa53770d0cd76d82bf7e60f6903bc1beb772e6fde4a70be51d9c7e03c8d6d8dfb361a234ba47c470fe630820bbd920715621b9fbedb49fcee165ead0875e6c2b1af16f50b5d6140cc981122fcbcf7c5a4e3772b3661b628e08380abc545957e59f634705b1bbde2f0b4e055a5ec5676d859be77e20962b645e051a880fddb0180b4555789e1f9344a436a84dc5579e2553f1e5fb0a599c137be36cabbed0319831fea3fddf94ddc7971e4bcf02cdc93294a9aab3e3b13e3b058235b4f4ec06ba4ceaa49d675b4ba80716f3bc6976b1fbf9c8bf1f3e3a4dc1cd83ef9cf816667fb94f1e923ff63fef072e6a19321e4812f96cb0ffa864da50ad74deb76917a336f31dce03ed5f0303aad5e6a83634f9fcc371096f8288b8f02ddded5ff1bb9d49331e4a84dbe1543164438fde9ad71dab024779dcdde0b6602b5ae0a6265c14b94edd83b37403f4b78fcd2ed555b596402c28ee81d87a909c4e8722b30c71ecdd861b05f61f8b1231795c76adba2fdefa451b283a5d527955b9f3de1b9828e7b2e74123dd47062ddcc09b05e7fa13cb2212a6fdbc65d7e852cec463ec6fd929f5b8483cf3052113b13dac91b69f49d1b7d1aec01c4a68e41ce157"),
+            1536721921,
+            uint256S("0x0000000000000000000000000000000000000000000000000000000000000c94"),
+            ParseHex("00e92dbc6a43824326a1919ebc43d4b09be655a9342239dd0f79d0d74dfd63c3066d6d840d46543ed84c2fbde79e190d216c8b0078b50d6923f6c876b70e3350dd04f3ddf1eb6df9c50613333596c6dae9ff7003034ca2415dc439899318683a8e7013c330d11f20db40f4d67d3a9499d31510a4976369f94e60f6133a3a128edc99ed9c6db9caa9c44996dd5e6da5bebc2fc01d575fd6e68a588db3eeb36c89efee810e7c898120014b83e2a5c33a9bc184e3a275a231fa36343acd1a3722a36f85d894dd4e81b8445fd4e47a363e522d1e0293b1daa90c5c5dc022a08ec33d7ca8ef34686e3506d966eb51d160257041c14661e700e954cbf380331742ea45f85ae6db16e516d26decb00dc6c58eafd52795628704145d0d793a560961c0260618195ba6042cfe01e521a79b3b74ff3549b0596c4a34723242262da97b27c01505a1c7bed8c35b467e6384a2bd79e8072f245fea5ed1fd7e5d030b5db9ba25a8e77d08310c31b75aa7c358f504c335c2416b6a8e80affe8f7e091691a0b4030741c67054e723ec91396af011a7a727f3a619b0a565cf5822f33456537238e96b4e8b0323a9c4f9c614a0a0c1cc13b02e363e2547b15d9594284c341c45537ea9068028a979d4cd4311e859c06125aced9ab4eeee4b825fa27696d61c85ba7f5e9c6a2cfb6cf0d5e339dd26cdb63187bca2fe0be97c979b08568941aa5bbe3d00fc57f8a76cf25e5a293b47cd146cea1da5136c05d8cd2957cf5a1fb682e91927491531c4b4f70eed3ad8a453381043580b321abf1999189e2e5aae4c624deb5802e4eb52e5d54a54583b83144d4ce46b08c51cd08f7178bfcc6a3d98b17eb00e284cdbf99d357b55b65412c2fbf6d8fccdc6f04bb219e57389dd2d52857e8e4277c8d5b312c93b5f492020330c002bd3e56d7cb3d4abe6ac7ea13f1e5f87ed02043cecc9adaa1576486475956b72225c3dd346c417c390e138cf51dcc2c5d5496166da874130fac28b0c8e169da2162bb9c928f307709ab29a7fe31dfd1a228862b6e3d358453bf74cbeae76d8cfaa76df5a0703e735dac3c85c1263685043db272fcc9727b35901059ca7c8cf81dbef8e2fd067f4dce2964ca4bb53bc0a8706235d570be3f709e15bc6da4cb0ae1cf5751e1f2074daf6a67b71b2fa345a1c41bcbd7e22d3d14c03ca2a26fb0d67b6760ba49e274cbec52b3d335a0e1eb6f789cf5bba953672036f3b639f9654703cd7640839a2aa49c396dea8a0452e503461155dc959ff8f15bcc8e31b8bda6ab7c0f3395c724160daecd3a8142a8cf9aea79b5ad9d0c9f8280758514e75c7347710350689f3a5d3de22bd09f458d5dd905e7fc2b63b192f1b8f74c61c76899345d56ff7afb29624f47ad78546b62720ab2119ddbad0b767b05fe503a627dde2a80237c07e5565c1333cf082044896fb3efdcc7f306e14c4f7c2219014d74e6cf1dba6479e2623829166e3078a3636bcd7cbc7fcb633c5d8d8f0f9f58bd7d01020c172080d5bbe13b8e952545be7c3dcc6215617900ac922041246522fc8ef07a00dd4a5cb38f73fcef61f4d172577988f8be05364b7e3dcdd42e9627d401611e3f09b1ee7f1e3efa28330ac29938557a45e9785135fcf1e15e97ff9d7b6762c2fd6cb9e8ce99abf00092322f89f6b9123c9701a017af47573f7081fe6a327a6577f5d541d98cc0ee407d538f1597532d12efc10db27d871317d7fbab2e22a3ddb632dc9a71fbea012e2a5db298f8b24ab6d44528e44190db33ab9526b0d0fb2d8e4c9527258db51774f7c9a58aea153ba7b127963e57b483985912f43928efc9f090959989ef818fe58dc308ae5f9141056d9f5d35f720cb015102f21928b948b5c4dd139f642398c55eb089c791438a0"),
             0x1f07ffff, 4, 0);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00040fe8ec8471911baa1db1266ea15dd06b4a8a5c453883c000b031973dce08"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc4eaa58879081de3c24a7b117ed2b28300e7ec4c4c1dff1d3f1268b7857a4ddb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00027f370c78f3866b3f90794c4daf6770fa62a6e1cd93ea4f160bcb3e7cc88c"));
+        assert(genesis.hashMerkleRoot == uint256S("51d02c5b0782c1166d49ae4293d3461f2923ce5fecdcb3f7c5d1f47618479bfd"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -170,7 +173,7 @@ public:
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "zivks";
         bech32HRPs[SAPLING_SPENDING_KEY]         = "secret-spending-key-main";
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+        //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
         fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
@@ -181,7 +184,7 @@ public:
         checkpointData = (Checkpoints::CCheckpointData) {
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock)
-            (2500, uint256S("0x00000006dc968f600be11a86cbfbf7feb61c7577f45caced2e82b6d261d19744")),
+            //(2500, uint256S("0x00000006dc968f600be11a86cbfbf7feb61c7577f45caced2e82b6d261d19744")),
             //(15000, uint256S("0x00000000b6bc56656812a5b8dcad69d6ad4446dec23b5ec456c18641fb5381ba"))
             //(67500, uint256S("0x000000006b366d2c1649a6ebb4787ac2b39c422f451880bc922e3a6fbd723616"))
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
@@ -190,10 +193,10 @@ public:
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1477973071,     // * UNIX timestamp of last checkpoint block
-            22063,        // * total number of transactions between genesis and last checkpoint
+            //1477973071,     // * UNIX timestamp of last checkpoint block
+            //22063,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            5083            // * estimated number of transactions per day after checkpoint
+            //5083            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
@@ -270,7 +273,7 @@ public:
         strCurrencyUnits = "TBZC";
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 20000;
+        consensus.nSubsidySlowStartInterval = 3;
         consensus.nSubsidyHalvingInterval = 840000;
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
@@ -281,23 +284,23 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+        //consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 207500;
+        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 5000;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000001d0c4d9cd");
 
-        pchMessageStart[0] = 0xfa;
+        pchMessageStart[0] = 0xfb;
         pchMessageStart[1] = 0x1a;
-        pchMessageStart[2] = 0xf9;
+        pchMessageStart[2] = 0xf7;
         pchMessageStart[3] = 0xbf;
         vAlertPubKey = ParseHex("044e7a1553392325c871c5ace5d6ad73501c66f4c185d6b0453cf45dec5a1322e705c672ac1a27ef7cdaf588c10effdf50ed5f95f85f2f54a5f6159fca394ed0c6");
         nDefaultPort = 18733;
@@ -308,13 +311,13 @@ public:
         nEquihashK = K;
 
         genesis = CreateGenesisBlock(
-            1477648033,
-            uint256S("0x0000000000000000000000000000000000000000000000000000000000000006"),
-            ParseHex("00a6a51259c3f6732481e2d035197218b7a69504461d04335503cd69759b2d02bd2b53a9653f42cb33c608511c953673fa9da76170958115fe92157ad3bb5720d927f18e09459bf5c6072973e143e20f9bdf0584058c96b7c2234c7565f100d5eea083ba5d3dbaff9f0681799a113e7beff4a611d2b49590563109962baa149b628aae869af791f2f70bb041bd7ebfa658570917f6654a142b05e7ec0289a4f46470be7be5f693b90173eaaa6e84907170f32602204f1f4e1c04b1830116ffd0c54f0b1caa9a5698357bd8aa1f5ac8fc93b405265d824ba0e49f69dab5446653927298e6b7bdc61ee86ff31c07bde86331b4e500d42e4e50417e285502684b7966184505b885b42819a88469d1e9cf55072d7f3510f85580db689302eab377e4e11b14a91fdd0df7627efc048934f0aff8e7eb77eb17b3a95de13678004f2512293891d8baf8dde0ef69be520a58bbd6038ce899c9594cf3e30b8c3d9c7ecc832d4c19a6212747b50724e6f70f6451f78fd27b58ce43ca33b1641304a916186cfbe7dbca224f55d08530ba851e4df22baf7ab7078e9cbea46c0798b35a750f54103b0cdd08c81a6505c4932f6bfbd492a9fced31d54e98b6370d4c96600552fcf5b37780ed18c8787d03200963600db297a8f05dfa551321d17b9917edadcda51e274830749d133ad226f8bb6b94f13b4f77e67b35b71f52112ce9ba5da706ad9573584a2570a4ff25d29ab9761a06bdcf2c33638bf9baf2054825037881c14adf3816ba0cbd0fca689aad3ce16f2fe362c98f48134a9221765d939f0b49677d1c2447e56b46859f1810e2cf23e82a53e0d44f34dae932581b3b7f49eaec59af872cf9de757a964f7b33d143a36c270189508fcafe19398e4d2966948164d40556b05b7ff532f66f5d1edc41334ef742f78221dfe0c7ae2275bb3f24c89ae35f00afeea4e6ed187b866b209dc6e83b660593fce7c40e143beb07ac86c56f39e895385924667efe3a3f031938753c7764a2dbeb0a643fd359c46e614873fd0424e435fa7fac083b9a41a9d6bf7e284eee537ea7c50dd239f359941a43dc982745184bf3ee31a8dc850316aa9c6b66d6985acee814373be3458550659e1a06287c3b3b76a185c5cb93e38c1eebcf34ff072894b6430aed8d34122dafd925c46a515cca79b0269c92b301890ca6b0dc8b679cdac0f23318c105de73d7a46d16d2dad988d49c22e9963c117960bdc70ef0db6b091cf09445a516176b7f6d58ec29539166cc8a38bbff387acefffab2ea5faad0e8bb70625716ef0edf61940733c25993ea3de9f0be23d36e7cb8da10505f9dc426cd0e6e5b173ab4fff8c37e1f1fb56d1ea372013d075e0934c6919393cfc21395eea20718fad03542a4162a9ded66c814ad8320b2d7c2da3ecaf206da34c502db2096d1c46699a91dd1c432f019ad434e2c1ce507f91104f66f491fed37b225b8e0b2888c37276cfa0468fc13b8d593fd9a2675f0f5b20b8a15f8fa7558176a530d6865738ddb25d3426dab905221681cf9da0e0200eea5b2eba3ad3a5237d2a391f9074bf1779a2005cee43eec2b058511532635e0fea61664f531ac2b356f40db5c5d275a4cf5c82d468976455af4e3362cc8f71aa95e71d394aff3ead6f7101279f95bcd8a0fedce1d21cb3c9f6dd3b182fce0db5d6712981b651f29178a24119968b14783cafa713bc5f2a65205a42e4ce9dc7ba462bdb1f3e4553afc15f5f39998fdb53e7e231e3e520a46943734a007c2daa1eda9f495791657eefcac5c32833936e568d06187857ed04d7b97167ae207c5c5ae54e528c36016a984235e9c5b2f0718d7b3aa93c7822ccc772580b6599671b3c02ece8a21399abd33cfd3028790133167d0a97e7de53dc8ff"),
+            1536721921,
+            uint256S("0x0000000000000000000000000000000000000000000000000000000000000004"),
+            ParseHex("01a9b6d750a8051d900f533a0e9ffdcd7894d3a9621e97e4f25464f75fd15186ac706d8c4eafdab84fba2579ba9334164c5d87c8f61d6836cf49c33ffb95d25ad5a31d7465ff31a92d55cf60b1020a432755cf4510ddd715e122dacf6836e4f490cbd0de5457de84ed1bf15998cb87285b8a4dc31eb7d16db8eeff2bad8c364eda32ba5200b30e6046635de24e360744da3ad74c77ae9908d69959893065f5f65840ce2080bbc3b30277bc820db87ca9ee45c2f171fc02dcc61c50e8d5028c9f70486da0cbf0320151c4de71fc94f654f46d1b27e5341b9ff3198e6056029dfe24fb027c5a2b5728d9cafe3e52040ab847254de24ba71a13da52272112c4f3a2818e08efcaf8e739dec0e2a65727189f3f1d734d98125781193a0ba77dc348f85e5e68b93b6d1f065425482cbdd7bdc2c7e38decdad774f37d70cc2c89e531aa31d083dd2e381d53d1cc770db2df36f402811711e507c17fe60db09df605332066c913ac961a42edbd8ea4390b891701e183afe748ba8f9fa29405d15571ec2579b16dab02074a9ff3f89b4d3fab1f122ade01b1114e2591b475498879d1ca4aac9d3c04067e276910242b6f370c1169cafa3af8b49f5f525825976fa5363c765dfc4314eb9463ba56ad211636ed1636270af1490a9ee7b28166aa0bd1f0af707ca6d0829b369175e70cd1e687c9d04ff754fe9aff9704bf04926ed922241f595f7911c796f9a9c60815f2d9250e250b2824077812d4c190ed6d57b37dc148d19d4c0929a1909235fa5fc9f472d541e0f05508edf8636f298c83f95827abcba2013324c6c088156b262dc2011286221843561555949162dc9bc9d7892140576cfd4463628729e8a9d14ba785f17c4bb3edb194ee52bf22787d1d9ce64579a63b63ab245cf69237fadb8c643e53c7be7e6051f5b40817542ebd50765b7959fc6d01bdc96eb682e0d9525a90cc587f62c284429c71d907042797a9dc08f96c4cb36a267eb7d527c2787e9a131423a81d4a4bb67a81d1a4491de8f5b56adf1b733473cf3d7dadfb97974ca39611f706f93edf5397320731b937b60b57a538df1181e4cb5f8d028cf631cf1598b0f2a4b20c85f024e7078c72fe89c89c7b7fd114ce6f557b05432be6a042133619a7a1c29a8e3906314569b2545aca63b554d5d59d6f0275b7aaf584280564f82f49472f1cfc5953eb8d238d936e16bd3443072351c679d9e1854e9723f18ebe77e186c8971b230cf2ebc31b91b6954a9ac182d547c2e59162bd0de13d4fbd4a36df2febc4766727bbdb20827903f863bd0d3056e95fe01601c93222de17e637e0bd0e28e1101983f4da6f1b18a33b9b57c14a5a765e675cfb0e8c3494fa3948d9864d96cbb74075de9072a60895fe5744b836df65db7c696340a899df5c2feb3048faffe302caa27d2c2bd53ffffde3abf0a4955a4374d9e8c01475cb0e068c91247c1b098bdacdb34f68b81e98b51049b4eba2891f26adcb659e8b7a3cd1ad8fb987441a41750e0a48700d1249a3ea0b37086bcfe81f372c185ddc1f4c327fe59ca724abab56782db38ad3ad171977fbbb1ea6872d9159f4f437e975add749387d66203e42e6178b655f8112723599fa3320bd210fc8aea19057e3567876a3d9a1ea935b7f28f35f743d5251071e36d49dc7f0377fb03264ec47ebc7d2863f3b4e08d03b0ed5df252920fc6270a29981d56076b35c9b1abcf7d9fb4c6f5ee43032e93e7d30e210de957eb2264a63b68be024a196a2e573c7433f11f02c5fada50ee1b53979c815c8d777a2a5086ea6ed699fb3153d3dac8f786dab0d35f754f50f0b32bee763829c6d0f20bd86e10dd25941e2807792be67a64251313f7b1f2590fed9f6897233764af37b3e63d4d729281c39c6"),
             0x2007ffff, 4, 0);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x05a60a92d99d85997cce3b87616c089f6124d7342af37106edc76126334a2c38"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc4eaa58879081de3c24a7b117ed2b28300e7ec4c4c1dff1d3f1268b7857a4ddb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x02d8377b5ae8870c318f19b8c6be8ca7fd32fa2b9306dbcf13098be69e6600e8"));
+        assert(genesis.hashMerkleRoot == uint256S("51d02c5b0782c1166d49ae4293d3461f2923ce5fecdcb3f7c5d1f47618479bfd"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -399,14 +402,14 @@ public:
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+        //consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight =
+        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+        //consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight =
             Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 1;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight =
@@ -416,7 +419,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         pchMessageStart[0] = 0xaa;
-        pchMessageStart[1] = 0xe8;
+        pchMessageStart[1] = 0xe7;
         pchMessageStart[2] = 0x3f;
         pchMessageStart[3] = 0x5f;
         nDefaultPort = 18734;
@@ -427,13 +430,13 @@ public:
         nEquihashK = K;
 
         genesis = CreateGenesisBlock(
-            1296688602,
-            uint256S("0x0000000000000000000000000000000000000000000000000000000000000009"),
-            ParseHex("01936b7db1eb4ac39f151b8704642d0a8bda13ec547d54cd5e43ba142fc6d8877cab07b3"),
+            1536721921,
+            uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"),
+            ParseHex("08a983bf9263def7cb2ca7d35c94dd5d934f0b8b8cc9917974deee1593c90904bf0969c7"),
             0x200f0f0f, 4, 0);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x029f11d80ef9765602235e1bc9727e3eb6ba20839319f761fee920d63401e327"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc4eaa58879081de3c24a7b117ed2b28300e7ec4c4c1dff1d3f1268b7857a4ddb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0be024573a7bf8665bafe6e69efd52cefa68eafd3c13957335186889bc80f48e"));
+        assert(genesis.hashMerkleRoot == uint256S("51d02c5b0782c1166d49ae4293d3461f2923ce5fecdcb3f7c5d1f47618479bfd"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
@@ -468,7 +471,7 @@ public:
         bech32HRPs[SAPLING_SPENDING_KEY]         = "secret-spending-key-regtest";
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
-        vFoundersRewardAddress = { "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG" };
+        vFoundersRewardAddress = { "t2FwcEhFdNXuFMv1tcYwaBJtYVtMj8b1uTg" };
         assert(vFoundersRewardAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
     }
 
