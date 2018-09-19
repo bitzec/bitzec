@@ -142,7 +142,7 @@ unsigned int ZC_GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockH
     return ZC_CalculateNextWorkRequired(bnAvg, pindexLast->GetMedianTimePast(), pindexFirst->GetMedianTimePast(), params);
 }
 
-//Original Zcash work calculation
+//Orig Zcash work calculation
 unsigned int ZC_CalculateNextWorkRequired(arith_uint256 bnAvg,
                                        int64_t nLastBlockTime, int64_t nFirstBlockTime,
                                        const Consensus::Params& params)
