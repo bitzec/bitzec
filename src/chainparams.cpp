@@ -87,7 +87,7 @@ public:
         strCurrencyUnits = "BZC"; // the binary digit zero knowledge electronic currency
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 1;
+        consensus.nSubsidySlowStartInterval = 2;
         consensus.nSubsidyHalvingInterval = 2628000;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -99,8 +99,8 @@ public:
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nPowAveragingWindow = 13;
 
-        consensus.fPowNoRetargeting=true;
-        consensus.nLWMAHeight=3;
+        consensus.fPowNoRetargeting=false;
+        consensus.nLWMAHeight=-1;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nZawyLwmaAveragingWindow = 75;
         consensus.nZawyLwmaAdjustedWeight = 2280;
@@ -109,16 +109,8 @@ public:
         consensus.ZCnPowTargetSpacing = 1 * 60; //legacy spacing.
 
 
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
-            Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 5;
+
+
 
 
 
@@ -137,11 +129,12 @@ public:
         pchMessageStart[3] = 0x61;
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
         nDefaultPort = 8733;
+        nMaxTipAge = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
-        newTimeRule = 1;
+        newTimeRule = -1;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 1;
+        eh_epoch_1_endblock = 20;
         eh_epoch_2_startblock = 1;
 
         genesis = CreateGenesisBlock(
@@ -293,7 +286,7 @@ public:
         consensus.nPowTargetSpacing = 1 * 60;
 
         consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight= 3;
+        consensus.nLWMAHeight= -1;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
         consensus.nZawyLwmaAdjustedWeight = 2280;
@@ -302,16 +295,8 @@ public:
         consensus.ZCnPowTargetSpacing = 1 * 60;
 
 
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
-            Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 5;
+
+
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000001d0c4d9cd");
@@ -323,7 +308,7 @@ public:
         vAlertPubKey = ParseHex("044e7a1553392325c871c5ace5d6ad73501c66f4c185d6b0453cf45dec5a1322e705c672ac1a27ef7cdaf588c10effdf50ed5f95f85f2f54a5f6159fca394ed0c6");
         nDefaultPort = 18733;
         nPruneAfterHeight = 1000;
-        newTimeRule = 1;
+        newTimeRule = -1;
         eh_epoch_1 = eh200_9;
         eh_epoch_2 = eh144_5;
         eh_epoch_1_endblock = 1;
@@ -414,14 +399,14 @@ public:
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = false;
         consensus.nSubsidySlowStartInterval = 0;
-        consensus.nSubsidyHalvingInterval = 840000;
+        consensus.nSubsidyHalvingInterval = 150;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.powLimit = uint256S("0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f");
 
         consensus.fPowNoRetargeting=true;
-        consensus.nLWMAHeight=-3;
+        consensus.nLWMAHeight=-1;
         consensus.nPowLwmaTargetSpacing = 1 * 60;
         consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
         consensus.nZawyLwmaAdjustedWeight = 2280;
@@ -433,18 +418,8 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
-            Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight =
-            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight =
-            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+
+
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -455,11 +430,11 @@ public:
         pchMessageStart[3] = 0x5f;
         nDefaultPort = 18734;
         nPruneAfterHeight = 1000;
-        newTimeRule = 1;
+        newTimeRule = -1;
         eh_epoch_1 = eh48_5;
         eh_epoch_2 = eh48_5;
         eh_epoch_1_endblock = 1;
-        eh_epoch_2_startblock = 1;
+        eh_epoch_2_startblock = -1;
 
         genesis = CreateGenesisBlock(
             1536721921,
