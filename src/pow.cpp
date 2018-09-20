@@ -116,13 +116,6 @@ unsigned int ZC_GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockH
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
 
-    // Reset the difficulty after the algo fork
-    if (pindexLast->nHeight > chainParams.eh_epoch_1_end() - 1
-        && pindexLast->nHeight < chainParams.eh_epoch_1_end() + params.nPowAveragingWindow) {
-        LogPrint("pow", "Reset the difficulty for the eh_epoch_2 algo change: %d\n", nProofOfWorkLimit);
-        return nProofOfWorkLimit;
-    }
-
     // Find the first block in the averaging interval
     const CBlockIndex* pindexFirst = pindexLast;
     arith_uint256 bnTot {0};
@@ -176,6 +169,9 @@ unsigned int ZC_CalculateNextWorkRequired(arith_uint256 bnAvg,
 
     return bnNew.GetCompact();
 }
+
+
+
 
 bool CheckEquihashSolution(const CBlockHeader *pblock, const CChainParams& params)
 {

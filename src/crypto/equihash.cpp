@@ -26,7 +26,7 @@
 
 #include <boost/optional.hpp>
 
-static EhSolverCancelledException solver_cancelled;
+EhSolverCancelledException solver_cancelled;
 
 template<unsigned int N, unsigned int K>
 int Equihash<N,K>::InitialiseState(eh_HashState& base_state)
