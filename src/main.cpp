@@ -872,7 +872,7 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
 
 /**
  * Check a transaction contextually against a set of consensus rules valid at a given block height.
- *
+ * 
  * Notes:
  * 1. AcceptToMemoryPool calls CheckTransaction and this function.
  * 2. ProcessNewBlock calls AcceptBlock, which calls CheckBlock (which calls CheckTransaction)
@@ -942,7 +942,7 @@ bool ContextualCheckTransaction(const CTransaction& tx, CValidationState &state,
             return state.DoS(dosLevel, error("ContextualCheckTransaction: overwinter is active"),
                             REJECT_INVALID, "tx-overwinter-active");
         }
-
+    
         // Check that all transactions are unexpired
         if (IsExpiredTx(tx, nHeight)) {
             // Don't increase banscore if the transaction only just expired
@@ -3554,28 +3554,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 
     assert(pindexPrev);
 
-    long int nHeight = pindexPrev->nHeight+1;
-
-    //Check EH solution size matches an acceptable N,K
-    size_t nSolSize = block.nSolution.size();
-
-    EHparameters ehparams[MAX_EH_PARAM_LIST_LEN]; //allocate on-stack space for parameters list
-    int listlength=validEHparameterList(ehparams,nHeight,chainParams);
-    int solutionInvalid=1;
-        for(int i=0; i<listlength; i++){
-        LogPrint("pow", "ContextCheckBlockHeader index %d n:%d k:%d Solsize: %d \n",i, ehparams[i].n, ehparams[i].k , ehparams[i].nSolSize);
-        if(ehparams[i].nSolSize==nSolSize)
-            solutionInvalid=0;
-    }
-
-    //Block will be validated prior to mining, and will have a zero length equihash solution. These need to be let through. Checkequihashsolution will catch them.
-    if(!nSolSize)
-        solutionInvalid=0;
-
-    if(solutionInvalid){
-        return state.DoS(100,error("ContextualCheckBlockHeader: Equihash solution size %d for block %d does not match a valid length",nSolSize, nHeight),
-           REJECT_INVALID,"bad-equihash-solution-size");
-    }
+    int nHeight = pindexPrev->nHeight+1;
 
     // Check proof of work
     if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))

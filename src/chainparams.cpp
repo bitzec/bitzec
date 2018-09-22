@@ -175,7 +175,7 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-        checkpointData = (Checkpoints::CCheckpointData) {
+        checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock)
 
@@ -304,18 +304,18 @@ public:
         nDefaultPort = 18733;
         nPruneAfterHeight = 1000;
 
-        /*
-        eh_epoch_1 = eh200_9;
-        eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 10;
-        eh_epoch_2_startblock = 5;
-        */
+     
 
         const size_t N = 144, K = 5;
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
         nEquihashN = N;
         nEquihashK = K;
-
+  /*
+        eh_epoch_1 = eh200_9;
+        eh_epoch_2 = eh144_5;
+        eh_epoch_1_endblock = 10;
+        eh_epoch_2_startblock = 5;
+        */
         genesis = CreateGenesisBlock(
             1536721921,
             uint256S("0x000000000000000000000000000000000000000000000000000000000000000b"),
@@ -357,7 +357,9 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
-	checkpointData = (Checkpoints::CCheckpointData) {
+
+
+        checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock),
             genesis.nTime,
@@ -462,7 +464,7 @@ public:
         fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-        checkpointData = (Checkpoints::CCheckpointData){
+        checkpointData = (CCheckpointData){
             boost::assign::map_list_of
             ( 0, uint256S("0x0d8885ee19400cb5af537d20875f4e1869fb438342464f92102cd510e25bfaea")),
             0,
@@ -568,24 +570,6 @@ std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const {
     assert(i >= 0 && i < vFoundersRewardAddress.size());
     return vFoundersRewardAddress[i];
 }
-
-
-     int validEHparameterList(EHparameters *ehparams, unsigned long blockheight, const CChainParams& params){
-    //The upcoming version of EH is preferred so will always be first element
-    //returns number of elements in list
-    if(blockheight>=params.eh_epoch_2_start() && blockheight>params.eh_epoch_1_end()){
-        ehparams[0]=params.eh_epoch_2_params();
-        return 1;
-    }
-    if(blockheight<params.eh_epoch_2_start()){
-        ehparams[0]=params.eh_epoch_1_params();
-        return 1;
-    }
-    ehparams[0]=params.eh_epoch_2_params();
-    ehparams[1]=params.eh_epoch_1_params();
-    return 2;
-}
-
 
 void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivationHeight)
 {

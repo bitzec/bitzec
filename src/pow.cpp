@@ -16,100 +16,8 @@
 
 #include "sodium.h"
 
-#ifdef ENABLE_RUST
-#include "librustzcash.h"
-#endif // ENABLE_RUST
-
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
-    // Genesis block / catch undefined block indexes.
-    if (pindexLast == NULL)
-        return UintToArith256(params.powLimit).GetCompact();
-
-    int nHeight = pindexLast->nHeight + 1;
-
-//print logging if the block height is larger than LWMA averaging window.
-    if(nHeight>params.nZawyLwmaAveragingWindow){
-    LogPrint("pow", "Zcash Work Required calculation= %d  LWMA calculation = %d\n", ZC_GetNextWorkRequired(pindexLast, pblock, params), LwmaGetNextWorkRequired(pindexLast, pblock, params));
-    }
-
-    if(nHeight<params.nLWMAHeight){
-        return ZC_GetNextWorkRequired(pindexLast, pblock, params);
-    }else{
-        return LwmaGetNextWorkRequired(pindexLast, pblock, params);
-    }
-}
-
-
-unsigned int LwmaGetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
-{
-    return LwmaCalculateNextWorkRequired(pindexLast, params);
-}
-
-
-
-unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
-{
-    //Special rule for regtest
-    if (params.fPowNoRetargeting) {
-        return pindexLast->nBits;
-    }
-
-    const int height = pindexLast->nHeight + 1;
-    const int64_t T = params.nPowLwmaTargetSpacing; //60
-    const int N = params.nZawyLwmaAveragingWindow; //75
-    const int k = params.nZawyLwmaAdjustedWeight; //2280
-    const int dnorm = params.nZawyLwmaMinDenominator; //10
-    const bool limit_st = params.fZawyLwmaSolvetimeLimitation; //true
-    assert(height > N);
-
-    arith_uint256 sum_target;
-    int t = 0, j = 0;
-
-    // Loop through N most recent blocks.
-    for (int i = height - N; i < height; i++) {
-        const CBlockIndex* block = pindexLast->GetAncestor(i);
-        const CBlockIndex* block_Prev = block->GetAncestor(i - 1);
-        int64_t solvetime = block->GetBlockTime() - block_Prev->GetBlockTime();
-
-        if (limit_st && solvetime > 6 * T) {
-            solvetime = 6 * T;
-        }
-
-        j++;
-        t += solvetime * j;  // Weighted solvetime sum.
-
-        // Target sum divided by a factor, (k N^2).
-        // The factor is a part of the final equation. However we divide target here to avoid
-        // potential overflow.
-        arith_uint256 target;
-        target.SetCompact(block->nBits);
-        sum_target += target / N;
-    }
-
-    //Move division to final weighted summed target out of loop to improve precision
-    sum_target /= (k * N);
-
-    // Keep t reasonable in case strange solvetimes occurred.
-    if (t < N * k / dnorm) {
-        t = N * k / dnorm;
-    }
-
-    const arith_uint256 pow_limit = UintToArith256(params.powLimit);
-    arith_uint256 next_target = t * sum_target;
-    if (next_target > pow_limit) {
-        next_target = pow_limit;
-    }
-
-    return next_target.GetCompact();
-}
-
-
-
-//Orig Zcash function
-unsigned int ZC_GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
-{
-    const CChainParams& chainParams = Params();
     unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
     // Genesis block
@@ -132,11 +40,10 @@ unsigned int ZC_GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockH
 
     arith_uint256 bnAvg {bnTot / params.nPowAveragingWindow};
 
-    return ZC_CalculateNextWorkRequired(bnAvg, pindexLast->GetMedianTimePast(), pindexFirst->GetMedianTimePast(), params);
+    return CalculateNextWorkRequired(bnAvg, pindexLast->GetMedianTimePast(), pindexFirst->GetMedianTimePast(), params);
 }
 
-//Orig Zcash work calculation
-unsigned int ZC_CalculateNextWorkRequired(arith_uint256 bnAvg,
+unsigned int CalculateNextWorkRequired(arith_uint256 bnAvg,
                                        int64_t nLastBlockTime, int64_t nFirstBlockTime,
                                        const Consensus::Params& params)
 {
@@ -170,26 +77,10 @@ unsigned int ZC_CalculateNextWorkRequired(arith_uint256 bnAvg,
     return bnNew.GetCompact();
 }
 
-
-
-
 bool CheckEquihashSolution(const CBlockHeader *pblock, const CChainParams& params)
 {
-    //Set parameters N,K from solution size. Filtering of valid parameters
-    //for the givenblock height will be carried out in main.cpp/ContextualCheckBlockHeader
-    unsigned int n,k;
-    size_t nSolSize = pblock->nSolution.size();
-    switch (nSolSize){
-        case 1344: n=200; k=9; break;
-        case 100:  n=144; k=5; break;
-        case 68:   n=96;  k=5; break;
-        case 36:   n=48;  k=5; break;
-        default: return error("CheckEquihashSolution: Unsupported solution size of %d", nSolSize);
-    }
-
-    LogPrint("pow", "selected n,k : %d, %d \n", n,k);
-
-    //need to put block height param switching code here
+    unsigned int n = params.EquihashN();
+    unsigned int k = params.EquihashK();
 
     // Hash state
     crypto_generichash_blake2b_state state;
@@ -204,14 +95,6 @@ bool CheckEquihashSolution(const CBlockHeader *pblock, const CChainParams& param
 
     // H(I||V||...
     crypto_generichash_blake2b_update(&state, (unsigned char*)&ss[0], ss.size());
-
-    #ifdef ENABLE_RUST
-    // Ensure that our Rust interactions are working in production builds. This is
-    // temporary and should be removed.
-    {
-        assert(librustzcash_xor(0x0f0f0f0f0f0f0f0f, 0x1111111111111111) == 0x1e1e1e1e1e1e1e1e);
-    }
-    #endif // ENABLE_RUST
 
     bool isValid;
     EhIsValidSolution(n, k, state, pblock->nSolution, isValid);

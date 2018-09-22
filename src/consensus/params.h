@@ -95,20 +95,10 @@ struct Params {
     int64_t nPowMaxAdjustDown;
     int64_t nPowMaxAdjustUp;
     int64_t nPowTargetSpacing;
-    int64_t AveragingWindowTimespan() const { return nPowAveragingWindow * ZCnPowTargetSpacing; }
+    int64_t AveragingWindowTimespan() const { return nPowAveragingWindow * nPowTargetSpacing; }
     int64_t MinActualTimespan() const { return (AveragingWindowTimespan() * (100 - nPowMaxAdjustUp  )) / 100; }
     int64_t MaxActualTimespan() const { return (AveragingWindowTimespan() * (100 + nPowMaxAdjustDown)) / 100; }
     uint256 nMinimumChainWork;
-    //LWMA POW targeting parameters
-    bool fPowNoRetargeting;
-    unsigned int nLWMAHeight;
-    int64_t nPowLwmaTargetSpacing;
-    int64_t nZawyLwmaAveragingWindow;
-    int64_t nZawyLwmaAdjustedWeight;
-    int64_t nZawyLwmaMinDenominator;
-    bool fZawyLwmaSolvetimeLimitation;
-    int64_t ZCnPowTargetSpacing;
-
 };
 } // namespace Consensus
 
