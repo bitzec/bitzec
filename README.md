@@ -32,12 +32,16 @@ See important security warnings on the
 
 ```{r, engine='bash'}
 Install dependencies:
+
 sudo apt-get install \
 build-essential pkg-config libc6-dev m4 g++-multilib \
 autoconf libtool ncurses-dev unzip git python python-zmq \
 zlib1g-dev wget curl bsdmainutils automake
+
 Clone Bitzec Repository :
+
 git clone https://github.com/bitzec/bitzec.git
+
 ###Build:
 cd bitzec/
 ./zcutil/build.sh -j$(nproc)
@@ -46,7 +50,7 @@ fetch key:
 Run
 ./src/bitzecd
 Test getting information about the network
-./src/bitzec-cli blockchain info
+./src/bitzec-cli getblockchaininfo
 
 ./bitzec-cli help      <--- for full command list 
 ```
