@@ -53,6 +53,7 @@ Run
 ./src/bitzec-cli getblockchaininfo
 
 ./bitzec-cli help      <--- for full command list 
+open debug.log under ctrl+h hidden folder .bitzec
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
 <p align="center">
