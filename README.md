@@ -42,14 +42,14 @@ Clone Bitzec Repository :
 
 git clone https://github.com/bitzec/bitzec.git
 
-###Build:
+Build it :
 cd bitzec/
 ./zcutil/build.sh -j$(nproc)
 fetch key:
 ./zcutil/fetch-params.sh
 Run
 ./src/bitzecd
-Test getting information about the network
+
 ./src/bitzec-cli getblockchaininfo
 
 ./bitzec-cli help      <--- for full command list 
