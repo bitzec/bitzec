@@ -46,9 +46,9 @@ fetch key:
 Run
 ./src/bitzecd
 Test getting information about the network
-./src/bitzec-cli getmininginfo
+./src/bitzec-cli blockchain info
 
-./bitzec-cli help 
+./bitzec-cli help      <--- for full command list 
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
 <p align="center">
