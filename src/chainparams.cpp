@@ -88,7 +88,7 @@ public:
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 7;
-        consensus.nSubsidyHalvingInterval = 2628000;
+        consensus.nSubsidyHalvingInterval = 1314001;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 4000;
@@ -97,18 +97,7 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60;
-        //  consensus.fPowNoRetargeting=false;
-        //  consensus.nLWMAHeight=10000;
-        //  consensus.nPowLwmaTargetSpacing = 1 * 60;
-        //  consensus.nZawyLwmaAveragingWindow = 75;
-        //  consensus.nZawyLwmaAdjustedWeight = 13772;
-        //  consensus.nZawyLwmaMinDenominator = 10;
-        //  consensus.fZawyLwmaSolvetimeLimitation = true;
-        //  consensus.ZCnPowTargetSpacing = 2.5 * 60; //legacy spacing.
-
-
-
+        consensus.nPowTargetSpacing = 2 * 60;
 
 
 
@@ -126,7 +115,7 @@ public:
         nDefaultPort = 8733;
         nPruneAfterHeight = 100000;
 
-        const size_t N = 144, K = 5;
+        const size_t N = 200, K = 9;
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
         nEquihashN = N;
         nEquihashK = K;
@@ -167,9 +156,9 @@ public:
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "zivks";
         bech32HRPs[SAPLING_SPENDING_KEY]         = "secret-spending-key-main";
 
-        //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = false;
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -179,7 +168,7 @@ public:
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock)
 
-            //(2500, uint256S("0x00000006dc968f600be11a86cbfbf7feb61c7577f45caced2e82b6d261d19744")),
+            (  4, uint256S("0x0006f355bc3bdcdf993151c930a70adf66286f9496b810898db6f1a75e0907d1")),
             //(15000, uint256S("0x00000000b6bc56656812a5b8dcad69d6ad4446dec23b5ec456c18641fb5381ba"))
             //(67500, uint256S("0x000000006b366d2c1649a6ebb4787ac2b39c422f451880bc922e3a6fbd723616"))
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
@@ -188,10 +177,10 @@ public:
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            //1477973071,     // * UNIX timestamp of last checkpoint block
-            //22063,        // * total number of transactions between genesis and last checkpoint
+            1537650508,     // * UNIX timestamp of last checkpoint block
+            5,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            //5083            // * estimated number of transactions per day after checkpoint
+            50            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
@@ -269,7 +258,7 @@ public:
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 7;
-        consensus.nSubsidyHalvingInterval = 150;
+        consensus.nSubsidyHalvingInterval = 1314001;
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
         consensus.nMajorityWindow = 400;
@@ -278,17 +267,9 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.nPowTargetSpacing = 2 * 60;
 
-        /*
-        consensus.fPowNoRetargeting=false;
-        consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
-        consensus.nZawyLwmaAdjustedWeight = 13772;
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-        consensus.ZCnPowTargetSpacing = 2.5 * 60;
-        */
+
 
 
 
@@ -304,26 +285,21 @@ public:
         nDefaultPort = 18733;
         nPruneAfterHeight = 1000;
 
-     
 
-        const size_t N = 144, K = 5;
+
+        const size_t N = 200, K = 9;
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
         nEquihashN = N;
         nEquihashK = K;
-  /*
-        eh_epoch_1 = eh200_9;
-        eh_epoch_2 = eh144_5;
-        eh_epoch_1_endblock = 10;
-        eh_epoch_2_startblock = 5;
-        */
+
         genesis = CreateGenesisBlock(
             1536721921,
             uint256S("0x000000000000000000000000000000000000000000000000000000000000000b"),
             ParseHex("00be48248fc56f60f7b192a2336b935545eeb67a375bcafd1a216abdb3d3e326a0595e2f1a9d17fd445a01d2a7394315545b3dc5b44fc07be875c29f0e9f9a24769f4f214a95f064cfe2c7c03b828addde9e549b01b3b8b68501f108c358f292355f5d829c5257ab8218eb1daf0e8d2f6d7c7583ffac594089d64315c70f092de782546325cb7896a19a2c6af6970115fca3d2563047a1f116bb45c033f9352b6409f65ee553fbcf057b4be198c23fc7c9850227b418659de6aa50d9ef0ec0b48f74960057de60e30eef9e4c9cf2942ba238235eaa0faaab98255e85948147a9dd72ed7dda5232668d4410ace473735383c76015f9453200f63d5bc312dc25de4d14b040b966e1f819e0ce35303c6fb52e2a98f3c913193cc7af5bd39f6264439d53819c1e5a21e59db2eb5c902eff8df93ae2541d2a65a919edb45a5b6b9714e29a5dfa5106dbdebc5ac6db03fb6ac8026215df4347ff7664f4764bd1ffadb59408d753031c8064237fa1592b5fb7c26b1eb170dd0898b89f6308d8742364667dadb665c4e9d1dd71513ee4cad517176774c74861916f4bcb737bdd7775ee4aef7517bb038f0a4bab17e2c0d9f65d7b2afdc2a77f655f1cdf0c224c818fc3aad756bfa0f37a6cb348495a93a7d1265215edb9cc4cc1ba19427b797d4cb150f39919642a846b43200cbb9fac45962968e15651bf2b912f2d030c716875d8533b7b8f64b3c378e9116fc437da1510c7d56ea34956fd601f327309b4db130867fc0e9f1a66058541b3df45f90e01ae795bd17640cd7c24422f1d8d880dd3d812b9c15a993cd6358ee6d79ebafc04020b31c2417667b6d3d3020df4af1962ba59761b26434e171666ea57ae2e06ef805f09026ae5db81b808b36f337a4f5e78a22f7195775cf5e55a4a90a021447095ff9e962fa15e940bd4fc60036b7da91ca47c01ae52b342911d31f6b030b1111ceff83366feb6f63b8a1ddef49228d56f5506f525753a1626dbfdf29904d8b747a887644bc2c5509dc1873585ab1730f02d0efd718b29ea8747a135c22751df04e4afcbe6eeb1031aa4ec960f81899346211e8cddc330f66977fdf90db4da44e11ba3a952d1aa6af36593cbbc27fe1ea4045045c2a4619887647e23e990ebffe6f4899df9fc09e0b451a28b03e875e44323efd14e810b66f7f29402e500ac6100ee815f7a606a6c8869f6c8681abc8f34b7350919d79ca3933264ef3e5e3f7654e0b67390059707acfad06581e4cda956164e939aed875a75ee0feb5c88bb0ccd086a2818eaa3e3b0eed0c25a6f57068f93579644f6f2ca09b087c315c1664f533781d61496cb94c7d76497cc1a23057e7ec7fdbb51f401670d1384163e20cfbbd22da49036ca50adb6dcfc9d9726c66f4f408c22ecffee46f351d66bfe59a6f56fad01c476aae6cd16c95f0381d3db79e54d0897115e0a13b537a90c62a7938e13b385fefd76832f885d1548277ded06b79979f9ce9507ad317f8e832ffe3abd5a42e6bccadbeaa947f6197523d32dcfd24d071cbd101f4b567bec34b183d52354efe45990ed54dacf73f32c5c5de8118fa205138114b21e77ca2e196fd9c8ff21bca2c3d76de72df4da335d683e3d6ae3ab5c38d745e1cf07429de675294ee521d9ce59e617acfd0d64043928aa2421cc4f827b01a3a44fa5c8dfaed9b44a319be2eb727336f9b0c8c6dcc3e99bb353887e4adb11ba8bf4a323b51f9fa1f5c3cf75ba05b64cb779d716bf153d538d83db2612d56b9be5d5296060f0eefa0ccc075c73c7835ecea92aebec6704eb8a2bfc6f406c84cd41d25c7d9b2c4d688233d98f936c945e09232baa82b8b7149449e27d778895663b4b9ea73daeb932ac9a2ce3dfc0c9470bf6b821fcc76e89551573c9"),
             0x2007ffff, 4, 0);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0034bdd8cedc446a5f1ff2dbcf7333b499a92a21d06b247ee57fb161d7360091"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc44bb8cb5ccae05712ee77382685ac0daa9d6201ab44f7b8932b234ceef23f3f"));
+      //assert(consensus.hashGenesisBlock == uint256S("0x0034bdd8cedc446a5f1ff2dbcf7333b499a92a21d06b247ee57fb161d7360091"));
+     //assert(genesis.hashMerkleRoot == uint256S("0xc44bb8cb5ccae05712ee77382685ac0daa9d6201ab44f7b8932b234ceef23f3f"));
 
         //vFixedSeeds.clear();
         //vSeeds.clear();
@@ -350,7 +326,7 @@ public:
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "zivktestsapling";
         bech32HRPs[SAPLING_SPENDING_KEY]         = "secret-spending-key-test";
 
-        //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
+        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
@@ -362,15 +338,12 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock),
-            genesis.nTime,
-            0,
-            0
-            //(38000, uint256S("0x001e9a2d2e2892b88e9998cf7b079b41d59dd085423a921fe8386cecc42287b8")),
-            //1486897419,  // * UNIX timestamp of last checkpoint block
-            //47163,       // * total number of transactions between genesis and last checkpoint
+          //  (27,   uint256S("0x04ebde70601e1bebe90c513fbe1cc4f91e21631de83f24d1677bd8027d8587f8")),
+          //  1537657112,  // * UNIX timestamp of last checkpoint block
+          //  18,       // * total number of transactions between genesis and last checkpoint
                          //   (the tx=... number in the SetBestChain debug.log lines)
-            //715          //   total number of tx / (checkpoint block height / (24 * 24))
-        };
+          //  1           //   total number of tx / (checkpoint block height / (24 * 24))
+         };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
@@ -412,28 +385,16 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
-        consensus.nPowTargetSpacing = 2.5 * 60;
-
-        /*
-        consensus.fPowNoRetargeting=false;
-        consensus.nLWMAHeight= ;
-        consensus.nPowLwmaTargetSpacing = 1 * 60;
-        consensus.nZawyLwmaAveragingWindow = 75;  //N=75 recommended by Zawy
-        consensus.nZawyLwmaAdjustedWeight = 2280;
-        consensus.nZawyLwmaMinDenominator = 10;
-        consensus.fZawyLwmaSolvetimeLimitation = true;
-        consensus.ZCnPowTargetSpacing = 2.5 * 60;
-        */
+        consensus.nPowTargetSpacing = 1.5 * 60;
 
 
+
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight =
+            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
             // The best chain should have at least this much work.
             consensus.nMinimumChainWork = uint256S("0x00");
 
-
-
-
-        // The best chain should have at least this much work.
-        //consensus.nMinimumChainWork = uint256S("0x00");
 
         pchMessageStart[0] = 0xaa;
         pchMessageStart[1] = 0xe7;
@@ -466,7 +427,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S("0x0d8885ee19400cb5af537d20875f4e1869fb438342464f92102cd510e25bfaea")),
+            ( 0, uint256S("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206")),
             0,
             0,
             0
