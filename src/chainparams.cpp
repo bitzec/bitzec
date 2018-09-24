@@ -167,8 +167,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             (0, consensus.hashGenesisBlock)
-
-            (  4, uint256S("0x0006f355bc3bdcdf993151c930a70adf66286f9496b810898db6f1a75e0907d1")),
+            (21, uint256S("0x0006464065ded19d4554571b70f5e61937ad160c2f3133efc45c4014b868350b")),
             //(15000, uint256S("0x00000000b6bc56656812a5b8dcad69d6ad4446dec23b5ec456c18641fb5381ba"))
             //(67500, uint256S("0x000000006b366d2c1649a6ebb4787ac2b39c422f451880bc922e3a6fbd723616"))
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
@@ -177,8 +176,8 @@ public:
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1537650508,     // * UNIX timestamp of last checkpoint block
-            5,        // * total number of transactions between genesis and last checkpoint
+            1537787182,     // * UNIX timestamp of last checkpoint block
+            22,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
             50            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
@@ -284,9 +283,6 @@ public:
         vAlertPubKey = ParseHex("044e7a1553392325c871c5ace5d6ad73501c66f4c185d6b0453cf45dec5a1322e705c672ac1a27ef7cdaf588c10effdf50ed5f95f85f2f54a5f6159fca394ed0c6");
         nDefaultPort = 18733;
         nPruneAfterHeight = 1000;
-
-
-
         const size_t N = 200, K = 9;
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
         nEquihashN = N;
@@ -328,7 +324,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = false;
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -337,12 +333,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (0, consensus.hashGenesisBlock),
-          //  (27,   uint256S("0x04ebde70601e1bebe90c513fbe1cc4f91e21631de83f24d1677bd8027d8587f8")),
-          //  1537657112,  // * UNIX timestamp of last checkpoint block
-          //  18,       // * total number of transactions between genesis and last checkpoint
+            (0, uint256S("0x0034bdd8cedc446a5f1ff2dbcf7333b499a92a21d06b247ee57fb161d7360091"))
+            (7,   uint256S("0x053577922cdf386f9b800586ae6aa352f24938d47c686eeb867fffb80844622c")),
+              1537810146,  // * UNIX timestamp of last checkpoint block
+              8,       // * total number of transactions between genesis and last checkpoint
                          //   (the tx=... number in the SetBestChain debug.log lines)
-          //  1           //   total number of tx / (checkpoint block height / (24 * 24))
+              9           //   total number of tx / (checkpoint block height / (24 * 24))
          };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
@@ -385,7 +381,7 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
-        consensus.nPowTargetSpacing = 1.5 * 60;
+        consensus.nPowTargetSpacing = 2 * 60;
 
 
 
