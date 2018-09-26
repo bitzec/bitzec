@@ -877,14 +877,8 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
  * 1. AcceptToMemoryPool calls CheckTransaction and this function.
  * 2. ProcessNewBlock calls AcceptBlock, which calls CheckBlock (which calls CheckTransaction)
  *    and ContextualCheckBlock (which calls this function).
- * 3. The isInitBlockDownload argument is only to assist with testing.
  */
-bool ContextualCheckTransaction(
-        const CTransaction& tx,
-        CValidationState &state,
-        const int nHeight,
-        const int dosLevel,
-        bool (*isInitBlockDownload)())
+bool ContextualCheckTransaction(const CTransaction& tx, CValidationState &state, const int nHeight, const int dosLevel)
 {
     bool overwinterActive = NetworkUpgradeActive(nHeight, Params().GetConsensus(), Consensus::UPGRADE_OVERWINTER);
     bool saplingActive = NetworkUpgradeActive(nHeight, Params().GetConsensus(), Consensus::UPGRADE_SAPLING);
@@ -993,7 +987,7 @@ bool ContextualCheckTransaction(
                                         dataToBeSigned.begin(), 32,
                                         tx.joinSplitPubKey.begin()
                                         ) != 0) {
-            return state.DoS(isInitBlockDownload() ? 0 : 100,
+            return state.DoS(IsInitialBlockDownload() ? 0 : 100,
                                 error("CheckTransaction(): invalid joinsplit signature"),
                                 REJECT_INVALID, "bad-txns-invalid-joinsplit-signature");
         }
@@ -5044,15 +5038,15 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             return false;
         }
 
-        // Reject incoming connections from nodes that don't know about the current epoch
+        // When Overwinter is active, reject incoming connections from non-Overwinter nodes
         const Consensus::Params& params = Params().GetConsensus();
-        auto currentEpoch = CurrentEpoch(GetHeight(), params);
-        if (pfrom->nVersion < params.vUpgrades[currentEpoch].nProtocolVersion)
+        if (NetworkUpgradeActive(GetHeight(), params, Consensus::UPGRADE_OVERWINTER)
+            && pfrom->nVersion < params.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion)
         {
             LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
             pfrom->PushMessage("reject", strCommand, REJECT_OBSOLETE,
                             strprintf("Version must be %d or greater",
-                            params.vUpgrades[currentEpoch].nProtocolVersion));
+                            params.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion));
             pfrom->fDisconnect = true;
             return false;
         }
@@ -5177,15 +5171,15 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
     // Disconnect existing peer connection when:
     // 1. The version message has been received
-    // 2. Peer version is below the minimum version for the current epoch
-    else if (pfrom->nVersion < chainparams.GetConsensus().vUpgrades[
-        CurrentEpoch(GetHeight(), chainparams.GetConsensus())].nProtocolVersion)
+    // 2. Overwinter is active
+    // 3. Peer version is pre-Overwinter
+    else if (NetworkUpgradeActive(GetHeight(), chainparams.GetConsensus(), Consensus::UPGRADE_OVERWINTER)
+            && (pfrom->nVersion < chainparams.GetConsensus().vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion))
     {
         LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
         pfrom->PushMessage("reject", strCommand, REJECT_OBSOLETE,
                             strprintf("Version must be %d or greater",
-                            chainparams.GetConsensus().vUpgrades[
-                                CurrentEpoch(GetHeight(), chainparams.GetConsensus())].nProtocolVersion));
+                            chainparams.GetConsensus().vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion));
         pfrom->fDisconnect = true;
         return false;
     }

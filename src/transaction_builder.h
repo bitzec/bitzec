@@ -65,11 +65,10 @@ private:
     std::vector<OutputDescriptionInfo> outputs;
     std::vector<TransparentInputInfo> tIns;
 
-    boost::optional<std::pair<uint256, libzcash::SaplingPaymentAddress>> zChangeAddr;
+    boost::optional<std::pair<libzcash::SaplingFullViewingKey, libzcash::SaplingPaymentAddress>> zChangeAddr;
     boost::optional<CTxDestination> tChangeAddr;
 
 public:
-    TransactionBuilder() {}
     TransactionBuilder(const Consensus::Params& consensusParams, int nHeight, CKeyStore* keyStore = nullptr);
 
     void SetFee(CAmount fee);
@@ -83,7 +82,7 @@ public:
         SaplingWitness witness);
 
     void AddSaplingOutput(
-        uint256 ovk,
+        libzcash::SaplingFullViewingKey from,
         libzcash::SaplingPaymentAddress to,
         CAmount value,
         std::array<unsigned char, ZC_MEMO_SIZE> memo);
@@ -93,7 +92,7 @@ public:
 
     bool AddTransparentOutput(CTxDestination& to, CAmount value);
 
-    void SendChangeTo(libzcash::SaplingPaymentAddress changeAddr, uint256 ovk);
+    void SendChangeTo(libzcash::SaplingPaymentAddress changeAddr, libzcash::SaplingFullViewingKey fvkOut);
 
     bool SendChangeTo(CTxDestination& changeAddr);
 

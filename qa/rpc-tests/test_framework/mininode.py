@@ -41,8 +41,7 @@ from .equihash import (
 
 OVERWINTER_PROTO_VERSION = 170003
 BIP0031_VERSION = 60000
-SPROUT_PROTO_VERSION = 170002  # past bip-31 for ping/pong
-SAPLING_PROTO_VERSION = 170006
+MY_VERSION = 170002  # past bip-31 for ping/pong
 MY_SUBVERSION = "/python-mininode-tester:0.0.1/"
 
 OVERWINTER_VERSION_GROUP_ID = 0x03C48270
@@ -331,7 +330,7 @@ class CInv(object):
 
 class CBlockLocator(object):
     def __init__(self):
-        self.nVersion = SPROUT_PROTO_VERSION
+        self.nVersion = MY_VERSION
         self.vHave = []
 
     def deserialize(self, f):
@@ -902,8 +901,12 @@ class CAlert(object):
 class msg_version(object):
     command = "version"
 
-    def __init__(self, protocol_version=SPROUT_PROTO_VERSION):
-        self.nVersion = protocol_version
+    def __init__(self, overwintered=False):
+        if overwintered:
+            self.nVersion = OVERWINTER_PROTO_VERSION
+        else:
+            self.nVersion = MY_VERSION
+
         self.nServices = 1
         self.nTime = time.time()
         self.addrTo = CAddress()
@@ -1331,7 +1334,7 @@ class NodeConnCB(object):
     def on_version(self, conn, message):
         if message.nVersion >= 209:
             conn.send_message(msg_verack())
-        conn.ver_send = min(SPROUT_PROTO_VERSION, message.nVersion)
+        conn.ver_send = min(MY_VERSION, message.nVersion)
         if message.nVersion < 209:
             conn.ver_recv = conn.ver_send
 
@@ -1392,7 +1395,7 @@ class NodeConn(asyncore.dispatcher):
         "regtest": "\xaa\xe8\x3f\x5f"    # regtest
     }
 
-    def __init__(self, dstaddr, dstport, rpc, callback, net="regtest", protocol_version=SPROUT_PROTO_VERSION):
+    def __init__(self, dstaddr, dstport, rpc, callback, net="regtest", overwintered=False):
         asyncore.dispatcher.__init__(self, map=mininode_socket_map)
         self.log = logging.getLogger("NodeConn(%s:%d)" % (dstaddr, dstport))
         self.dstaddr = dstaddr
@@ -1409,14 +1412,14 @@ class NodeConn(asyncore.dispatcher):
         self.disconnect = False
 
         # stuff version msg into sendbuf
-        vt = msg_version(protocol_version)
+        vt = msg_version(overwintered)
         vt.addrTo.ip = self.dstaddr
         vt.addrTo.port = self.dstport
         vt.addrFrom.ip = "0.0.0.0"
         vt.addrFrom.port = 0
         self.send_message(vt, True)
         print 'MiniNode: Connecting to Bitcoin Node IP # ' + dstaddr + ':' \
-            + str(dstport) + ' using version ' + str(protocol_version)
+            + str(dstport)
 
         try:
             self.connect((dstaddr, dstport))

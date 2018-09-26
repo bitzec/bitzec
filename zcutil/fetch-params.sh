@@ -2,11 +2,7 @@
 
 set -eu
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    PARAMS_DIR="$HOME/Library/Application Support/ZcashParams"
-else
-    PARAMS_DIR="$HOME/.zcash-params"
-fi
+PARAMS_DIR="$HOME/.zcash-params"
 
 SPROUT_PKEY_NAME='sprout-proving.key'
 SPROUT_VKEY_NAME='sprout-verifying.key'
