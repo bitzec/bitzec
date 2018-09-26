@@ -211,7 +211,7 @@ case "$1" in
                 zcash_rpc zcbenchmark sendtoaddress 10 "${@:4}"
                 ;;
             loadwallet)
-                zcash_rpc zcbenchmark loadwallet 10
+                zcash_rpc zcbenchmark loadwallet 10 
                 ;;
             listunspent)
                 zcash_rpc zcbenchmark listunspent 10
