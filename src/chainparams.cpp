@@ -158,7 +158,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -167,9 +167,9 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, consensus.hashGenesisBlock),
-            //genesis.nTime,
-            //0,
-            //0
+            genesis.nTime,
+            0,
+            0
             //(0, consensus.hashGenesisBlock)
             //(21, uint256S("0x0006464065ded19d4554571b70f5e61937ad160c2f3133efc45c4014b868350b")),
             //(15000, uint256S("0x00000000b6bc56656812a5b8dcad69d6ad4446dec23b5ec456c18641fb5381ba"))
@@ -180,10 +180,10 @@ public:
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1537787182,     // * UNIX timestamp of last checkpoint block
-            22,        // * total number of transactions between genesis and last checkpoint
+            //1537787182,     // * UNIX timestamp of last checkpoint block
+            //22,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            50            // * estimated number of transactions per day after checkpoint
+            //50            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
