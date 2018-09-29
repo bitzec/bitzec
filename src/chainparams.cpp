@@ -158,7 +158,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -167,9 +167,9 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, consensus.hashGenesisBlock),
-            genesis.nTime,
-            0,
-            0
+            //genesis.nTime,
+            //(0,
+            //0
             //(0, consensus.hashGenesisBlock)
             //(21, uint256S("0x0006464065ded19d4554571b70f5e61937ad160c2f3133efc45c4014b868350b")),
             //(15000, uint256S("0x00000000b6bc56656812a5b8dcad69d6ad4446dec23b5ec456c18641fb5381ba"))
