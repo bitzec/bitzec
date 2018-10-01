@@ -167,12 +167,12 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-      //  checkpointData = (CCheckpointData) {
-        //    boost::assign::map_list_of
-            //( 0, consensus.hashGenesisBlock)
-            //genesis.nTime,
-            //0,
-            //0
+         checkpointData = (CCheckpointData) {
+             boost::assign::map_list_of
+             ( 0, consensus.hashGenesisBlock)
+             genesis.nTime,
+             0,
+             101
             //(0, consensus.hashGenesisBlock)
             //(20, uint256S("0x0000896bfc3194ebf5bea9ccb7e9e2b6264b2b21c51e89676bf40d47652b0e11")),
             //(15000, uint256S("0x00000000b6bc56656812a5b8dcad69d6ad4446dec23b5ec456c18641fb5381ba"))
@@ -188,7 +188,7 @@ public:
                             //   (the tx=... number in the SetBestChain debug.log lines)
             //50            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
-    //    };
+        };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
