@@ -99,6 +99,8 @@ public:
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing = 2 * 60;
 
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 25000;
 
   // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000281b32ff3198a1");
