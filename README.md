@@ -47,13 +47,18 @@ cd bitzec/
 ./zcutil/build.sh -j$(nproc)
 fetch key:
 ./zcutil/fetch-params.sh
-Run
-./src/bitzecd
+mkdir -p ~/.bitzec
+echo 'gen=1' >> ~/.zcash/zcash.conf
+echo "genproclimit=-1" >> ~/.bitzec/bitzec.conf
+echo 'equihashsolver=tromp' >> ~/.bitzec/bitzec.conf
 
+Run It
+./src/bitzecd
 ./src/bitzec-cli getblockchaininfo
 
+
 ./bitzec-cli help      <--- for full command list 
-open debug.log under ctrl+h hidden folder .bitzec
+open debug.log under ctrl+h hidden folder .bitzec/debug.log
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
 <p align="center">
