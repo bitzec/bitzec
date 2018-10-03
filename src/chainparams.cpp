@@ -168,15 +168,10 @@ public:
 
          checkpointData = (CCheckpointData) {
              boost::assign::map_list_of
-             (0, uint256("0x00055119765e0230f2a135ca8f897869c5e6b05dc371160042405da1f5c3906d"))
-             //(0, consensus.hashGenesisBlock),
-             //1536721921,
-             //0,
-             //10
-
-            (1, uint256S("0x00048926781a177e258e0f2eb97b2be686c823532dc03724c513210c0d0836bb"))
-            (2, uint256S("0x00005ee74a3277fb85192b84ab8f95f0f3545991ddcff2b73d618fd8f0f36380"))
-            (3, uint256S("0x0007ca04803f858e3a4d4e18db9c15fb7ced5960890a5ea97366b6757841c370")),
+             (0, consensus.hashGenesisBlock)
+             (1, uint256S("0x00048926781a177e258e0f2eb97b2be686c823532dc03724c513210c0d0836bb"))
+             (2, uint256S("0x00005ee74a3277fb85192b84ab8f95f0f3545991ddcff2b73d618fd8f0f36380"))
+             (3, uint256S("0x0007ca04803f858e3a4d4e18db9c15fb7ced5960890a5ea97366b6757841c370")),
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
             //(180000, uint256S("0x000000001205b742eac4a1b3959635bdf8aeada078d6a996df89740f7b54351d"))
