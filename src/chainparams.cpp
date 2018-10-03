@@ -133,7 +133,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -173,8 +173,8 @@ public:
              //0,
              //10
 
-            //(1, uint256S("0x0005dbb9c96981dea826154cf9b0237b80f4ed37584131e1be5b3c30fc3bfe23"))
-            //(2, uint256S("0x0007d4efda2c65f00ac16310058e693eefb2abb66de67b1156040b2f0b2c247b"))
+            (1, uint256S("0x000204404e7dbd7fc7ce3825af72adaa4f3b37f7a7edb7dcd69ac469f4ebad5b"))
+            (2, uint256S("0x00056c46d7392ce47a8c4251aafc52395752b58df15a8ea170127f1713db3f8a")),
             //(3, uint256S("0x0002343f9c5b817c391213ae74317b38bae01ec32d9d108d2d7764c7fa92c401")),
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
@@ -182,10 +182,10 @@ public:
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            //1538523202,     // * UNIX timestamp of last checkpoint block
-            //4,        // * total number of transactions between genesis and last checkpoint
+            1538571285,     // * UNIX timestamp of last checkpoint block
+            3,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            //100            // * estimated number of transactions per day after checkpoint
+            1000            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
