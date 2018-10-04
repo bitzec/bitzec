@@ -1,7 +1,11 @@
+// Bismilah
+
+
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
 
 #include "key_io.h"
 #include "main.h"
@@ -133,7 +137,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
