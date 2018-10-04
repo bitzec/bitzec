@@ -133,7 +133,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -166,9 +166,9 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-         checkpointData = (CCheckpointData) {
-             boost::assign::map_list_of
-            (0, uint256("0x")),
+         //checkpointData = (CCheckpointData) {
+        //     boost::assign::map_list_of
+        //     (0, consensus.hashGenesisBlock)
              //(1, uint256S("0x00048926781a177e258e0f2eb97b2be686c823532dc03724c513210c0d0836bb"))
              //(2, uint256S("0x00005ee74a3277fb85192b84ab8f95f0f3545991ddcff2b73d618fd8f0f36380"))
              //(3, uint256S("0x0007ca04803f858e3a4d4e18db9c15fb7ced5960890a5ea97366b6757841c370")),
@@ -183,7 +183,7 @@ public:
                             //   (the tx=... number in the SetBestChain debug.log lines)
             //1000            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
-        };
+    //    };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
