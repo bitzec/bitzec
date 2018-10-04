@@ -133,7 +133,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -168,20 +168,20 @@ public:
 
          checkpointData = (CCheckpointData) {
              boost::assign::map_list_of
-             (0, consensus.hashGenesisBlock)
-             (1, uint256S("0x000231e51c9d1102695c03b42125cd205c0532eb75a0ecab45764ec103ad69dc"))
-             (2, uint256S("0x0004208b283a7c352e7855e3cc52e37bb520e1cbe37eea00ade1e0887a2074dd"))
-             (3, uint256S("0x00070dfdd2857942e5b8b4fc3a4a12e6ff03ecd56cc561d659c7385da2532704")),
+             (0, consensus.hashGenesisBlock),
+             //(1, uint256S("0x000231e51c9d1102695c03b42125cd205c0532eb75a0ecab45764ec103ad69dc"))
+             //(2, uint256S("0x0004208b283a7c352e7855e3cc52e37bb520e1cbe37eea00ade1e0887a2074dd"))
+             //(3, uint256S("0x00070dfdd2857942e5b8b4fc3a4a12e6ff03ecd56cc561d659c7385da2532704")),
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
             //(180000, uint256S("0x000000001205b742eac4a1b3959635bdf8aeada078d6a996df89740f7b54351d"))
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1538655157,     // * UNIX timestamp of last checkpoint block
-            4,        // * total number of transactions between genesis and last checkpoint
+            //1538655157,     // * UNIX timestamp of last checkpoint block
+            //4,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            1000            // * estimated number of transactions per day after checkpoint
+            //1000            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
