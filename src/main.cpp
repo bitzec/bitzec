@@ -1746,7 +1746,7 @@ if ( nHeight < 20001 ) nSubsidy = (17777 * COIN);
 
 
     else {
-        int halvings = (nHeight - 9700001) / consensusParams.nSubsidyHalvingInterval;
+        int halvings = (nHeight - 9100001) / consensusParams.nSubsidyHalvingInterval;
 
         nSubsidy= 1 * COIN;
 
