@@ -872,7 +872,7 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
 
 /**
  * Check a transaction contextually against a set of consensus rules valid at a given block height.
- * 
+ *
  * Notes:
  * 1. AcceptToMemoryPool calls CheckTransaction and this function.
  * 2. ProcessNewBlock calls AcceptBlock, which calls CheckBlock (which calls CheckTransaction)
@@ -942,7 +942,7 @@ bool ContextualCheckTransaction(const CTransaction& tx, CValidationState &state,
             return state.DoS(dosLevel, error("ContextualCheckTransaction: overwinter is active"),
                             REJECT_INVALID, "tx-overwinter-active");
         }
-    
+
         // Check that all transactions are unexpired
         if (IsExpiredTx(tx, nHeight)) {
             // Don't increase banscore if the transaction only just expired
@@ -1711,7 +1711,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    CAmount nSubsidy = 777 * COIN;
+    CAmount nSubsidy = 15000 * COIN;
 
     // Mining slow start
     // The subsidy is ramped up linearly, skipping the middle payout of
@@ -1728,7 +1728,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     assert(nHeight > consensusParams.SubsidySlowStartShift());
 
-if ( nHeight > 30001 ) nSubsidy = (15000 * COIN);
+if ( nHeight > 10 ) nSubsidy = (13000 * COIN);
     else if ( nHeight > 200001 ) nSubsidy = (7500 * COIN);
     else if ( nHeight > 400001 ) nSubsidy = (3750 * COIN);
     else if ( nHeight > 700001 ) nSubsidy = (1875 * COIN);

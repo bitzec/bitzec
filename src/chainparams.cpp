@@ -91,7 +91,7 @@ public:
         strCurrencyUnits = "BZC"; // the binary digit zero knowledge electronic currency
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 2;
+        consensus.nSubsidySlowStartInterval = 5;
         consensus.nSubsidyHalvingInterval = 1314001;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -104,7 +104,7 @@ public:
         consensus.nPowTargetSpacing =2.5 * 60;
 
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 25000;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 35000;
 
   // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -164,7 +164,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
