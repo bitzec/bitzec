@@ -1728,20 +1728,20 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     assert(nHeight > consensusParams.SubsidySlowStartShift());
 
-if ( nHeight > 1 ) nSubsidy = (17777 * COIN);
-    else if ( nHeight > 10 ) nSubsidy = (15000 * COIN);
-    else if ( nHeight > 20 ) nSubsidy = (3777 * COIN);
-    else if ( nHeight > 700001 ) nSubsidy = (1877 * COIN);
-    else if ( nHeight > 1100001 ) nSubsidy = (977 * COIN);
-    else if ( nHeight > 1600001 ) nSubsidy = (477 * COIN);
-    else if ( nHeight > 2200001 ) nSubsidy = (277 * COIN);
-    else if ( nHeight > 2800001 ) nSubsidy = (177 * COIN);
-    else if ( nHeight > 3600001 ) nSubsidy = (77 * COIN);
-    else if ( nHeight > 4500001 ) nSubsidy = (37 * COIN);
-    else if ( nHeight > 5500001 ) nSubsidy = (17 * COIN);
-    else if ( nHeight > 6600001 ) nSubsidy = (7 * COIN);
-    else if ( nHeight > 7800001 ) nSubsidy = (3 * COIN);
-    else if ( nHeight > 9100001 ) nSubsidy = (2 * COIN);
+if ( nHeight < 10 ) nSubsidy = (17777 * COIN);
+    else if ( nHeight < 15 ) nSubsidy = (15000 * COIN);
+    else if ( nHeight < 20 ) nSubsidy = (3777 * COIN);
+    else if ( nHeight < 700001 ) nSubsidy = (1877 * COIN);
+    else if ( nHeight < 1100001 ) nSubsidy = (977 * COIN);
+    else if ( nHeight < 1600001 ) nSubsidy = (477 * COIN);
+    else if ( nHeight < 2200001 ) nSubsidy = (277 * COIN);
+    else if ( nHeight < 2800001 ) nSubsidy = (177 * COIN);
+    else if ( nHeight < 3600001 ) nSubsidy = (77 * COIN);
+    else if ( nHeight < 4500001 ) nSubsidy = (37 * COIN);
+    else if ( nHeight < 5500001 ) nSubsidy = (17 * COIN);
+    else if ( nHeight < 6600001 ) nSubsidy = (7 * COIN);
+    else if ( nHeight < 7800001 ) nSubsidy = (3 * COIN);
+    else if ( nHeight < 9100001 ) nSubsidy = (2 * COIN);
 
 
     else {

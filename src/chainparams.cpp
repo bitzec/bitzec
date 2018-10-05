@@ -209,7 +209,7 @@ public:
         strCurrencyUnits = "TBZC";
         bip44CoinType = 1;
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 10;
+        consensus.nSubsidySlowStartInterval = 5;
         consensus.nSubsidyHalvingInterval = 1314001;
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
