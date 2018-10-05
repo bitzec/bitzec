@@ -1711,7 +1711,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    CAmount nSubsidy = 777 * COIN;
+    CAmount nSubsidy = 15777 * COIN;
 
     // Mining slow start
     // The subsidy is ramped up linearly, skipping the middle payout of
@@ -1728,20 +1728,20 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     assert(nHeight > consensusParams.SubsidySlowStartShift());
 
-if ( nHeight > 5 ) nSubsidy = (15001 * COIN);
-    else if ( nHeight > 200001 ) nSubsidy = (7500 * COIN);
-    else if ( nHeight > 400001 ) nSubsidy = (3750 * COIN);
-    else if ( nHeight > 700001 ) nSubsidy = (1875 * COIN);
-    else if ( nHeight > 1100001 ) nSubsidy = (937,5 * COIN);
-    else if ( nHeight > 1600001 ) nSubsidy = (468,75 * COIN);
-    else if ( nHeight > 2200001 ) nSubsidy = (234,35 * COIN);
-    else if ( nHeight > 2800001 ) nSubsidy = (117,15 * COIN);
-    else if ( nHeight > 3600001 ) nSubsidy = (58,55 * COIN);
-    else if ( nHeight > 4500001 ) nSubsidy = (29,25 * COIN);
-    else if ( nHeight > 5500001 ) nSubsidy = (14,60 * COIN);
-    else if ( nHeight > 6600001 ) nSubsidy = (7,30 * COIN);
-    else if ( nHeight > 7800001 ) nSubsidy = (3,65 * COIN);
-    else if ( nHeight > 9100001 ) nSubsidy = (1,80 * COIN);
+if ( nHeight > 5 ) nSubsidy = (13777 * COIN);
+    else if ( nHeight > 200001 ) nSubsidy = (7777 * COIN);
+    else if ( nHeight > 400001 ) nSubsidy = (3777 * COIN);
+    else if ( nHeight > 700001 ) nSubsidy = (1877 * COIN);
+    else if ( nHeight > 1100001 ) nSubsidy = (977 * COIN);
+    else if ( nHeight > 1600001 ) nSubsidy = (477 * COIN);
+    else if ( nHeight > 2200001 ) nSubsidy = (277 * COIN);
+    else if ( nHeight > 2800001 ) nSubsidy = (177 * COIN);
+    else if ( nHeight > 3600001 ) nSubsidy = (77 * COIN);
+    else if ( nHeight > 4500001 ) nSubsidy = (37 * COIN);
+    else if ( nHeight > 5500001 ) nSubsidy = (17 * COIN);
+    else if ( nHeight > 6600001 ) nSubsidy = (7 * COIN);
+    else if ( nHeight > 7800001 ) nSubsidy = (3 * COIN);
+    else if ( nHeight > 9100001 ) nSubsidy = (2 * COIN);
 
 
     else {
