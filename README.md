@@ -63,7 +63,7 @@ open debug.log under ctrl+h hidden folder .bitzec/debug.log
 Installation video :https://youtu.be/5ahQZZYcntQ
 
 
-BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777
+BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 777blocks
 <p align="center">
   <img src="doc/imgs/blockreward .png" height="500">
 
