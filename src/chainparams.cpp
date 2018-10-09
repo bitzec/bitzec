@@ -175,24 +175,25 @@ public:
              (0, consensus.hashGenesisBlock)
              (1, uint256S("0x00076f2943f086bb5133ca255077a2acef6715fb7400915ad03759aeb77dd7dd"))
              (2, uint256S("0x0003e0558ec63705c25d7342e3d24781b0ea07ba7eb21ddff4976117df7908aa"))
-             (3, uint256S("0x00010de4d3ecc1e9373825bb566c3377ea2ed1aa98898d2fd4f2cf90a248d61f"))
-             (449, uint256S("0x0003b79e17e7c4ab3d6a015eab1840fc85306673f6da479613e95c49dad74541")),
+             (3, uint256S("0x00010de4d3ecc1e9373825bb566c3377ea2ed1aa98898d2fd4f2cf90a248d61f")),
+            //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
             //(180000, uint256S("0x000000001205b742eac4a1b3959635bdf8aeada078d6a996df89740f7b54351d"))
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1539063860,     // * UNIX timestamp of last checkpoint block
-            450,        // * total number of transactions between genesis and last checkpoint
+            1538877911,     // * UNIX timestamp of last checkpoint block
+            4,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
             700            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
+
         };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 0*/
-          
+
           //            "t3PZ9PPcLzgL57XRSG5ND4WNBC9UTFb8DXv", /* main-index: 48*/
           //            "t3L1WgcyQ95vtpSgjHfgANHyVYvffJZ9iGb", /* main-index: 49*/
           //            "t3JtoXqsv3FuS7SznYCd5pZJGU9di15mdd7", /* main-index: 50*/
