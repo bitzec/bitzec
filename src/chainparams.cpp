@@ -136,7 +136,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -163,7 +163,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -198,9 +198,9 @@ public:
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 4*/
             "t3NdSKHyB7siGWGzXy6NLWNMdjF6wwWZjxy", /* main-index: 5*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 6*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 7*/
+            "t3dYeSR5bNsCXtGwythocQGxfvChetbBbXj", /* main-index: 7*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 8*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 9*/
+            "t3bTvatHrv7CgtNY8ZVtqeYrRsHcDGUBqS", /* main-index: 9*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 10*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 11*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 12*/
