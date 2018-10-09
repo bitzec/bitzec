@@ -102,8 +102,9 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing =2.5 * 60;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 999999999;
-        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 999999999999;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 1;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = ;
+          Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 35000;
 
