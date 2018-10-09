@@ -91,7 +91,7 @@ public:
         strCurrencyUnits = "BZC"; // the binary digit zero knowledge electronic currency
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 7777;
+        consensus.nSubsidySlowStartInterval = 1777;
         consensus.nSubsidyHalvingInterval = 861900;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -193,11 +193,11 @@ public:
         vFoundersRewardAddress = {
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 0*/
             "t3ZwokSicGHQhF7nuPVzKxTfm5qHVbXV5vS", /* main-index: 1*/
-            "t3L2o614RvDMn9PpxKA5FxppqbhhbWVxah7", /* main-index: 2*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 3*/
-            "t3MpjbqV1f6dQcnXjBbdYCzDa87XQYuTbWz", /* main-index: 4*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 5*/
-            "t3NdSKHyB7siGWGzXy6NLWNMdjF6wwWZjxy", /* main-index: 6*/
+            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 2*/
+            "t3MpjbqV1f6dQcnXjBbdYCzDa87XQYuTbWz", /* main-index: 3*/
+            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 4*/
+            "t3NdSKHyB7siGWGzXy6NLWNMdjF6wwWZjxy", /* main-index: 5*/
+            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 6*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 7*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 8*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 9*/
@@ -207,7 +207,7 @@ public:
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 13*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 14*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 15*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 16*/
+            "t3MpjbqV1f6dQcnXjBbdYCzDa87XQYuTbWz", /* main-index: 16*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 17*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 18*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 19*/
