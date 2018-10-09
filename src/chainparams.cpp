@@ -136,7 +136,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -163,7 +163,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -172,16 +172,16 @@ public:
          checkpointData = (CCheckpointData) {
              boost::assign::map_list_of
              (0, consensus.hashGenesisBlock)
-             //(1, uint256S("0x00076f2943f086bb5133ca255077a2acef6715fb7400915ad03759aeb77dd7dd"))
-             //(2, uint256S("0x0003e0558ec63705c25d7342e3d24781b0ea07ba7eb21ddff4976117df7908aa"))
-             //(3, uint256S("0x00010de4d3ecc1e9373825bb566c3377ea2ed1aa98898d2fd4f2cf90a248d61f")),
+            // (1, uint256S("0x000272e66404fb97c70ecb144d5b45fe31620aae355d0ac84b9c535da834120e"))
+             //(2, uint256S("0x000685e00967b46556134dd79acb99832b6fc1896d7b42ad0f23a976111ac4b7"))
+             //(3, uint256S("0x00042d8727ff65ae76a886a244161a7fada6c53f53122c2b3f81871c204b1f68")),
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
             //(180000, uint256S("0x000000001205b742eac4a1b3959635bdf8aeada078d6a996df89740f7b54351d"))
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            //1538877911,     // * UNIX timestamp of last checkpoint block
+            //1539098567,     // * UNIX timestamp of last checkpoint block
             //4,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
             //700            // * estimated number of transactions per day after checkpoint
@@ -204,7 +204,7 @@ public:
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 10*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 11*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 12*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 13*/
+            "t3fTavgWgerUopjuYyJLPi8mQDhcFhDRvDa", /* main-index: 13*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 14*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 15*/
             "t3MpjbqV1f6dQcnXjBbdYCzDa87XQYuTbWz", /* main-index: 16*/
