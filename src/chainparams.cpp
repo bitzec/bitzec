@@ -92,7 +92,7 @@ public:
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 2777;
-        consensus.nSubsidyHalvingInterval = 861900;
+        consensus.nSubsidyHalvingInterval = 13000001;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 4000;
@@ -102,7 +102,7 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing =2.5 * 60;
-	consensus.nPowAllowMinDifficultyBlocksAfterHeight = boost::none;
+	      consensus.nPowAllowMinDifficultyBlocksAfterHeight = boost::none;
     	consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 175001;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -142,7 +142,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -169,7 +169,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -178,19 +178,19 @@ public:
          checkpointData = (CCheckpointData) {
              boost::assign::map_list_of
              (0, consensus.hashGenesisBlock)
-             (1, uint256S("0x0002e9a09ccfcf529e9103e9a8dc65673e4368989b4d4b817907617afafd45c2"))
-             (2, uint256S("0x000330f137e5e4ffa580485b947104b03a4b73ea011dd68db9e6506e63aa03f4"))
-             (3, uint256S("0x000135b9827a72f7a44213a31810ff39bf69d54add2d87c50287503a23c2dd96")),
+             //(1, uint256S("0x0002e9a09ccfcf529e9103e9a8dc65673e4368989b4d4b817907617afafd45c2"))
+             //(2, uint256S("0x000330f137e5e4ffa580485b947104b03a4b73ea011dd68db9e6506e63aa03f4"))
+             //(3, uint256S("0x000135b9827a72f7a44213a31810ff39bf69d54add2d87c50287503a23c2dd96")),
             //(100000, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285"))
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
             //(180000, uint256S("0x000000001205b742eac4a1b3959635bdf8aeada078d6a996df89740f7b54351d"))
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1539106453,     // * UNIX timestamp of last checkpoint block
-            4,        // * total number of transactions between genesis and last checkpoint
+            //1539106453,     // * UNIX timestamp of last checkpoint block
+            //4,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            700            // * estimated number of transactions per day after checkpoint
+            //700            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
 
         };
@@ -215,7 +215,7 @@ public:
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 15*/
             "t3MpjbqV1f6dQcnXjBbdYCzDa87XQYuTbWz", /* main-index: 16*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 17*/
-            "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 18*/
+            "t3fHgXgwhP4UjxCLZwyiaBNPVWrzYL1GffL", /* main-index: 18*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 19*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 20*/
             "t3SAe5q2qTaZyFvQwGDTRLYGVtNpzhi9EyG", /* main-index: 21*/
