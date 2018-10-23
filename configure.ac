@@ -2,7 +2,7 @@ dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
 define(_CLIENT_VERSION_MAJOR, 1)
 define(_CLIENT_VERSION_MINOR, 0)
-define(_CLIENT_VERSION_REVISION, 0)
+define(_CLIENT_VERSION_REVISION, 1)
 define(_CLIENT_VERSION_BUILD, 1)
 define(_ZC_BUILD_VAL, m4_if(m4_eval(_CLIENT_VERSION_BUILD < 25), 1, m4_incr(_CLIENT_VERSION_BUILD), m4_eval(_CLIENT_VERSION_BUILD < 50), 1, m4_eval(_CLIENT_VERSION_BUILD - 24), m4_eval(_CLIENT_VERSION_BUILD == 50), 1, , m4_eval(_CLIENT_VERSION_BUILD - 50)))
 define(_CLIENT_VERSION_SUFFIX, m4_if(m4_eval(_CLIENT_VERSION_BUILD < 25), 1, _CLIENT_VERSION_REVISION-beta$1, m4_eval(_CLIENT_VERSION_BUILD < 50), 1, _CLIENT_VERSION_REVISION-rc$1, m4_eval(_CLIENT_VERSION_BUILD == 50), 1, _CLIENT_VERSION_REVISION, _CLIENT_VERSION_REVISION-$1)))
@@ -483,8 +483,9 @@ if test x$use_hardening != xno; then
     HARDENED_CPPFLAGS="$HARDENED_CPPFLAGS -D_FORTIFY_SOURCE=2"
   ],[AC_MSG_ERROR(Cannot enable -D_FORTIFY_SOURCE=2)])
 
-  if test x$BUILD_OS = xdarwin; then
+  if test x$BUILD_OS = xdarwin || test x$TARGET_OS = xwindows; then
     # Xcode's ld (at least ld64-302.3) doesn't support -z
+    # mingw-w64's ld (at least mingw-w64 4.0.4-2) also appears to not support -z
     AX_CHECK_LINK_FLAG([[-Wl,-z,relro]], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,relro"],[AC_MSG_WARN(Cannot enable RELRO)])
     AX_CHECK_LINK_FLAG([[-Wl,-z,now]], [HARDENED_LDFLAGS="$HARDENED_LDFLAGS -Wl,-z,now"],[AC_MSG_WARN(Cannot enable BIND_NOW)])
   else
@@ -732,7 +733,14 @@ AC_CHECK_LIB([gmp],[[__gmpn_sub_n]],GMP_LIBS=-lgmp, [AC_MSG_ERROR(libgmp missing
 AC_CHECK_HEADER([gmpxx.h],,AC_MSG_ERROR(libgmpxx headers missing))
 AC_CHECK_LIB([gmpxx],[main],GMPXX_LIBS=-lgmpxx, [AC_MSG_ERROR(libgmpxx missing)])
 
-RUST_LIBS="-lrustzcash -ldl"
+RUST_LIBS="-lrustzcash"
+case $host in
+  *mingw*)
+    ;;
+  *)
+    RUST_LIBS="$RUST_LIBS -ldl"
+    ;;
+esac
 
 dnl Check for OpenMP support
 AX_OPENMP(
@@ -935,7 +943,7 @@ case $host in
    ;;
 esac
 
-echo
+echo 
 echo "Options used to compile and link:"
 echo "  with wallet   = $enable_wallet"
 echo "  with proton   = $use_proton"
@@ -943,7 +951,7 @@ echo "  with zmq      = $use_zmq"
 echo "  with test     = $use_tests"
 echo "  debug enabled = $enable_debug"
 echo "  werror        = $enable_werror"
-echo
+echo 
 echo "  target os     = $TARGET_OS"
 echo "  build os      = $BUILD_OS"
 echo
@@ -954,4 +962,4 @@ echo "  CXX           = $CXX"
 echo "  CXXFLAGS      = $CXXFLAGS"
 echo "  LDFLAGS       = $LDFLAGS"
 echo "  ARFLAGS       = $ARFLAGS"
-echo
+echo 

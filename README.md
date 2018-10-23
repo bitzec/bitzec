@@ -1,4 +1,4 @@
-BITZEC 1.0.0
+BITZEC 1.0.1
 <img align="right" width="140" height="140" src="doc/imgs/logo.png">
 ===========
 What are 
