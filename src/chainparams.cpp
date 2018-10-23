@@ -91,7 +91,7 @@ public:
         strCurrencyUnits = "BZC"; // the binary digit zero knowledge electronic currency
         bip44CoinType = 133; // As registered in https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         consensus.fCoinbaseMustBeProtected = true;
-        consensus.nSubsidySlowStartInterval = 2777;
+        consensus.nSubsidySlowStartInterval = 7;
         consensus.nSubsidyHalvingInterval = 13000001;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
@@ -101,9 +101,9 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
-        consensus.nPowTargetSpacing =2.5 * 60;
-	      consensus.nPowAllowMinDifficultyBlocksAfterHeight = boost::none;
-    	consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 175001;
+        consensus.nPowTargetSpacing = 2.5 * 60;
+ 
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 175001;
@@ -118,7 +118,7 @@ public:
          * The message start string should be awesome! Bⓩ❤
          */
         pchMessageStart[0] = 0x21;
-        pchMessageStart[1] = 0xe8;
+        pchMessageStart[1] = 0xe7;
         pchMessageStart[2] = 0x27;
         pchMessageStart[3] = 0x61;
         vAlertPubKey = ParseHex("04b7ecf0baa90495ceb4e4090f6b2fd37eec1e9c85fac68a487f3ce11589692e4a317479316ee814e066638e1db54e37a10689b70286e6315b1087b6615d179264");
