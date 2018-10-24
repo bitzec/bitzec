@@ -111,8 +111,6 @@ Please see our [user guide](https://zcash.readthedocs.io/en/latest/rtd_pages/rtd
 * :blue_book: See the documentation at the [ReadtheDocs](https://zcash.readthedocs.io)
   for help and more information.
 
-Participation in the Zcash project is subject to a
-[Code of Conduct](code_of_conduct.md).
 
 ### Building
 
@@ -122,7 +120,7 @@ Build Bitzec along with most dependencies from source by running:
 ./zcutil/build.sh -j$(nproc)
 ```
 
-Currently only Linux is officially supported.
+
 
 License
 -------
