@@ -67,7 +67,7 @@ windows crosscompile on Debian / Ubuntu:
  sudo update-alternatives --config x86_64-w64-mingw32-g++
      (configure 1 to use POSIX variant)
  HOST=x86_64-w64-mingw32 ./zcutil/build.sh
- you will get src/zcash-cli.exe src/zcashd.exe src/zcash-gtest.exe src/zcash-tx.exe
+ you will get src/bitzec-cli.exe src/bitzecd.exe src/zcash-gtest.exe src/bitzec-tx.exe
 in case you compiled for ubuntu before on same folder bitzec   ( make clean && make -C src/univalue clean )
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
