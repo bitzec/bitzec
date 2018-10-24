@@ -145,7 +145,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -348,7 +348,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = false;
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -359,14 +359,16 @@ public:
             boost::assign::map_list_of
             ( 0, consensus.hashGenesisBlock),
             genesis.nTime,
-            0,
-            0
+            //0,
+            //0
             //(0, uint256S("0x0034bdd8cedc446a5f1ff2dbcf7333b499a92a21d06b247ee57fb161d7360091")),
-            //(7,   uint256S("0x053577922cdf386f9b800586ae6aa352f24938d47c686eeb867fffb80844622c")),
-            //  1537810146,  // * UNIX timestamp of last checkpoint block
-            //  8,       // * total number of transactions between genesis and last checkpoint
+            (3,   uint256S("0x0614b59c26ded31075377ef3980c7db4b3a1663bab4ca96f8d525dae723cdb5a"))
+            (4,   uint256S("0x01547d1faa3fea42b0838fab3a6bc7c608a56728c9c0b95ca40a5047fbcccfb7"))
+            (5,   uint256S("0x024adc569580decf8551d3bf9275c3fa960be871cd929f63264c614ee2a6b336")),
+              1540411734,  // * UNIX timestamp of last checkpoint block
+              6,       // * total number of transactions between genesis and last checkpoint
                          //   (the tx=... number in the SetBestChain debug.log lines)
-            //  9           //   total number of tx / (checkpoint block height / (24 * 24))
+              100           //   total number of tx / (checkpoint block height / (24 * 24))
          };
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
