@@ -102,14 +102,17 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing = 2.5 * 60;
-
+        consensus.nPowAllowMinDifficultyBlocksAfterHeight = boost::none;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
         consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
             Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 170002;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
+            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 175001;
         consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 0;
         consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
-        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 0;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 3;
 
   // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -142,7 +145,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -178,19 +181,19 @@ public:
          checkpointData = (CCheckpointData) {
              boost::assign::map_list_of
              (0, consensus.hashGenesisBlock)
-             (1, uint256S("0x000754d3537ff6b10518c8000b178e26a13c89f7488c89f4c2ac3246e7a7e1d7"))
-             (2, uint256S("0x000725c2746473d804e5e8b3b066527f641b710889b22cb283f2c89cbada531d"))
-             (29, uint256S("0x0003ab5b034516371e3fb76abfe22e761536a087b9b4604ee2a8dcaa264ad16e"))
-             (34, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285")),
+             //(1, uint256S("0x000754d3537ff6b10518c8000b178e26a13c89f7488c89f4c2ac3246e7a7e1d7"))
+             //(2, uint256S("0x000725c2746473d804e5e8b3b066527f641b710889b22cb283f2c89cbada531d"))
+             //(29, uint256S("0x0003ab5b034516371e3fb76abfe22e761536a087b9b4604ee2a8dcaa264ad16e"))
+             //(34, uint256S("0x000000001c5c82cd6baccfc0879e3830fd50d5ede17fa2c37a9a253c610eb285")),
             //(133337, uint256S("0x0000000002776ccfaf06cc19857accf3e20c01965282f916b8a886e3e4a05be9"))
             //(180000, uint256S("0x000000001205b742eac4a1b3959635bdf8aeada078d6a996df89740f7b54351d"))
             //(222222, uint256S("0x000000000cafb9e56445a6cabc8057b57ee6fcc709e7adbfa195e5c7fac61343"))
             //(270000, uint256S("0x00000000025c1cfa0258e33ab050aaa9338a3d4aaa3eb41defefc887779a9729"))
             //(304600, uint256S("0x00000000028324e022a45014c4a4dc51e95d41e6bceb6ad554c5b65d5cea3ea5")),
-            1540367102,     // * UNIX timestamp of last checkpoint block
-            35,        // * total number of transactions between genesis and last checkpoint
+            //1540367102,     // * UNIX timestamp of last checkpoint block
+            //35,        // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            700            // * estimated number of transactions per day after checkpoint
+            //700            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
 
         };
@@ -279,7 +282,16 @@ public:
         consensus.nPowMaxAdjustDown = 32; // 32% adjustment down
         consensus.nPowMaxAdjustUp = 16; // 16% adjustment up
         consensus.nPowTargetSpacing =2.5 * 60;
-
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nProtocolVersion = 170002;
+        consensus.vUpgrades[Consensus::BASE_SPROUT].nActivationHeight =
+            Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nProtocolVersion = 170002;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
+            Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nProtocolVersion = 175001;
+        consensus.vUpgrades[Consensus::UPGRADE_OVERWINTER].nActivationHeight = 0;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nProtocolVersion = 175001;
+        consensus.vUpgrades[Consensus::UPGRADE_SAPLING].nActivationHeight = 5;
 
 
 
@@ -336,7 +348,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
