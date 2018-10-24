@@ -357,8 +357,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, consensus.hashGenesisBlock),
-            genesis.nTime,
+            ( 0, consensus.hashGenesisBlock)
+            //genesis.nTime,
             //0,
             //0
             //(0, uint256S("0x0034bdd8cedc446a5f1ff2dbcf7333b499a92a21d06b247ee57fb161d7360091")),
