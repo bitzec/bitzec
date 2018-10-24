@@ -460,12 +460,12 @@ boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Zcash
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Zcash
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Bitzec
     // Mac: ~/Library/Application Support/Zcash
     // Unix: ~/.bitzec
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Zcash";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitzec";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -477,7 +477,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Zcash";
+    return pathRet / "Bitzec";
 #else
     // Unix
     return pathRet / ".bitzec";
