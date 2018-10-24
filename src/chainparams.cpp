@@ -145,7 +145,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
-        vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
+        //vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
 
@@ -172,7 +172,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -180,7 +180,11 @@ public:
 
          checkpointData = (CCheckpointData) {
              boost::assign::map_list_of
-             (0, consensus.hashGenesisBlock)
+             //(0, consensus.hashGenesisBlock)
+             ( 0, consensus.hashGenesisBlock),
+             genesis.nTime,
+             0,
+             0
              //(1, uint256S("0x000754d3537ff6b10518c8000b178e26a13c89f7488c89f4c2ac3246e7a7e1d7"))
              //(2, uint256S("0x000725c2746473d804e5e8b3b066527f641b710889b22cb283f2c89cbada531d"))
              //(29, uint256S("0x0003ab5b034516371e3fb76abfe22e761536a087b9b4604ee2a8dcaa264ad16e"))
