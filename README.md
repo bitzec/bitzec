@@ -73,7 +73,7 @@ in case you compiled for ubuntu before on same folder bitzec   ( make clean && m
 Installation video :https://youtu.be/5ahQZZYcntQ
 
 
-BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 777blocks
+BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
 <p align="center">
   <img src="doc/imgs/blockreward .png" height="500">
 
