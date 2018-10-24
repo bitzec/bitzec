@@ -59,6 +59,16 @@ Run It
 
 ./bitzec-cli help      <--- for full command list 
 open debug.log under ctrl+h hidden folder .bitzec/debug.log
+
+windows crosscompile on Debian / Ubuntu: 
+ sudo apt install mingw-w64
+ sudo update-alternatives --config x86_64-w64-mingw32-gcc
+     (configure 1 to use POSIX variant)
+ sudo update-alternatives --config x86_64-w64-mingw32-g++
+     (configure 1 to use POSIX variant)
+ HOST=x86_64-w64-mingw32 ./zcutil/build.sh
+ you will get src/zcash-cli.exe src/zcashd.exe src/zcash-gtest.exe src/zcash-tx.exe
+in case you compiled for ubuntu before on same folder bitzec   ( make clean && make -C src/univalue clean )
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
 
