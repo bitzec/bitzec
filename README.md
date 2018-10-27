@@ -72,6 +72,8 @@ in case you compiled for ubuntu before on same folder bitzec   ( make clean && m
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
 
+![Screenshot](https://github.com/bitzec/bitzec-swing/blob/master/docs/zecmate.png "Main Window")
+
 
 BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
 <p align="center">
