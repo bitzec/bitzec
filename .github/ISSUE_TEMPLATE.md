@@ -34,7 +34,7 @@ Run `bitzecd --version` to find out
 - Compiler version (gcc -version):
 
 ### Any extra information that might be useful in the debugging process.
-This includes the relevant contents of `~/.zcash/debug.log`. You can paste raw text, attach the file directly in the issue or link to the text via a pastebin type site.
+This includes the relevant contents of `~/.bitzec/debug.log`. You can paste raw text, attach the file directly in the issue or link to the text via a pastebin type site.
 Please also include any non-standard things you did during compilation (extra flags, dependency version changes etc.) if applicable.
 
 ### Do you have a backup of `~/.zcash` directory and/or take a VM snapshot?
