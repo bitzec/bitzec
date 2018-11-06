@@ -149,7 +149,7 @@ public:
         vSeeds.push_back(CDNSSeedData("35.204.203.28", "35.204.203.28"))
         vSeeds.push_back(CDNSSeedData("35.204.121.7", "35.204.121.7")); // seed node
 
-        35.204.203.28
+    
 
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
