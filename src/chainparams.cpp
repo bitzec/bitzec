@@ -146,10 +146,10 @@ public:
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
         vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
-        vSeeds.push_back(CDNSSeedData("35.204.203.28", "35.204.203.28"))
+        vSeeds.push_back(CDNSSeedData("35.204.203.28", "35.204.203.28"));
         vSeeds.push_back(CDNSSeedData("35.204.121.7", "35.204.121.7")); // seed node
 
-    
+
 
         //vSeeds.push_back(CDNSSeedData("str4d.xyz", "dnsseed.str4d.xyz")); // @str4d
         //vSeeds.push_back(CDNSSeedData("znodes.org", "dnsseed.znodes.org")); // @bitcartel
