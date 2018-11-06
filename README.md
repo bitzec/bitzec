@@ -1,4 +1,4 @@
-BITZEC 1.1.1a
+BITZEC 1.1.1c
 <img align="right" width="140" height="140" src="doc/imgs/logo.png">
 ===========
 What are 
@@ -99,7 +99,7 @@ https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html#dev
 
 ####  :ledger: Deprecation Policy
 
-This release is considered deprecated 16 weeks after the release day. There
+This release is considered deprecated some weeks after the release day. There
 is an automatic deprecation shutdown feature which will halt the node some
 time after this 16 week time period. The automatic feature is based on block
 height.
@@ -120,9 +120,12 @@ Build Bitzec along with most dependencies from source by running:
 
 ```
 ./zcutil/build.sh -j$(nproc)
+or 
+./zcutil/build.sh --disable-tests -j$(nproc)
 ```
 
-
+for insight blockexplorer 
+visit https://github.com/bitzec/insight-ui-bitzec
 
 License
 -------
