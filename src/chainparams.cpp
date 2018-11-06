@@ -148,6 +148,9 @@ public:
         vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         vSeeds.push_back(CDNSSeedData("35.204.203.28", "35.204.203.28"));
         vSeeds.push_back(CDNSSeedData("35.204.121.7", "35.204.121.7")); // seed node
+        vSeeds.push_back(CDNSSeedData("35.204.58.53", "35.204.58.53"));
+
+
 
 
 
