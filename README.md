@@ -124,8 +124,14 @@ or
 ./zcutil/build.sh --disable-tests -j$(nproc)
 ```
 
-for insight blockexplorer 
+for local insight  blockexplorer 
 visit https://github.com/bitzec/insight-ui-bitzec
+
+online http://bitzec.tk
+
+<p align="center">
+  <img src="doc/imgs/bitzec_insight.png" height="500">
+</p>
 
 License
 -------
