@@ -1,5 +1,5 @@
 BITZEC 1.1.1c
-<img align="right" width="140" height="140" src="doc/imgs/logo.png">
+<img align="right" width="140" height="140" src="doc/imgs/logo1.jpg">
 ===========
 What are 
 [Zero knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof) ?
