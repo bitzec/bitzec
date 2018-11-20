@@ -129,10 +129,22 @@ visit https://github.com/bitzec/insight-ui-bitzec
 
 online http://bitzec.tk
 
+
+  
 <p align="center">
   <img src="doc/imgs/bitzec_insight.png" height="500">
 </p>
 
+
+BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
+<p align="center">
+  <img src="doc/imgs/blockreward .png" height="500">
+  
+  
+  BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
+<p align="center">
+  <img src="doc/imgs/barterdex1.png" height="600">
+  
 License
 -------
 
