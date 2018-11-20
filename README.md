@@ -141,7 +141,7 @@ BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowsta
   <img src="doc/imgs/blockreward .png" height="500">
   
   
-  BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
+https://github.com/KomodoPlatform/BarterDEX
 <p align="center">
   <img src="doc/imgs/barterdex1.png" height="600">
   
