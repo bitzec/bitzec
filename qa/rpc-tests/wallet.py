@@ -115,7 +115,7 @@ class WalletTest (BitcoinTestFramework):
             inputs = []
             outputs = {}
             inputs.append({ "txid" : utxo["txid"], "vout" : utxo["vout"]})
-            outputs[self.nodes[2].getnewaddress("")] = utxo["amount"]
+            outputs[self.nodes[2].getnewaddress("from1")] = utxo["amount"]
             raw_tx = self.nodes[0].createrawtransaction(inputs, outputs)
             txns_to_send.append(self.nodes[0].signrawtransaction(raw_tx))
 
@@ -131,11 +131,12 @@ class WalletTest (BitcoinTestFramework):
 
         assert_equal(self.nodes[0].getbalance(), 0)
         assert_equal(self.nodes[2].getbalance(), 50)
+        assert_equal(self.nodes[2].getbalance("from1"), 50-21)
         assert_equal(self.nodes[0].getbalance("*"), 0)
         assert_equal(self.nodes[2].getbalance("*"), 50)
 
         # Send 10 BTC normal
-        address = self.nodes[0].getnewaddress("")
+        address = self.nodes[0].getnewaddress("test")
         self.nodes[2].settxfee(Decimal('0.001'))
         self.nodes[2].sendtoaddress(address, 10, "", "", False)
         self.sync_all()
@@ -147,7 +148,7 @@ class WalletTest (BitcoinTestFramework):
         assert_equal(self.nodes[0].getbalance("*"), Decimal('10.00000000'))
 
         # Send 10 BTC with subtract fee from amount
-        self.nodes[2].sendtoaddress(address, 10, "", "", True)
+        txid = self.nodes[2].sendmany('from1', {address: 10}, 0, "", [address])
         self.sync_all()
         self.nodes[2].generate(1)
         self.sync_all()
@@ -157,7 +158,7 @@ class WalletTest (BitcoinTestFramework):
         assert_equal(self.nodes[0].getbalance("*"), Decimal('19.99900000'))
 
         # Sendmany 10 BTC
-        self.nodes[2].sendmany("", {address: 10}, 0, "", [])
+        txid = self.nodes[2].sendmany('from1', {address: 10}, 0, "", [])
         self.sync_all()
         self.nodes[2].generate(1)
         self.sync_all()
@@ -392,7 +393,7 @@ class WalletTest (BitcoinTestFramework):
         recipients = []
         recipients.append({"address":self.nodes[0].getnewaddress(), "amount":1})
         recipients.append({"address":self.nodes[2].getnewaddress(), "amount":1.0})
-        
+
         wait_and_assert_operationid_status(self.nodes[2], self.nodes[2].z_sendmany(myzaddr, recipients))
 
         self.sync_all()
