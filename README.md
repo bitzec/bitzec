@@ -75,9 +75,6 @@ Installation video :https://youtu.be/5ahQZZYcntQ
 ![Screenshot](https://github.com/bitzec/bitzec-swing/blob/master/docs/zecmate.png "Main Window")
 
 
-BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
-<p align="center">
-  <img src="doc/imgs/blockreward .png" height="500">
 
 ### START TESTING:Testing
 
