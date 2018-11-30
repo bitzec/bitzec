@@ -1040,6 +1040,22 @@ class msg_getdata(object):
         return "msg_getdata(inv=%s)" % (repr(self.inv))
 
 
+class msg_notfound(object):
+    command = "notfound"
+
+    def __init__(self):
+        self.inv = []
+
+    def deserialize(self, f):
+        self.inv = deser_vector(f, CInv)
+
+    def serialize(self):
+        return ser_vector(self.inv)
+
+    def __repr__(self):
+        return "msg_notfound(inv=%s)" % (repr(self.inv))
+
+
 class msg_getblocks(object):
     command = "getblocks"
 

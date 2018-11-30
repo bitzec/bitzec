@@ -907,7 +907,7 @@ std::string PrivacyInfo()
 {
     return "\n" +
            FormatParagraph(strprintf(_("bitzec.org <%s>."),
-                                     "https://bitcointalk.org/index.php?topic=4811292.new")) + "\n";
+                                     "https://bitcointalk.org/index.php?topic=5045890.0")) + "\n";
 }
 
 std::string LicenseInfo()

@@ -16,4 +16,3 @@ ones which haven't already been generated during the time of the backup.
 Regular backups are still necessary, however, in order to ensure that
 transparent and Sprout addresses are not lost.
 
-[Pull request](https://github.com/zcash/zcash/pull/3492), [ZIP 32](https://github.com/zcash/zips/blob/master/zip-0032.mediawiki)
