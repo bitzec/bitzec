@@ -24,10 +24,9 @@ blockchain has reached a significant size.
   <img src="doc/imgs/zcashd_screen.gif" height="500">
 </p>
 
-#### :lock: Security Warnings
+#### :lock: documentation (zcash fork)
 
-See important security warnings on the
-[Security Information page](https://z.cash/support/security/).
+[Dokumentation 1.1.1] (https://github.com/bitzec/bitzec-patched-account-labeling/blob/master/bitzec-documentation1.1.1.pdf)
 
 
 ```{r, engine='bash'}
