@@ -1,4 +1,4 @@
-BITZEC 1.1.1c
+BITZEC 1.1.2
 <img align="right" width="140" height="140" src="doc/imgs/logo1.jpg">
 ===========
 What are 
