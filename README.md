@@ -106,8 +106,9 @@ Please see our [user guide](https://zcash.readthedocs.io/en/latest/rtd_pages/rtd
 
 ### Need Help?
 
-* :blue_book: See the documentation at the [ReadtheDocs](https://zcash.readthedocs.io)
-  for help and more information.
+* :blue_book: See the zcash documentation at the [ReadtheDocs](https://zcash.readthedocs.io)
+  for help and more information or 
+  (https://github.com/bitzec/bitzec-patched-account-labeling/blob/master/Bitzec%20Documentation%201.1.2.pdf
 
 
 ### Building
