@@ -1,8 +1,8 @@
 BITZEC 1.1.2
 <img align="right" width="140" height="140" src="doc/imgs/logo1.jpg">
 ===========
-What are 
-[Zero knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof) ?
+[Zero knowledge proofs](https://zkp.science) ?
+Bitzec is a fork of
 [Zcash](https://z.cash/) is an implementation of the "Zerocash" protocol.
 Based on Bitcoin's code.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
