@@ -3,7 +3,7 @@ BITZEC 1.1.2
 ===========
 [Zero knowledge proofs](https://zkp.science) ?
 Bitzec is a fork of
-[Zcash] and zec(https://z.cash/) is an implementation of the "Zerocash" protocol.
+[Zcash] and  (https://z.cash/) is an implementation of the "Zerocash" protocol.
 Based on Bitcoin.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
 --------------
