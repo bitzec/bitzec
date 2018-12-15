@@ -16,7 +16,7 @@ in our [Protocol Specification](https://github.com/zcash/zips/raw/master/protoco
 
 This software is the Bitzec client. It downloads and stores the entire history
 of Bitzec transactions; depending on the speed of your computer and network
-connection, the synchronization process could take a day or more once the
+connection, the synchronization process could take one hour or more once the
 blockchain has reached a significant size.
 
 
