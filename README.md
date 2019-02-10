@@ -7,8 +7,8 @@ Bitzec is a fork of
 Based on Bitcoin.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
 --------------
-
-[Zcash](https://z.cash/) is an implementation of the "Zerocash" protocol.
+BITZEC BZC is a fork of 
+[Zcash](https://z.cash/)  an implementation of the "Zerocash" protocol.
 Based on Bitcoin's code, it intends to offer a far higher standard of privacy
 through a sophisticated zero-knowledge proving scheme that preserves
 confidentiality of transaction metadata. Technical details are available
