@@ -1,12 +1,14 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # Copyright (c) 2016 The Zcash developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+import sys; assert sys.version_info < (3,), ur"This script does not run under Python 3. Please use Python 2.7.x."
 
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, initialize_chain_clean, \
-    start_nodes, connect_nodes_bi, wait_and_assert_operationid_status
+    start_nodes, connect_nodes_bi, wait_and_assert_operationid_status, \
+    get_coinbase_address
 
 import time
 from decimal import Decimal
@@ -34,7 +36,7 @@ class WalletTreeStateTest (BitcoinTestFramework):
         self.nodes[1].generate(101)
         self.sync_all()
 
-        mytaddr = self.nodes[0].getnewaddress()     # where coins were mined
+        mytaddr = get_coinbase_address(self.nodes[0])
         myzaddr = self.nodes[0].z_getnewaddress('sprout')
 
         # Spend coinbase utxos to create three notes of 9.99990000 each

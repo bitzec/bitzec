@@ -1,12 +1,14 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # Copyright (c) 2016 The Zcash developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+import sys; assert sys.version_info < (3,), ur"This script does not run under Python 3. Please use Python 2.7.x."
 
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, assert_true, bitcoind_processes, \
-    connect_nodes_bi, start_node, start_nodes, wait_and_assert_operationid_status
+    connect_nodes_bi, start_node, start_nodes, wait_and_assert_operationid_status, \
+    get_coinbase_address
 
 from decimal import Decimal
 
@@ -21,7 +23,8 @@ class WalletNullifiersTest (BitcoinTestFramework):
         myzaddr0 = self.nodes[0].z_getnewaddress('sprout')
 
         # send node 0 taddr to zaddr to get out of coinbase
-        mytaddr = self.nodes[0].getnewaddress()
+        # Tests using the default cached chain have one address per coinbase output
+        mytaddr = get_coinbase_address(self.nodes[0])
         recipients = []
         recipients.append({"address":myzaddr0, "amount":Decimal('10.0')-Decimal('0.0001')}) # utxo amount less fee
         

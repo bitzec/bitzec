@@ -35,6 +35,8 @@
 #include <utility>
 #include <vector>
 
+#include <boost/shared_ptr.hpp>
+
 /**
  * Settings
  */
@@ -790,10 +792,17 @@ protected:
         }
         try {
             for (std::pair<const uint256, CWalletTx>& wtxItem : mapWallet) {
-                if (!walletdb.WriteTx(wtxItem.first, wtxItem.second)) {
-                    LogPrintf("SetBestChain(): Failed to write CWalletTx, aborting atomic write\n");
-                    walletdb.TxnAbort();
-                    return;
+                auto wtx = wtxItem.second;
+                // We skip transactions for which mapSproutNoteData and mapSaplingNoteData
+                // are empty. This covers transactions that have no Sprout or Sapling data
+                // (i.e. are purely transparent), as well as shielding and unshielding
+                // transactions in which we only have transparent addresses involved.
+                if (!(wtx.mapSproutNoteData.empty() && wtx.mapSaplingNoteData.empty())) {
+                    if (!walletdb.WriteTx(wtxItem.first, wtx)) {
+                        LogPrintf("SetBestChain(): Failed to write CWalletTx, aborting atomic write\n");
+                        walletdb.TxnAbort();
+                        return;
+                    }
                 }
             }
             if (!walletdb.WriteWitnessCacheSize(nWitnessCacheSize)) {
@@ -1199,6 +1208,13 @@ public:
         }
     }
 
+    void GetScriptForMining(boost::shared_ptr<CReserveScript> &script);
+    void ResetRequestCount(const uint256 &hash)
+    {
+        LOCK(cs_wallet);
+        mapRequestCount[hash] = 0;
+    };
+    
     unsigned int GetKeyPoolSize()
     {
         AssertLockHeld(cs_wallet); // setKeyPool
@@ -1294,7 +1310,7 @@ public:
 };
 
 /** A key allocated from the key pool. */
-class CReserveKey
+class CReserveKey : public CReserveScript
 {
 protected:
     CWallet* pwallet;
@@ -1315,6 +1331,7 @@ public:
     void ReturnKey();
     virtual bool GetReservedKey(CPubKey &pubkey);
     void KeepKey();
+    void KeepScript() { KeepKey(); }
 };
 
 
