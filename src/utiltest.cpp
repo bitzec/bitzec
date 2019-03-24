@@ -50,6 +50,9 @@ CMutableTransaction GetValidSproutReceiveTransaction(ZCJoinSplit& params,
                           inputs, outputs, 2*value, 0, false};
     mtx.vjoinsplit.push_back(jsdesc);
 
+    // Consider: The following is a bit misleading (given the name of this function)
+    // and should perhaps be changed, but currently a few tests in test_wallet.cpp
+    // depend on this happening.
     if (version >= 4) {
         // Shielded Output
         OutputDescription od;

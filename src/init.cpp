@@ -1746,6 +1746,22 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
             return InitError(_("-mineraddress is not in the local wallet. Either use a local address, or set -minetolocalwallet=0"));
         }
  #endif // ENABLE_WALLET
+
+        // This is leveraging the fact that boost::signals2 executes connected
+        // handlers in-order. Further up, the wallet is connected to this signal
+        // if the wallet is enabled. The wallet's ScriptForMining handler does
+        // nothing if -mineraddress is set, and GetScriptForMinerAddress() does
+        // nothing if -mineraddress is not set (or set to an invalid address).
+        //
+        // The upshot is that when ScriptForMining(script) is called:
+        // - If -mineraddress is set (whether or not the wallet is enabled), the
+        //   CScript argument is set to -mineraddress.
+        // - If the wallet is enabled and -mineraddress is not set, the CScript
+        //   argument is set to a wallet address.
+        // - If the wallet is disabled and -mineraddress is not set, the CScript
+        //   argument is not modified; in practice this means it is empty, and
+        //   GenerateBitcoins() returns an error.
+        GetMainSignals().ScriptForMining.connect(GetScriptForMinerAddress);
     }
 #endif // ENABLE_MINING
 
