@@ -138,7 +138,6 @@ BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowsta
   <img src="doc/imgs/blockreward .png" height="500">
   
   
-  <script type="text/javascript" src="https://unpkg.com/@coinpaprika/widget-currency/dist/widget.min.js"></script><div class="coinpaprika-currency-widget cp-widget__night-mode" data-primary-currency="usd" data-currency="bzc-bitzec" data-modules='["market_details"]' data-update-active="false"></div>
   
 License
 -------
