@@ -1,4 +1,4 @@
-BITZEC 1.1.3
+BITZEC 1.1.4
 <img align="right" width="140" height="140" src="doc/imgs/logo1.jpg">
 ===========
 [Zero knowledge proofs](https://zkp.science) ?
