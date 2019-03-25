@@ -24,7 +24,7 @@ blockchain has reached a significant size.
   <img src="doc/imgs/zcashd_screen.gif" height="500">
 </p>
 
-#### :lock: documentation (zcash fork)
+#### :lock: documentation ()
 
 [Dokumentation 1.1.2] (https://github.com/bitzec/bitzec-patched-account-labeling/blob/master/Bitzec%20Documentation%201.1.2.pdf Documentation 1.1.2.pdf)
 
