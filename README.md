@@ -21,7 +21,7 @@ blockchain has reached a significant size.
 
 
 <p align="center">
-  <img src="doc/imgs/zcashd_screen.gif" height="500">
+<img src="https://66.media.tumblr.com/c8fa69348f9502a11de8ae1164765ea8/tumblr_mjx1jl8DlW1r34zhyo7_r1_250.gif" height="500">
 </p>
 
 #### :lock: documentation ()
