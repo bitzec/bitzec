@@ -135,7 +135,7 @@ Http://bitzecblocks.gq
 
 BLOCKREWARD DECREAS PLAN
 <p align="center">
-  <img src="https://bitzec.github.io/images/blockrewardw.png" height="1000">
+  <img src="https://bitzec.github.io/images/blockrewardw.png" height="700">
   
   
   
