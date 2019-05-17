@@ -133,9 +133,9 @@ Http://bitzecblocks.gq
 </p>
 
 
-BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
+BLOCKREWARD DECREAS PLAN
 <p align="center">
-  <img src="https://bitzec.github.io/images/blockrewardw.png" height="500">
+  <img src="https://bitzec.github.io/images/blockrewardw.png" height="1000">
   
   
   
