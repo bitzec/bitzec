@@ -1,5 +1,5 @@
 BITZEC 1.1.4
-<img align="right" width="150" height="150" src="https://github.com/bitzec/bitzec.github.io/blob/master/images/btcshield3.png">
+<img align="right" width="150" height="150" src="https://bitzecbzc.github.io/wp-content/uploads/2018/08/bitzec2.png">
 ===========
 [Zero knowledge proofs](https://zkp.science) ?
 Bitzec is a fork of
