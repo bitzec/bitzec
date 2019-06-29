@@ -145,6 +145,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
+        vSeeds.push_back(CDNSSeedData("35.242.189.203", "35.242.189.203"));
         vSeeds.push_back(CDNSSeedData("151.106.63.210", "151.106.63.210")); // seed node  equihub
         vSeeds.push_back(CDNSSeedData("35.237.52.66", "35.237.52.66")); // seed node
         vSeeds.push_back(CDNSSeedData("35.204.203.28", "35.204.203.28"));
