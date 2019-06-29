@@ -1,5 +1,5 @@
 BITZEC 1.1.4
-<img align="right" width="100" height="100" src="doc/imgs/logo1.jpg">
+<img align="right" width="150" height="150" src="https://bitzecbzc.github.io/wp-content/uploads/2018/08/bitzec2.png">
 ===========
 [Zero knowledge proofs](https://zkp.science) ?
 Bitzec is a fork of
@@ -21,7 +21,7 @@ blockchain has reached a significant size.
 
 
 <p align="center">
-  <img src="doc/imgs/zcashd_screen.gif" height="500">
+<img src="https://66.media.tumblr.com/a5da7b50c0730671d239ca1f53616acb/tumblr_mjx1jl8DlW1r34zhyo8_r1_250.gif" height="500">
 </p>
 
 #### :lock: documentation ()
@@ -133,9 +133,9 @@ Http://bitzecblocks.gq
 </p>
 
 
-BLOCKREWARD DECREAS PLAN  every 20k blocks(34days)  after block 77777  . Slowstart 7 blocks
+BLOCKREWARD DECREAS PLAN
 <p align="center">
-  <img src="doc/imgs/blockreward .png" height="500">
+  <img src="https://bitzec.github.io/images/blockrewardw.png" height="700">
   
   
   
@@ -146,5 +146,6 @@ For license information see the file [COPYING](COPYING).
 
 <p align="center">
   <img src="doc/imgs/bzloveblack.png" height="350">
-  
+  <p align="center">
+  <img src="https://github.com/bitzec/bitzec.github.io/blob/master/images/btcshield3.png" height="350">
   
