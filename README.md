@@ -124,8 +124,7 @@ or
 for local insight  blockexplorer 
 visit https://github.com/bitzec/insight-ui-bitzec
 
-online http://bitzec.tk
-Http://bitzecblocks.gq  
+online http://explorer.bitzec.org
 
   
 <p align="center">
