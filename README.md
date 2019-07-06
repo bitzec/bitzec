@@ -97,16 +97,11 @@ To run a subset of BOOST tests: ` src/test/test_bitcoin -t TESTGROUP/TESTNAM
 https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html#development-guidelines
 
 
-####  :ledger: Deprecation Policy
-
-This release is considered deprecated some weeks after the release day. There
-is an automatic deprecation shutdown feature which will halt the node some
-time after this 16 week time period. The automatic feature is based on block
-height.
+####  :ledger: No Deprecation Policy
 
 ## Getting Started
 
-Please see our [user guide](https://zcash.readthedocs.io/en/latest/rtd_pages/rtd_docs/user_guide.html) for joining the main Zcash network.
+Please see our [user guide](https://zcash.readthedocs.io/en/latest/rtd_pages/rtd_docs/user_guide.html) for joining the main Bitzec network.
 
 ### Need Help?
 
