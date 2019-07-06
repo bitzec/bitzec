@@ -42,9 +42,12 @@ Clone Bitzec Repository :
 git clone https://github.com/bitzec/bitzec.git
 
 Build it :
+
 cd bitzec/
-./zcutil/build.sh -j$(nproc)
+./zcutil/build.sh --disable-tests -j$(nproc)
+
 fetch key:
+
 ./zcutil/fetch-params.sh
 mkdir -p ~/.bitzec
 
@@ -52,7 +55,8 @@ echo "addnode=bzcseed.raptorpool.org" >~/.bitzec/bitzec.conf
 echo "genproclimit=0" >> ~/.bitzec/bitzec.conf
 echo 'equihashsolver=tromp' >> ~/.bitzec/bitzec.conf
 
-Run It
+Run It :
+
 ./src/bitzecd
 ./src/bitzec-cli getblockchaininfo
 
