@@ -79,7 +79,7 @@ Installation video :https://youtu.be/5ahQZZYcntQ
 
 
 
-### START TESTING:Testing
+### START TESTING
 
 Add unit tests for Bitzec under Bitzec  ./src/gtest.
 
