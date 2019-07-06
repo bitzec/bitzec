@@ -8,7 +8,7 @@ Based on Nakamotos Bitcoin code.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
 What are [Zero knowledge proofs](https://zkp.science) ?
 --------------
-Bitzec BZC (http://bitzec.org/)is a fork of 
+Bitzec  (http://bitzec.org/) is a fork of 
 [Zcash 2.0](https://z.cash/)  with its own genesis block , it is an implementation of the "Zerocash" protocol.
 Based on Nakamotos Bitcoin code, it intends to offer a higher standard of privacy
 through a sophisticated zero-knowledge proving scheme that preserves
