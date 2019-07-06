@@ -48,6 +48,7 @@ fetch key:
 ./zcutil/fetch-params.sh
 mkdir -p ~/.bitzec
 echo 'gen=1' >> ~/.bitzec/bitzec.conf
+echo "addnode=bzcseed.raptorpool.org" >~/.bitzec/bitzec.conf
 echo "genproclimit=1" >> ~/.bitzec/bitzec.conf
 echo 'equihashsolver=tromp' >> ~/.bitzec/bitzec.conf
 
