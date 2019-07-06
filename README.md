@@ -9,15 +9,13 @@ What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
 --------------
 Bitzec BZC is a fork of 
 [Zcash 2.0](https://z.cash/)  with its own genesis block , it is an implementation of the "Zerocash" protocol.
-Based on Bitcoin's code, it intends to offer a far higher standard of privacy
+Based on Nakamotos Bitcoin code, it intends to offer a higher standard of privacy
 through a sophisticated zero-knowledge proving scheme that preserves
 confidentiality of transaction metadata. Technical details are available
 in our [Protocol Specification](https://github.com/zcash/zips/raw/master/protocol/protocol.pdf).
 
 This software is the Bitzec client. It downloads and stores the entire history
-of Bitzec transactions; depending on the speed of your computer and network
-connection, the synchronization process could take one hour or more once the
-blockchain has reached a significant size.
+of Bitzec transactions.
 
 
 <p align="center">
