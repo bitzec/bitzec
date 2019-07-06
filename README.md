@@ -2,7 +2,7 @@ BITZEC 1.1.4
 <img align="right" width="150" height="150" src="https://bitzecbzc.github.io/wp-content/uploads/2018/08/bitzec2.png">
 ===========
 
-Bitzec is a fork of
+[Bitzec](http://bitzec.org) is a fork of
 [Zcash] and  (https://z.cash/) is an implementation of the "Zerocash" protocol.
 Based on Nakamotos Bitcoin code.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
