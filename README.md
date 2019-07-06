@@ -4,10 +4,10 @@ BITZEC 1.1.4
 [Zero knowledge proofs](https://zkp.science) ?
 Bitzec is a fork of
 [Zcash] and  (https://z.cash/) is an implementation of the "Zerocash" protocol.
-Based on Bitcoin.
+Based on Nakamotos Bitcoin code.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
 --------------
-Bitzec BZC is a fork of 
+Bitzec BZC (http://bitzec.org/)is a fork of 
 [Zcash 2.0](https://z.cash/)  with its own genesis block , it is an implementation of the "Zerocash" protocol.
 Based on Nakamotos Bitcoin code, it intends to offer a higher standard of privacy
 through a sophisticated zero-knowledge proving scheme that preserves
