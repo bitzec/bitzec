@@ -1,23 +1,22 @@
 BITZEC 1.1.4
 <img align="right" width="150" height="150" src="https://bitzecbzc.github.io/wp-content/uploads/2018/08/bitzec2.png">
 ===========
-[Zero knowledge proofs](https://zkp.science) ?
-Bitzec is a fork of
+
+[Bitzec](http://bitzec.org) is a fork of
 [Zcash] and  (https://z.cash/) is an implementation of the "Zerocash" protocol.
-Based on Bitcoin.
+Based on Nakamotos Bitcoin code.
 What is [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) ?
+What are [Zero knowledge proofs](https://zkp.science) ?
 --------------
-Bitzec BZC is a fork of 
+Bitzec  (http://bitzec.org/) is a fork of 
 [Zcash 2.0](https://z.cash/)  with its own genesis block , it is an implementation of the "Zerocash" protocol.
-Based on Bitcoin's code, it intends to offer a far higher standard of privacy
+Based on Nakamotos Bitcoin code, it intends to offer a higher standard of privacy
 through a sophisticated zero-knowledge proving scheme that preserves
 confidentiality of transaction metadata. Technical details are available
 in our [Protocol Specification](https://github.com/zcash/zips/raw/master/protocol/protocol.pdf).
 
 This software is the Bitzec client. It downloads and stores the entire history
-of Bitzec transactions; depending on the speed of your computer and network
-connection, the synchronization process could take one hour or more once the
-blockchain has reached a significant size.
+of Bitzec transactions.
 
 
 <p align="center">
@@ -42,16 +41,21 @@ Clone Bitzec Repository :
 git clone https://github.com/bitzec/bitzec.git
 
 Build it :
+
 cd bitzec/
-./zcutil/build.sh -j$(nproc)
+./zcutil/build.sh --disable-tests -j$(nproc)
+
 fetch key:
+
 ./zcutil/fetch-params.sh
 mkdir -p ~/.bitzec
-echo 'gen=1' >> ~/.bitzec/bitzec.conf
-echo "genproclimit=1" >> ~/.bitzec/bitzec.conf
+
+echo "addnode=bzcseed.raptorpool.org" >~/.bitzec/bitzec.conf
+echo "genproclimit=0" >> ~/.bitzec/bitzec.conf
 echo 'equihashsolver=tromp' >> ~/.bitzec/bitzec.conf
 
-Run It
+Run It :
+
 ./src/bitzecd
 ./src/bitzec-cli getblockchaininfo
 
@@ -75,7 +79,7 @@ Installation video :https://youtu.be/5ahQZZYcntQ
 
 
 
-### START TESTING:Testing
+### START TESTING
 
 Add unit tests for Bitzec under Bitzec  ./src/gtest.
 
@@ -93,16 +97,11 @@ To run a subset of BOOST tests: ` src/test/test_bitcoin -t TESTGROUP/TESTNAM
 https://zcash.readthedocs.io/en/latest/rtd_pages/development_guidelines.html#development-guidelines
 
 
-####  :ledger: Deprecation Policy
-
-This release is considered deprecated some weeks after the release day. There
-is an automatic deprecation shutdown feature which will halt the node some
-time after this 16 week time period. The automatic feature is based on block
-height.
+####  :ledger: No Deprecation Policy
 
 ## Getting Started
 
-Please see our [user guide](https://zcash.readthedocs.io/en/latest/rtd_pages/rtd_docs/user_guide.html) for joining the main Zcash network.
+Please see our [user guide](https://zcash.readthedocs.io/en/latest/rtd_pages/rtd_docs/user_guide.html) for joining the main Bitzec network.
 
 ### Need Help?
 
