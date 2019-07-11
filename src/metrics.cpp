@@ -219,14 +219,14 @@ int printStats(bool mining)
     if (IsInitialBlockDownload()) {
         int netheight = EstimateNetHeight(height, tipmediantime, Params());
         int downloadPercent = height * 100 / netheight;
-        std::cout << "     " << _("Downloading blocks") << " | " << height << " / ~" << netheight << " (" << downloadPercent << "%)" << std::endl;
+        std::cout << "     " << _("Catching blockZ") << " | " << height << " / ~" << netheight << " (" << downloadPercent << "%)" << std::endl;
     } else {
-        std::cout << "           " << _("Block height") << " | " << height << std::endl;
+        std::cout << "           " << _("BlockZ heightZ") << " | " << height << std::endl;
     }
     std::cout << "            " << _("Connections") << " | " << connections << std::endl;
-    std::cout << "  " << _("Network solution rate") << " | " << netsolps << " Sol/s" << std::endl;
+    std::cout << "  " << _("NetworkZ solution rateZ") << " | " << netsolps << " Sol/s" << std::endl;
     if (mining && miningTimer.running()) {
-        std::cout << "    " << _("Local solution rate") << " | " << strprintf("%.4f Sol/s", localsolps) << std::endl;
+        std::cout << "    " << _("Local solution rateZ") << " | " << strprintf("%.4f Sol/s", localsolps) << std::endl;
         lines++;
     }
     std::cout << std::endl;
@@ -252,17 +252,17 @@ int printMiningStatus(bool mining)
                 fvNodesEmpty = vNodes.empty();
             }
             if (fvNodesEmpty) {
-                std::cout << _("Mining is paused while waiting for connections.") << std::endl;
+                std::cout << _("Chill. waiting for connections.") << std::endl;
             } else if (IsInitialBlockDownload()) {
-                std::cout << _("Mining is paused while downloading blocks.") << std::endl;
+                std::cout << _("dont ever think of Mining.") << std::endl;
             } else {
-                std::cout << _("Mining is paused (a JoinSplit may be in progress).") << std::endl;
+                std::cout << _("Mining is chilling (a JoinSplit may be in progress).") << std::endl;
             }
         }
         lines++;
     } else {
-        std::cout << _("You are currently not mining.") << std::endl;
-        std::cout << _("To enable mining, add 'gen=1' to your bitzec.conf and restart.") << std::endl;
+        std::cout << _("Dont loose cash in crypto..") << std::endl;
+        std::cout << _("Dont mine crypto. get airdrops .") << std::endl;
         lines += 2;
     }
     std::cout << std::endl;
@@ -296,7 +296,7 @@ int printMetrics(size_t cols, bool mining)
     } else {
         duration = strprintf(_("%d seconds"), seconds);
     }
-    std::string strDuration = strprintf(_("Since starting this node %s ago:"), duration);
+    std::string strDuration = strprintf(_("Moontimer %s ago:"), duration);
     std::cout << strDuration << std::endl;
     lines += (strDuration.size() / cols);
 
@@ -304,9 +304,9 @@ int printMetrics(size_t cols, bool mining)
     if (validatedCount > 1) {
       std::cout << "- " << strprintf(_("You have validated %d transactions!"), validatedCount) << std::endl;
     } else if (validatedCount == 1) {
-      std::cout << "- " << _("You have validated a transaction!") << std::endl;
+      std::cout << "- " << _("This Node validated transaction!") << std::endl;
     } else {
-      std::cout << "- " << _("You have validated no transactions.") << std::endl;
+      std::cout << "- " << _("This Node validated  0 transaction.") << std::endl;
     }
 
     if (mining && loaded) {
@@ -514,7 +514,7 @@ void ThreadShowMetricsScreen()
             // Explain how to exit
             std::cout << "[";
 #ifdef WIN32
-            std::cout << _("'zcash-cli.exe stop' to exit");
+            std::cout << _("'bitzec-cli.exe stop' to exit");
 #else
             std::cout << _("Press Ctrl+C to exit");
 #endif
