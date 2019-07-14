@@ -261,8 +261,8 @@ int printMiningStatus(bool mining)
         }
         lines++;
     } else {
-        std::cout << _("Dont loose cash in crypto..") << std::endl;
-        std::cout << _("Dont mine crypto. get airdrops .") << std::endl;
+        std::cout << _("do not  loose cash in crypto.") << std::endl;
+        std::cout << _("get airdrops.") << std::endl;
         lines += 2;
     }
     std::cout << std::endl;
