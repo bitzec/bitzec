@@ -252,9 +252,9 @@ int printMiningStatus(bool mining)
                 fvNodesEmpty = vNodes.empty();
             }
             if (fvNodesEmpty) {
-                std::cout << _("Chill. waiting for connections.") << std::endl;
-            } else if (IsInitialBlockDownload()) {
-                std::cout << _("dont ever think of Mining, if you dont have asics") << std::endl;
+                std::cout << _("Mining is chilling  waiting for connections.") << std::endl;
+            } else if (IsInitialBlockDownload(Params())) {
+                std::cout << _("dont mine if you dont have asics blocks.") << std::endl;
             } else {
                 std::cout << _("Mining is chilling (a JoinSplit may be in progress).") << std::endl;
             }
