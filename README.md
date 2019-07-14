@@ -1,4 +1,4 @@
-BITZEC 1.1.4
+BITZEC 1.1.6
 <img align="right" width="150" height="150" src="https://bitzecbzc.github.io/wp-content/uploads/2018/08/bitzec2.png">
 ===========
 
@@ -27,6 +27,7 @@ of Bitzec transactions.
 
 [Dokumentation 1.1.2] (https://github.com/bitzec/bitzec-patched-account-labeling/blob/master/Bitzec%20Documentation%201.1.2.pdf Documentation 1.1.2.pdf)
 
+**Bitzec is experimental and a work-in-progress.** Use at your own risk.
 
 ```{r, engine='bash'}
 Install dependencies:

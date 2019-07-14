@@ -1,12 +1,14 @@
 ---
-name: "bitzec-1.1.4"
+name: "bitzec-1.1.6"
 enable_cache: true
 distro: "debian"
 suites:
 - "jessie"
+- "stretch"
 architectures:
 - "amd64"
 packages:
+- "curl"
 - "autoconf"
 - "automake"
 - "bsdmainutils"
