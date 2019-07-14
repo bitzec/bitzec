@@ -534,7 +534,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     if (vNodes.empty())
         throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Bitzec is not connected!");
 
-    if (IsInitialBlockDownload())
+    if (IsInitialBlockDownload(Params()))
         throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitzec is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
