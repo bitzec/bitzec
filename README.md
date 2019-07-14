@@ -76,7 +76,7 @@ in case you compiled for ubuntu before on same folder bitzec   ( make clean && m
 ```
 Installation video :https://youtu.be/5ahQZZYcntQ
 
-![Screenshot](https://github.com/bitzec/bitzec-swing/blob/master/docs/zecmate.png "Main Window")
+![Screenshot](https://bitzec.github.io/wp-content/uploads/zepioport.png "Main Window")
 
 
 
