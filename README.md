@@ -41,12 +41,11 @@ Clone Bitzec Repository :
 
 git clone https://github.com/bitzec/bitzec.git
 
-Build it :
 
 cd bitzec/
 ./zcutil/build.sh --disable-tests -j$(nproc)
 
-fetch key:
+
 
 ./zcutil/fetch-params.sh
 mkdir -p ~/.bitzec
