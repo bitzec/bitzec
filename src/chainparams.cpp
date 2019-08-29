@@ -4,7 +4,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
 
 #include "key_io.h"
@@ -146,6 +146,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("bitzec.org", "seed.bitzec.org")); //
+	vSeeds.push_back(CDNSSeedData("35.187.215.228", "35.187.215.228"));
         vSeeds.push_back(CDNSSeedData("35.242.189.203", "35.242.189.203"));
         vSeeds.push_back(CDNSSeedData("151.106.63.210", "151.106.63.210")); //seed node  equihub
         vSeeds.push_back(CDNSSeedData("bzcseed.raptorpool.org", "bzcseed.raptorpool.org")); // seed node  raptorpool
@@ -516,6 +517,13 @@ public:
         consensus.vUpgrades[idx].nActivationHeight = nActivationHeight;
     }
 
+    void UpdateRegtestPow(int64_t nPowMaxAdjustDown, int64_t nPowMaxAdjustUp, uint256 powLimit)
+    {
+        consensus.nPowMaxAdjustDown = nPowMaxAdjustDown;
+        consensus.nPowMaxAdjustUp = nPowMaxAdjustUp;
+        consensus.powLimit = powLimit;
+    }
+
     void SetRegTestZIP209Enabled() {
         fZIP209Enabled = true;
     }
@@ -601,4 +609,8 @@ std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const {
 void UpdateNetworkUpgradeParameters(Consensus::UpgradeIndex idx, int nActivationHeight)
 {
     regTestParams.UpdateNetworkUpgradeParameters(idx, nActivationHeight);
+}
+
+void UpdateRegtestPow(int64_t nPowMaxAdjustDown, int64_t nPowMaxAdjustUp, uint256 powLimit) {
+    regTestParams.UpdateRegtestPow(nPowMaxAdjustDown, nPowMaxAdjustUp, powLimit);
 }

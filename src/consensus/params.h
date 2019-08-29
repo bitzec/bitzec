@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// file COPYING or https://www.opensource.org/licenses/mit-license.php .
 
 #ifndef BITCOIN_CONSENSUS_PARAMS_H
 #define BITCOIN_CONSENSUS_PARAMS_H
@@ -20,7 +20,7 @@ namespace Consensus {
  * The order of these indices MUST match the order of the upgrades on-chain, as
  * several functions depend on the enum being sorted.
  */
-enum UpgradeIndex {
+enum UpgradeIndex : uint32_t {
     // Sprout must be first
     BASE_SPROUT,
     UPGRADE_TESTDUMMY,

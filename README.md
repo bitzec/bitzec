@@ -1,4 +1,4 @@
-BITZEC 1.1.6
+BITZEC 1.1.7
 <img align="right" width="150" height="150" src="https://bitzecbzc.github.io/wp-content/uploads/2018/08/bitzec2.png">
 ===========
 
