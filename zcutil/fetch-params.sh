@@ -107,12 +107,26 @@ function fetch_params {
 
     if ! [ -f "$output" ]
     then
-        for method in wget ipfs curl failure; do
-            if "fetch_$method" "$filename" "$dlname"; then
-                echo "Download successful!"
-                break
+        for i in 1 2
+        do
+            for method in wget ipfs curl failure; do
+                if "fetch_$method" "${filename}.part.${i}" "${dlname}.part.${i}"; then
+                    echo "Download of part ${i} successful!"
+                    break
+                fi
+            done
+        done
+
+        for i in 1 2
+        do
+            if ! [ -f "${dlname}.part.${i}" ]
+            then
+                fetch_failure
             fi
         done
+
+        cat "${dlname}.part.1" "${dlname}.part.2" > "${dlname}"
+        rm "${dlname}.part.1" "${dlname}.part.2"
 
         "$SHA256CMD" $SHA256ARGS -c <<EOF
 $expectedhash  $dlname

@@ -928,3 +928,4 @@ int GetNumCores()
 {
     return boost::thread::physical_concurrency();
 }
+

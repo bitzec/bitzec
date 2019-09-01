@@ -24,6 +24,7 @@ class MempoolUpgradeActivationTest(BitcoinTestFramework):
         args = ["-checkmempool", "-debug=mempool", "-blockmaxsize=4000",
             "-nuparams=5ba81b19:200", # Overwinter
             "-nuparams=76b809bb:210", # Sapling
+            "-nuparams=2bb40e60:220", # Blossom
         ]
         self.nodes = []
         self.nodes.append(start_node(0, self.options.tmpdir, args))

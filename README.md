@@ -37,7 +37,7 @@ build-essential pkg-config libc6-dev m4 g++-multilib \
 autoconf libtool ncurses-dev unzip git python python-zmq \
 zlib1g-dev wget curl bsdmainutils automake
 
-Clone Bitzec Repository :
+
 
 git clone https://github.com/bitzec/bitzec.git
 
@@ -54,7 +54,7 @@ echo "addnode=bzcseed.raptorpool.org" >~/.bitzec/bitzec.conf
 echo "genproclimit=0" >> ~/.bitzec/bitzec.conf
 echo 'equihashsolver=tromp' >> ~/.bitzec/bitzec.conf
 
-Run It :
+
 
 ./src/bitzecd
 ./src/bitzec-cli getblockchaininfo
