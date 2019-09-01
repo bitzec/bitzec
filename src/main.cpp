@@ -1852,6 +1852,8 @@ if ( nHeight < 77777 ) nSubsidy = (21000 * COIN);
 
         if(nSubsidy >= 64){
             nSubsidy = 0;
+ 	if (consensusParams.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BLOSSOM)) {
+        return (nSubsidy / Consensus::BLOSSOM_POW_TARGET_SPACING_RATIO) >> halvings;
         }else{
         	nSubsidy >>= halvings;
         }
