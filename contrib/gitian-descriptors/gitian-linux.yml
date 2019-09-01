@@ -1,5 +1,5 @@
 ---
-name: "bitzec-1.1.6"
+name: "bitzec-1.1.7"
 enable_cache: true
 distro: "debian"
 suites:
