@@ -1845,21 +1845,27 @@ if ( nHeight < 77777 ) nSubsidy = (21000 * COIN);
     else if ( nHeight < 1267777 ) nSubsidy = (37 * COIN);
     else if ( nHeight < 1317777 ) nSubsidy = (27 * COIN);
     else if ( nHeight < 1367777 ) nSubsidy = (17 * COIN);
+    else if ( nHeight < 1371777 ) nSubsidy = (9 * COIN);
     else {
-        int halvings = (nHeight - 1367776) / consensusParams.nSubsidyHalvingInterval;
+    else {
+        int halvings = (nHeight - 1371776) / consensusParams.nSubsidyHalvingInterval;
 
         nSubsidy=7 * COIN;
 
         if(nSubsidy >= 64){
             nSubsidy = 0;
- 	if (consensusParams.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BLOSSOM)) {
-        return (nSubsidy / Consensus::BLOSSOM_POW_TARGET_SPACING_RATIO) >> halvings;
+
         }else{
         	nSubsidy >>= halvings;
         }
 
+  
+    if (consensusParams.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_BLOSSOM)) {
+        return (nSubsidy / Consensus::BLOSSOM_POW_TARGET_SPACING_RATIO) >> halvings;
+    } else {
+
+        return nSubsidy >> halvings;
     }
-    return nSubsidy;
 }
 
 bool IsInitialBlockDownload(const CChainParams& chainParams)
