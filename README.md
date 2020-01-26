@@ -20,7 +20,7 @@ of Bitzec transactions.
 
 
 <p align="center">
-<img src="https://github.com/bitzec/bitzec/zepiogif.gif" height="500">
+<img src="https://66.media.tumblr.com/a5da7b50c0730671d239ca1f53616acb/tumblr_mjx1jl8DlW1r34zhyo8_r1_250.gif" height="500">
 </p>
 
 #### :lock: documentation ()
