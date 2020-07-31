@@ -123,8 +123,7 @@ or
 for local insight  blockexplorer 
 visit https://github.com/bitzec/insight-ui-bitzec
 
-online http://explorer.bitzec.org
-
+online http://bzc.avaxchain.com
   
 <p align="center">
   <img src="doc/imgs/bitzec_insight.png" height="500">
